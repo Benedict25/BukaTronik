@@ -118,8 +118,7 @@ public class Person {
         /*ini masih kosong*/
         return balance;
     }
-    
-    /*@override*/
+   
     public void seeItems(){
         /*ini masih kosong*/
     }
