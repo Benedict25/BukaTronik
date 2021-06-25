@@ -21,19 +21,6 @@ public class Person {
     private int balance;
     private UserType userType;
 
-    public Person(int idPerson, String username, String password, String name, String address, String city, String phoneNumber, String email, int balance, UserType userType) {
-        this.idPerson = idPerson;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.balance = balance;
-        this.userType = userType;
-    }
-
     public int getIdPerson() {
         return idPerson;
     }
