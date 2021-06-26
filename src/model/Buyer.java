@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Matthew
  */
-public class Buyer {
+public class Buyer extends Person{
     private MembershipStatus membershipStatus;
     private ArrayList<Transaction> transactions = new ArrayList();
     private ArrayList<Wishlist> wishlist = new ArrayList();
