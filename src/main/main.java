@@ -5,13 +5,11 @@
  */
 package main;
 
-/**
- *
- * @author Benedict
- */
+import view.MenuRegister;
+
 public class main {
 
     public static void main(String[] args) {
-
+        new MenuRegister();
     }
 }
