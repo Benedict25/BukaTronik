@@ -17,6 +17,10 @@ import model.Voucher;
 public class Controller {
     static ArrayList<Buyer> buyer = new ArrayList();
     static ArrayList<Seller> seller = new ArrayList();
-    static ArrayList<Flashsale> flashSale = new ArrayList();
+    static ArrayList<Flashsale> flashsale = new ArrayList();
     static ArrayList<Voucher> voucher = new ArrayList();
+    
+    public void insertFlashsale(int idItem, int flashsaleStock, int discountedPrice, String endDate ){
+        new ControllerAddFlashsale().insertFlashsale(flashsale, idItem, flashsaleStock, discountedPrice, endDate);
+    }
 }
