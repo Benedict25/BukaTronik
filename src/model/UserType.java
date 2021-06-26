@@ -11,6 +11,6 @@ package model;
  */
 public enum UserType {
     ADMIN,
-    USER,
-    TOKO
+    BUYER,
+    SELLER
 }
