@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Ignatius Dariel
  */
-public class Seller {
+public class Seller extends Person implements TransactionHistory, VoucherManager{
 
     private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Voucher> vouchers = new ArrayList<Voucher>();
@@ -58,5 +58,25 @@ public class Seller {
     }
 
     public void seeOrders() {
+    }
+
+    @Override
+    public void seeSalesHistory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createVoucher(int minTransaction, int cashback, String voucherCode, String endDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteVoucher(int idVoucher) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void seeVoucher() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
