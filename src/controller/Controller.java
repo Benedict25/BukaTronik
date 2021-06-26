@@ -24,17 +24,10 @@ public class Controller {
 
     public void insertNewBuyer(String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
         new ControllerRegister().insertNewBuyer(buyer, username, password, name, address, city, phoneNumber, email, userType);
-        
-        for (int i = 0; i < buyer.size(); i++) {
-            System.out.println(buyer.get(i).getName());
-        }
     }
     
     public void insertNewSeller(String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
         new ControllerRegister().insertNewSeller(seller, username, password, name, address, city, phoneNumber, email, userType);
-         for (int i = 0; i < seller.size(); i++) {
-            System.out.println(seller.get(i).getName());
-        }
     }
   
   public void insertFlashsale(int idItem, int flashsaleStock, int discountedPrice, String endDate ){
