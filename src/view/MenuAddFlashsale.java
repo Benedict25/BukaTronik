@@ -18,7 +18,8 @@ import javax.swing.JLabel;
  * @author Matthew
  */
 public class MenuAddFlashsale {
-    public static void main(String[] args) {
+    
+    public MenuAddFlashsale() {
         JFrame frame = new JFrame();
         frame.setSize(600, 700);
 
