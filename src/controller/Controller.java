@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.util.ArrayList;
@@ -11,8 +6,6 @@ import model.Buyer;
 import model.Flashsale;
 import model.Seller;
 import model.Voucher;
-
-import controller.ControllerRegister;
 
 public class Controller {
 
@@ -29,7 +22,6 @@ public class Controller {
         new ControllerAddItem().insertSellerItem(seller, username, itemName, price, stocks, category, itemWeight);
     }
 
-
     public void insertNewBuyer(String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
         new ControllerRegister().insertNewBuyer(buyer, username, password, name, address, city, phoneNumber, email, userType);
         
@@ -44,5 +36,10 @@ public class Controller {
             System.out.println(seller.get(i).getName());
         }
     }
+  
+  public void insertFlashsale(int idItem, int flashsaleStock, int discountedPrice, String endDate ){
+        new ControllerAddFlashsale().insertFlashsale(flashsale, idItem, flashsaleStock, discountedPrice, endDate);
+    }
     
 }
+
