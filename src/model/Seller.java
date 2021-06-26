@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Ignatius Dariel
  */
-public class Seller extends Person implements TransactionHistory, VoucherManager{
+public class Seller extends Person implements TransactionHistory, VoucherManager {
 
     private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Voucher> vouchers = new ArrayList<Voucher>();
@@ -43,6 +43,13 @@ public class Seller extends Person implements TransactionHistory, VoucherManager
     }
 
     public void addItem(String namaBarang, int price, int stock, GadgetType category, int itemWeight) {
+        Item newItem = new Item();
+        newItem.setItemName(namaBarang);
+        newItem.setPrice(price);
+        newItem.setStocks(stock);
+        newItem.setCategory(category);
+        newItem.setItemWeight(itemWeight);
+        items.add(newItem);
     }
 
     public void editItem(int idItem) {

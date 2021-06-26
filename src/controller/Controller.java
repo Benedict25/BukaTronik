@@ -6,22 +6,29 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import model.Buyer;
 import model.Flashsale;
 import model.Seller;
 import model.Voucher;
+
 import controller.ControllerRegister;
 
-/**
- *
- * @author Benedict
- */
 public class Controller {
 
     static ArrayList<Buyer> buyer = new ArrayList();
     static ArrayList<Seller> seller = new ArrayList();
     static ArrayList<Flashsale> flashsale = new ArrayList();
     static ArrayList<Voucher> voucher = new ArrayList();
+
+    static Scanner s = new Scanner (System.in);
+    
+    public void insertSellerItem (String itemName, int price, int stocks, String category, int itemWeight) {
+        System.out.println("Masukkan kembali username: ");
+        String username = s.next();
+        new ControllerAddItem().insertSellerItem(seller, username, itemName, price, stocks, category, itemWeight);
+    }
+
 
     public void insertNewBuyer(String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
         new ControllerRegister().insertNewBuyer(buyer, username, password, name, address, city, phoneNumber, email, userType);
