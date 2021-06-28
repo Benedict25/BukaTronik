@@ -9,10 +9,10 @@ import model.Voucher;
 
 public class Controller {
 
-    static ArrayList<Buyer> buyer = new ArrayList();
-    static ArrayList<Seller> seller = new ArrayList();
-    static ArrayList<Flashsale> flashsale = new ArrayList();
-    static ArrayList<Voucher> voucher = new ArrayList();
+    protected ArrayList<Buyer> buyer = new ArrayList();
+    protected ArrayList<Seller> seller = new ArrayList();
+    protected ArrayList<Flashsale> flashsale = new ArrayList();
+    protected ArrayList<Voucher> voucher = new ArrayList();
 
     static Scanner s = new Scanner (System.in);
     

@@ -8,12 +8,15 @@ package controller;
 import java.util.ArrayList;
 import model.GadgetType;
 import model.Seller;
+//import controller.Controller;
 
 /**
  *
  * @author Ignatius Dariel
  */
 public class ControllerAddItem {
+    
+    //protected Controller control = new Controller();
 
     public void insertSellerItem(ArrayList<Seller> seller, String username, String itemName, int price, int stocks, String category, int itemWeight) {
         for (int i = 0; i < seller.size(); i++) {
@@ -27,5 +30,7 @@ public class ControllerAddItem {
                 }
             }
         }
+        
+        //control.seller
     }
 }
