@@ -115,7 +115,7 @@ public class MenuRegister {
                 newPerson.setPhoneNumber(tPhoneNumber.getText());
                 newPerson.setEmail(tEmail.getText());
                 
-                String userType = (String) cbUserType.getItemAt(cbUserType.getSelectedIndex());
+                String userType = (String) cbUserType.getItemAt(cbUserType.getSelectedIndex()); //set user type
                 if (userType.equals("buyer")) {
                     newPerson.setUserType(UserType.BUYER);
                 } else {
