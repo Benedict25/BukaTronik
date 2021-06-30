@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controller.Controller;
+import controller.ControllerRegister;
+import model.Person;
+import model.UserType;
 
 /**
  *
@@ -103,20 +105,24 @@ public class MenuRegister {
         bRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = tUsername.getText();
-                String password = new String(tPassword.getPassword());
-                String name = tName.getText();
-                String address = tAddress.getText();
-                String city = tCity.getText();
-                String phoneNumber = tPhoneNumber.getText();
-                String email = tEmail.getText();
-                String userType = (String) cbUserType.getItemAt(cbUserType.getSelectedIndex());
+
+                Person newPerson = new Person();
+                newPerson.setUsername(tUsername.getText());
+                newPerson.setPassword(new String(tPassword.getPassword()));
+                newPerson.setName(tName.getText());
+                newPerson.setAddress(tAddress.getText());
+                newPerson.setCity(tCity.getText());
+                newPerson.setPhoneNumber(tPhoneNumber.getText());
+                newPerson.setEmail(tEmail.getText());
                 
+                String userType = (String) cbUserType.getItemAt(cbUserType.getSelectedIndex());
                 if (userType.equals("buyer")) {
-                    new Controller().insertNewBuyer(username, password, name, address, city, phoneNumber, email, userType);
+                    newPerson.setUserType(UserType.BUYER);
                 } else {
-                    new Controller().insertNewSeller(username, password, name, address, city, phoneNumber, email, userType);
+                    newPerson.setUserType(UserType.SELLER);
                 }
+
+                new ControllerRegister().insertNewPerson(newPerson);
 
             }
         });

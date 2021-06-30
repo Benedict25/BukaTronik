@@ -5,11 +5,9 @@
  */
 package controller;
 
-import java.nio.file.attribute.AclEntry;
-import java.util.ArrayList;
-import model.Buyer;
-import model.MembershipStatus;
-import model.Seller;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import model.Person;
 import model.UserType;
 
 /**
@@ -18,40 +16,34 @@ import model.UserType;
  */
 public class ControllerRegister {
 
-    public void insertNewBuyer(ArrayList<Buyer> buyer, String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
-        //set id ntah gmn
-        Buyer newBuyer = new Buyer();
-        newBuyer.setUsername(username);
-        newBuyer.setPassword(password);
-        newBuyer.setName(name);
-        newBuyer.setAddress(address);
-        newBuyer.setCity(city);
-        newBuyer.setPhoneNumber(phoneNumber);
-        newBuyer.setEmail(email);
-        newBuyer.setBalance(0);
-        newBuyer.setUserType(UserType.BUYER);
-        newBuyer.setMembershipStatus(MembershipStatus.BRONZE);
+    static DatabaseHandler conn = new DatabaseHandler();
 
-        buyer.add(newBuyer);
+    public void insertNewPerson(Person person) {
 
-        System.out.println("Sukses Registrasi");
+        conn.connect();
+        String query = "INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1,0);
+            stmt.setString(2, person.getUsername());
+            stmt.setString(3, person.getPassword());
+            stmt.setString(4, person.getName());
+            stmt.setString(5, person.getAddress());
+            stmt.setString(6, person.getCity());
+            stmt.setString(7, person.getPhoneNumber());
+            stmt.setString(8, person.getEmail());
+            stmt.setInt(9, 0);
+            if (person.getUserType().equals(UserType.BUYER)) {
+                stmt.setString(10, "buyer");
+            } else if (person.getUserType().equals(UserType.SELLER)) {
+                stmt.setString(10, "seller");
+            }
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void insertNewSeller(ArrayList<Seller> seller, String username, String password, String name, String address, String city, String phoneNumber, String email, String userType) {
-        //set id ntah gmn
-        Seller newSeller = new Seller();
-        newSeller.setUsername(username);
-        newSeller.setPassword(password);
-        newSeller.setName(name);
-        newSeller.setAddress(address);
-        newSeller.setCity(city);
-        newSeller.setPhoneNumber(phoneNumber);
-        newSeller.setEmail(email);
-
-        newSeller.setUserType(UserType.SELLER);
-
-        seller.add(newSeller);
-
-        System.out.println("Sukses Registrasi");
-    }
 }
