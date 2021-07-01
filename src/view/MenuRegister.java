@@ -33,7 +33,7 @@ public class MenuRegister {
         frame.setSize(580, 625);
 
         //textField
-        String userType[] = {"buyer", "seller"};
+        String userType[] = {"Buyer", "Seller"};
         JComboBox cbUserType;
 
         lUsername = new JLabel("Username: ");
@@ -123,6 +123,8 @@ public class MenuRegister {
                 }
 
                 new ControllerRegister().insertNewPerson(newPerson);
+                frame.setVisible(false);
+                new MenuLogin();
 
             }
         });
