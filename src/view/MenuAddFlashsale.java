@@ -44,7 +44,7 @@ public class MenuAddFlashsale {
         tDiscountedPrice = new JTextField();
         tDiscountedPrice.setBounds(250, 250, 200, 30);
 
-        lEndDate = new JLabel("input endDate : ");
+        lEndDate = new JLabel("input endDate (YYYY-MM-DD) : ");
         lEndDate.setBounds(100, 300, 150, 30);
         tEndDate = new JTextField();
         tEndDate.setBounds(250, 300, 200, 30);
