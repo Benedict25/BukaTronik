@@ -42,16 +42,6 @@ public class Seller extends Person implements TransactionHistory, VoucherManager
         this.transactions = transactions;
     }
 
-    public void addItem(String namaBarang, int price, int stock, GadgetType category, int itemWeight) {
-        Item newItem = new Item();
-        newItem.setItemName(namaBarang);
-        newItem.setPrice(price);
-        newItem.setStocks(stock);
-        newItem.setCategory(category);
-        newItem.setItemWeight(itemWeight);
-        items.add(newItem);
-    }
-
     public void editItem(int idItem) {
     }
 
