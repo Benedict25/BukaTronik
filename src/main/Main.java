@@ -7,9 +7,12 @@ package main;
 
 import view.MenuLogin;
 
+/**
+ *
+ * @author Benedict
+ */
 public class Main {
-
     public static void main(String[] args) {
-       new MenuLogin();
+        new MenuLogin();
     }
 }
