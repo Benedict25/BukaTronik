@@ -5,20 +5,14 @@
  */
 package controller;
 
-import model.Person;
+import model.Item;
+import view.MenuSellerScreen;
 
 /**
  *
  * @author Benedict
  */
 public class MainController {
-    static int activeID = -1;
-    
-    public boolean checkLoginAndSetActivePerson(String username, String password){
-        ControllerLogin control = new ControllerLogin();
-        boolean successLogin = control.checkLoginAndSetActivePerson(username, password);
-        return successLogin;
-    }
-    
 
+    static int activeID = -1;
 }
