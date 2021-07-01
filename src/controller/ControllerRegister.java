@@ -35,9 +35,9 @@ public class ControllerRegister {
             stmt.setString(8, person.getEmail());
             stmt.setInt(9, 0);
             if (person.getUserType().equals(UserType.BUYER)) {
-                stmt.setString(10, "buyer");
+                stmt.setString(10, "BUYER");
             } else if (person.getUserType().equals(UserType.SELLER)) {
-                stmt.setString(10, "seller");
+                stmt.setString(10, "SELLER");
             }
             stmt.executeUpdate();
         } catch (SQLException e) {
