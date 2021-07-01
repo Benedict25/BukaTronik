@@ -8,6 +8,7 @@ package controller;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.Flashsale;
+import java.sql.Date;
 
 /**
  *
@@ -26,7 +27,9 @@ static DatabaseHandler conn = new DatabaseHandler();
             stmt.setInt(2, newFlashsale.getIdItem());
             stmt.setInt(3, newFlashsale.getDiscountedPrice());
             stmt.setInt(4, newFlashsale.getFlashsaleStock());
-            stmt.setString(5, newFlashsale.getEndDate());
+            String str = newFlashsale.getEndDate();
+            Date date=Date.valueOf(str);
+            stmt.setDate(5, date);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
