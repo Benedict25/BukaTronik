@@ -8,17 +8,23 @@ package view;
 import controller.ControllerAddItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import model.GadgetType;
 import model.Item;
 
 /**
  *
- * @author Ignatius Dariel
+ * @author Dingdingding
  */
-public class MenuAddItem {
+public class MenuSellerScreen {
 
-    public MenuAddItem() {
+    public MenuSellerScreen() {
         JFrame frame = new JFrame("Add Item");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 700);
@@ -40,13 +46,13 @@ public class MenuAddItem {
         tStocks.setBounds(100, 100, 200, 25);
         lStocks.setBounds(20, 100, 200, 25);
 
-        JRadioButton rLaptop = new JRadioButton("Laptop");
+        JRadioButton rLaptop = new JRadioButton("LAPTOP");
         rLaptop.setBounds(90, 140, 200, 25);
 
-        JRadioButton rHandphone = new JRadioButton("Handphone");
+        JRadioButton rHandphone = new JRadioButton("HANDPHONE");
         rHandphone.setBounds(90, 160, 200, 25);
 
-        JRadioButton rAcc = new JRadioButton("Accessories");
+        JRadioButton rAcc = new JRadioButton("ACC");
         rAcc.setBounds(90, 180, 200, 25);
 
         JLabel lCategory = new JLabel("Category: ");
@@ -92,11 +98,12 @@ public class MenuAddItem {
                 newItem.setItemName(tItemName.getText());
                 newItem.setPrice(Integer.parseInt(tPrice.getText()));
                 newItem.setStocks(Integer.parseInt(tStocks.getText()));
-                if (rLaptop.isSelected()) {
+                ButtonModel comps = rCategory.getSelection();
+                if (comps == rLaptop) {
                     newItem.setCategory(GadgetType.LAPTOP);
-                } else if (rHandphone.isSelected()) {
+                } else if (comps == rHandphone) {
                     newItem.setCategory(GadgetType.HANDPHONE);
-                } else if (rAcc.isSelected()) {
+                } else if (comps == rAcc) {
                     newItem.setCategory(GadgetType.ACC);
                 }
                 newItem.setItemWeight(Integer.parseInt(tItemWeight.getText()));
@@ -106,5 +113,5 @@ public class MenuAddItem {
         });
 
     }
-
+    
 }

@@ -23,26 +23,26 @@ public class ControllerAddItem {
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
-            stmt.setInt(2, 112);
+            stmt.setInt(2, MainController.activeID);
             stmt.setString(3, newItem.getItemName());
             stmt.setInt(4, newItem.getPrice());
             stmt.setInt(5, newItem.getStocks());
-            stmt.setString(6,strGadgetType(newItem));
+            stmt.setString(6, strGadgetType(newItem));
             stmt.setInt(7, newItem.getItemWeight());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    private String strGadgetType(Item newItem){
+
+    private String strGadgetType(Item newItem) {
         String category = "";
         if (newItem.getCategory() == GadgetType.LAPTOP) {
-            category = "Laptop";
+            category = "LAPTOP";
         } else if (newItem.getCategory() == GadgetType.HANDPHONE) {
-            category = "Handphone";
+            category = "HANDPHONE";
         } else if (newItem.getCategory() == GadgetType.ACC) {
-            category = "Accessories";
+            category = "ACCESSORIES";
         }
         return category;
     }

@@ -5,8 +5,7 @@
  */
 package view;
 
-import controller.ControllerRegister;
-import controller.MainController;
+import controller.ControllerLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,8 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import model.Person;
-import model.UserType;
 
 /**
  *
@@ -68,14 +65,34 @@ public class MenuLogin {
             public void actionPerformed(ActionEvent e) {
                 String username = tUsername.getText();
                 String password = new String(tPassword.getPassword());
-                MainController control = new MainController();
-                boolean successLogin = control.checkLoginAndSetActivePerson(username, password);
+                ControllerLogin control = new ControllerLogin();
+                String userType = control.checkLoginAndSetActivePerson(username, password);
+                boolean successLogin = true;
+                //Jika user type kosong berarti user tidak ditemukan
+                if (userType.equals("")) {
+                    successLogin = false;
+                }
+                //Masuk menu tiap user
+                System.out.println(userType);
                 if (successLogin) {
                     System.out.println("Sukses");
+                    switch (userType) {
+                        case "ADMIN":
+                            
+                            break;
+                        case "SELLER":
+                            new MenuAddItem();
+                            break;
+                        case "BUYER":
+                            
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                 }else{
                     System.out.println("Gagal");
                 }
-
+                frame.setVisible(false);
             } 
         });
 
