@@ -15,7 +15,7 @@ public class Voucher {
     private int cashback;
     private String voucherCode;
     private String endDate;
-    private boolean isAvailable;
+    private int isAvailable;
 
     public int getIdVoucher() {
         return idVoucher;
@@ -57,11 +57,11 @@ public class Voucher {
         this.endDate = endDate;
     }
 
-    public boolean isIsAvailable() {
+    public int getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
+    public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
     }
     
