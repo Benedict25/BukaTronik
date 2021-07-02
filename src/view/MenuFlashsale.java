@@ -59,9 +59,6 @@ public class MenuFlashsale {
 
         JButton buttonP1 = new JButton("Submit");
         buttonP1.setBounds(100, 400, 95, 30);
-        buttonP1.addActionListener((ActionEvent e) -> {
-
-        });
 
         /*add frame*/
         p1.add(JInsertIdItem);
@@ -118,9 +115,6 @@ public class MenuFlashsale {
 
         JButton buttonP2 = new JButton("Submit");
         buttonP2.setBounds(100, 400, 95, 30);
-        buttonP2.addActionListener((ActionEvent e) -> {
-
-        });
 
         /*add frame*/
         p2.add(JEditFlashsale);
@@ -147,8 +141,9 @@ public class MenuFlashsale {
 
             new ControllerFlashsale().EditFlashsale(updateFlashsale);
         });
-        
 
+
+        
         //p3(Menu delete Flashsale)
         /*variable update*/
         JTextField deleteIdFlashsale;
@@ -162,9 +157,6 @@ public class MenuFlashsale {
 
         JButton buttonP3 = new JButton("Submit");
         buttonP3.setBounds(100, 400, 95, 30);
-        buttonP3.addActionListener((ActionEvent e) -> {
-
-        });
 
         /*add frame*/
         p3.add(JdeleteIdFlashsale);
