@@ -147,9 +147,8 @@ public class MenuFlashsale {
 
             new ControllerFlashsale().EditFlashsale(updateFlashsale);
         });
-
-
         
+
         //p3(Menu delete Flashsale)
         /*variable update*/
         JTextField deleteIdFlashsale;
@@ -175,10 +174,9 @@ public class MenuFlashsale {
 
         /*add data*/
         buttonP3.addActionListener((ActionEvent e) -> {
-            Flashsale deleteFlashsale = new Flashsale();
-            deleteFlashsale.setIdFlashsale(Integer.parseInt(deleteIdFlashsale.getText()));
+            int inputDeleteFlashsale = Integer.parseInt(deleteIdFlashsale.getText());
 
-            new ControllerFlashsale().DeleteFlashsale(deleteFlashsale);
+            new ControllerFlashsale().DeleteFlashsale(inputDeleteFlashsale);
         });
         
         JTabbedPane tp = new JTabbedPane();
