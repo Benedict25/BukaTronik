@@ -5,9 +5,6 @@
  */
 package controller;
 
-import model.Item;
-import view.MenuSellerScreen;
-
 /**
  *
  * @author Benedict
