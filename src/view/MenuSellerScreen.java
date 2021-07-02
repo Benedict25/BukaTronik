@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.ControllerAddItem;
+import controller.ControllerItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -107,7 +107,7 @@ public class MenuSellerScreen {
                     newItem.setCategory(GadgetType.ACC);
                 }
                 newItem.setItemWeight(Integer.parseInt(tItemWeight.getText()));
-                new ControllerAddItem().insertSellerItem(newItem);
+                new ControllerItem().insertSellerItem(newItem);
                 frame.setVisible(false);
             }
         });

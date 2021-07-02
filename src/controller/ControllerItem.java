@@ -14,7 +14,7 @@ import model.Item;
  *
  * @author Ignatius Dariel
  */
-public class ControllerAddItem {
+public class ControllerItem {
 
     public void insertSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
