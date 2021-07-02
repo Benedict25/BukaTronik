@@ -147,9 +147,8 @@ public class MenuFlashsale {
 
             new ControllerFlashsale().EditFlashsale(updateFlashsale);
         });
-
-
         
+
         //p3(Menu delete Flashsale)
         /*variable update*/
         JTextField deleteIdFlashsale;
