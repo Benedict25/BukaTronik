@@ -56,5 +56,16 @@ public class ControllerFlashsale {
         }
     }
     
+    public void DeleteFlashsale(Flashsale deleteFlashsale){
+        conn.connect();
+        String query = "DELETE FROM flashsale WHERE idFlashsale='"+deleteFlashsale.getIdFlashsale()+"'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
 }
