@@ -56,9 +56,9 @@ public class ControllerFlashsale {
         }
     }
     
-    public void DeleteFlashsale(Flashsale deleteFlashsale){
+    public void DeleteFlashsale(int inputDeleteFlashsale){
         conn.connect();
-        String query = "DELETE FROM flashsale WHERE idFlashsale='"+deleteFlashsale.getIdFlashsale()+"'";
+        String query = "DELETE FROM flashsale WHERE idFlashsale='"+inputDeleteFlashsale+"'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
