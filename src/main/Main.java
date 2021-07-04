@@ -6,7 +6,6 @@
 package main;
 
 import view.MenuLogin;
-import view.MenuItem;
 
 /**
  *
@@ -15,7 +14,6 @@ import view.MenuItem;
 public class Main {
 
     public static void main(String[] args) {
-//        new MenuLogin();
-        new MenuItem();
+        new MenuLogin();
     }
 }

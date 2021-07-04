@@ -81,10 +81,10 @@ public class MenuLogin {
                             
                             break;
                         case "SELLER":
-                            new MenuItem();
+                            new MenuItem().MenuItemForSeller();
                             break;
                         case "BUYER":
-                            
+                            new MenuItem().MenuItemForBuyer();
                             break;
                         default:
                             throw new AssertionError();
@@ -92,7 +92,7 @@ public class MenuLogin {
                 }else{
                     System.out.println("Gagal");
                 }
-                frame.setVisible(false);
+//                frame.setVisible(false);
             } 
         });
 
