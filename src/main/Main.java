@@ -6,13 +6,16 @@
 package main;
 
 import view.MenuLogin;
+import view.MenuItem;
 
 /**
  *
  * @author Benedict
  */
 public class Main {
+
     public static void main(String[] args) {
-        new MenuLogin();
+//        new MenuLogin();
+        new MenuItem();
     }
 }

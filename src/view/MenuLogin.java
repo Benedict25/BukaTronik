@@ -81,7 +81,7 @@ public class MenuLogin {
                             
                             break;
                         case "SELLER":
-                            new MenuAddItem();
+                            new MenuItem();
                             break;
                         case "BUYER":
                             

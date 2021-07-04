@@ -7,6 +7,7 @@ package controller;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import model.GadgetType;
 import model.Item;
 
@@ -14,7 +15,7 @@ import model.Item;
  *
  * @author Ignatius Dariel
  */
-public class ControllerAddItem {
+public class ControllerItem {
 
     public void insertSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
@@ -45,5 +46,34 @@ public class ControllerAddItem {
             category = "ACCESSORIES";
         }
         return category;
+    }
+
+    public void deleteSellerItem(int idItem) {
+        DatabaseHandler conn = new DatabaseHandler();
+        conn.connect();
+        String query = "DELETE FROM item WHERE idItem='" + idItem + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void editSellerItem(Item newItem) {
+        DatabaseHandler conn = new DatabaseHandler();
+        conn.connect();
+        String query = "UPDATE item SET itemName='" + newItem.getItemName() + "', "
+                + "price='" + newItem.getPrice()+ "', "
+                + "stock='" + newItem.getStocks() + "', "
+                + "category='" + strGadgetType(newItem) + "', "
+                + "itemWeight='" + newItem.getItemWeight()+ "' "
+                + "WHERE idItem='" + newItem.getIdItem() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
