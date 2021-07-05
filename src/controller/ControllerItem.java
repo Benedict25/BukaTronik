@@ -5,13 +5,16 @@
  */
 package controller;
 
-import static controller.ControllerVoucher.conn;
+import static controller.MainController.conn;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import model.DetailedTransaction;
 import model.GadgetType;
 import model.Item;
+import model.Transaction;
 
 /**
  *
@@ -38,7 +41,7 @@ public class ControllerItem {
         }
     }
 
-    private String strGadgetType(Item newItem) {
+    public String strGadgetType(Item newItem) {
         String category = "";
         if (newItem.getCategory() == GadgetType.LAPTOP) {
             category = "LAPTOP";
@@ -66,10 +69,10 @@ public class ControllerItem {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "UPDATE item SET itemName='" + newItem.getItemName() + "', "
-                + "price='" + newItem.getPrice()+ "', "
+                + "price='" + newItem.getPrice() + "', "
                 + "stock='" + newItem.getStocks() + "', "
                 + "category='" + strGadgetType(newItem) + "', "
-                + "itemWeight='" + newItem.getItemWeight()+ "' "
+                + "itemWeight='" + newItem.getItemWeight() + "' "
                 + "WHERE idItem='" + newItem.getIdItem() + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -78,4 +81,40 @@ public class ControllerItem {
             e.printStackTrace();
         }
     }
+
+    private GadgetType enumGadgetType(String category) {
+        if (category.equals("LAPTOP")) {
+            return GadgetType.LAPTOP;
+        } else if (category.equals("HANDPHONE")) {
+            return GadgetType.HANDPHONE;
+        } else if (category.equals("ACCESSORIES")) {
+            return GadgetType.ACC;
+        }
+        return null;
+    }
+
+    public ArrayList<Item> getArrItemFromDetailed(ArrayList<DetailedTransaction> listDetailed) {
+        ArrayList<Item> listItem = new ArrayList<>();
+        conn.connect();
+        for (int i = 0; i < listDetailed.size(); i++) {
+            String query = "SELECT * FROM item WHERE idItem='" + listDetailed.get(i).getIdItem() + "'";
+            try {
+                Statement stmt = conn.con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    Item newItem = new Item();
+                    newItem.setItemName(rs.getString("itemName"));
+                    newItem.setPrice(rs.getInt("price"));
+                    newItem.setStocks(rs.getInt("stock"));
+                    newItem.setCategory(enumGadgetType(rs.getString("category")));
+                    newItem.setItemWeight(rs.getInt("itemWeight"));
+                    listItem.add(newItem);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listItem;
+    }
 }
+
