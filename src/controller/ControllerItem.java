@@ -5,7 +5,9 @@
  */
 package controller;
 
+import static controller.ControllerVoucher.conn;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import model.GadgetType;
@@ -59,7 +61,7 @@ public class ControllerItem {
             e.printStackTrace();
         }
     }
-    
+
     public void editSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
