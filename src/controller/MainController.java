@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class MainController {
 
     static DatabaseHandler conn = new DatabaseHandler();
-    public static int activeID = 111;
+    public static int activeID = -1;
 
     public String getActivePersonUsername() {
         String activeUsername = "";
