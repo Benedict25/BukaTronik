@@ -6,8 +6,10 @@
 package controller;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import model.GadgetType;
 import model.Item;
 
@@ -36,7 +38,7 @@ public class ControllerItem {
         }
     }
 
-    private String strGadgetType(Item newItem) {
+    public String strGadgetType(Item newItem) {
         String category = "";
         if (newItem.getCategory() == GadgetType.LAPTOP) {
             category = "LAPTOP";
@@ -59,15 +61,15 @@ public class ControllerItem {
             e.printStackTrace();
         }
     }
-    
+
     public void editSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "UPDATE item SET itemName='" + newItem.getItemName() + "', "
-                + "price='" + newItem.getPrice()+ "', "
+                + "price='" + newItem.getPrice() + "', "
                 + "stock='" + newItem.getStocks() + "', "
                 + "category='" + strGadgetType(newItem) + "', "
-                + "itemWeight='" + newItem.getItemWeight()+ "' "
+                + "itemWeight='" + newItem.getItemWeight() + "' "
                 + "WHERE idItem='" + newItem.getIdItem() + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -75,5 +77,38 @@ public class ControllerItem {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Item> getSellerItemsData() {
+        DatabaseHandler conn = new DatabaseHandler();
+        conn.connect();
+        String query = "SELECT * FROM item WHERE idPerson='" + MainController.activeID + "'";
+        ArrayList<Item> arrItem = new ArrayList();
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Item newItem = new Item();
+                newItem.setIdItem(rs.getInt("idItem"));
+                newItem.setItemName(rs.getString("itemName"));
+                newItem.setPrice(rs.getInt("price"));
+                newItem.setStocks(rs.getInt("stock"));
+                String currentCategory = rs.getString("category");
+                if (currentCategory.equals("LAPTOP")) {
+                    newItem.setCategory(GadgetType.LAPTOP);
+                } else if (currentCategory.equals("HANDPHONE")) {
+                    newItem.setCategory(GadgetType.HANDPHONE);
+                } else if (currentCategory.equals("ACCESSORIES")) {
+                    newItem.setCategory(GadgetType.ACC);
+                }
+                newItem.setItemWeight(rs.getInt("itemWeight"));
+                arrItem.add(newItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arrItem;
     }
 }

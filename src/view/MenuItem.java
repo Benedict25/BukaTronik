@@ -6,15 +6,18 @@
 package view;
 
 import controller.ControllerItem;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import model.GadgetType;
 import model.Item;
@@ -25,39 +28,85 @@ import model.Item;
  */
 public class MenuItem {
     
-    public void MenuItemForSeller() {
-        JFrame sellerMenuFrame = new JFrame("Seller Menu");
-        sellerMenuFrame.setSize(700, 800);
-
+    public void MainMenuItemSeller() {
+        JFrame frameMenuItem = new JFrame();
+        frameMenuItem.setSize(500, 600);
+        
+    }
+    
+    public void SeeItemSeller() {
+        JFrame frameSeeItem = new JFrame();
+        frameSeeItem.setSize(500, 800);
+        
+        ArrayList<Item> itemList = new ControllerItem().getSellerItemsData();
+        int y = 110;
+        
+        JButton addItemRedirect = new JButton("Add Item");
+        addItemRedirect.setBounds(200, 20, 100, 50);
+        
+        addItemRedirect.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               MenuAddItem();
+            }
+        });
+        
+        for (int i = 0; i < itemList.size(); i++) {
+            JPanel newPanel = new JPanel();
+            newPanel.setBounds(10, y, 200, 100);
+            newPanel.setBackground(Color.gray);
+            y += 100;
+            
+            JLabel lNamaItem = new JLabel(itemList.get(i).getItemName());
+            lNamaItem.setBounds(10, 5, 70, 10);
+            newPanel.add(lNamaItem);
+            
+            String category = new ControllerItem().strGadgetType(itemList.get(i));
+            JLabel lCategoryItem = new JLabel(category);
+            lNamaItem.setBounds(10, 20, 70, 10);
+            System.out.println(category);
+            newPanel.add(lCategoryItem);
+            
+            newPanel.setLayout(null);
+            newPanel.setVisible(true);
+            frameSeeItem.add(newPanel);
+        }
+        frameSeeItem.add(addItemRedirect);
+        frameSeeItem.setLayout(null);
+        frameSeeItem.setVisible(true);
+    }
+    
+    public void MenuAddItem() {
         //Menu Add Item
-        JPanel panelAddItem = new JPanel();
+        JFrame frameAddItem = new JFrame();
+        frameAddItem.setSize(500, 600);
         
         JTextField tItemName = new JTextField();
         JLabel lItemName = new JLabel("Item Name: ");
-        tItemName.setBounds(210, 125, 200, 25);
-        lItemName.setBounds(65, 125, 200, 25);
+        tItemName.setBounds(210, 75, 200, 25);
+        lItemName.setBounds(65, 75, 200, 25);
         
         JTextField tPrice = new JTextField();
         JLabel lPrice = new JLabel("Item Price: ");
-        tPrice.setBounds(210, 175, 200, 25);
-        lPrice.setBounds(65, 175, 200, 25);
+        tPrice.setBounds(210, 125, 200, 25);
+        lPrice.setBounds(65, 125, 200, 25);
         
         JTextField tStocks = new JTextField();
         JLabel lStocks = new JLabel("Item Stocks: ");
-        tStocks.setBounds(210, 225, 200, 25);
-        lStocks.setBounds(65, 225, 200, 25);
+        tStocks.setBounds(210, 175, 200, 25);
+        lStocks.setBounds(65, 175, 200, 25);
         
         JRadioButton rLaptop = new JRadioButton("Laptop");
-        rLaptop.setBounds(210, 275, 200, 25);
+        rLaptop.setBounds(210, 225, 200, 25);
         
         JRadioButton rHandphone = new JRadioButton("Handphone");
-        rHandphone.setBounds(210, 300, 200, 25);
+        rHandphone.setBounds(210, 250, 200, 25);
         
         JRadioButton rAcc = new JRadioButton("Accessories");
-        rAcc.setBounds(210, 325, 200, 25);
+        rAcc.setBounds(210, 275, 200, 25);
         
         JLabel lCategory = new JLabel("Category: ");
-        lCategory.setBounds(65, 275, 200, 25);
+        lCategory.setBounds(65, 225, 200, 25);
         
         ButtonGroup rCategory = new ButtonGroup();
         rCategory.add(rAcc);
@@ -66,26 +115,26 @@ public class MenuItem {
         
         JTextField tItemWeight = new JTextField();
         JLabel lItemWeight = new JLabel("Item Weight: ");
-        tItemWeight.setBounds(210, 375, 200, 25);
-        lItemWeight.setBounds(65, 375, 200, 25);
+        tItemWeight.setBounds(210, 325, 200, 25);
+        lItemWeight.setBounds(65, 325, 200, 25);
         
         JButton submitAddItem = new JButton("Submit");
-        submitAddItem.setBounds(200, 450, 100, 25);
+        submitAddItem.setBounds(200, 375, 100, 25);
 
         //Add components Add Item
-        panelAddItem.add(tItemName);
-        panelAddItem.add(lItemName);
-        panelAddItem.add(tPrice);
-        panelAddItem.add(lPrice);
-        panelAddItem.add(tStocks);
-        panelAddItem.add(lStocks);
-        panelAddItem.add(rLaptop);
-        panelAddItem.add(rHandphone);
-        panelAddItem.add(rAcc);
-        panelAddItem.add(lCategory);
-        panelAddItem.add(tItemWeight);
-        panelAddItem.add(lItemWeight);
-        panelAddItem.add(submitAddItem);
+        frameAddItem.add(tItemName);
+        frameAddItem.add(lItemName);
+        frameAddItem.add(tPrice);
+        frameAddItem.add(lPrice);
+        frameAddItem.add(tStocks);
+        frameAddItem.add(lStocks);
+        frameAddItem.add(rLaptop);
+        frameAddItem.add(rHandphone);
+        frameAddItem.add(rAcc);
+        frameAddItem.add(lCategory);
+        frameAddItem.add(tItemWeight);
+        frameAddItem.add(lItemWeight);
+        frameAddItem.add(submitAddItem);
 
         //Button function Add Item
         submitAddItem.addActionListener(new ActionListener() {
@@ -107,10 +156,14 @@ public class MenuItem {
             }
         });
         
-        //Menu See Item
-
+        frameAddItem.setLayout(null);
+        frameAddItem.setVisible(true);
+    }
+    
+    public void MenuDeleteItem() {
         //Menu Delete Item
-        JPanel panelDeleteItem = new JPanel();
+        JFrame frameDeleteItem = new JFrame();
+        frameDeleteItem.setSize(500, 600);
         
         JTextField tIdItemDelete = new JTextField();
         JLabel lIdItemDelete = new JLabel("Masukkan id item yang ingin di delete: ");
@@ -121,9 +174,9 @@ public class MenuItem {
         submitDeleteItem.setBounds(165, 300, 150, 40);
 
         //Add components Delete Item
-        panelDeleteItem.add(tIdItemDelete);
-        panelDeleteItem.add(lIdItemDelete);
-        panelDeleteItem.add(submitDeleteItem);
+        frameDeleteItem.add(tIdItemDelete);
+        frameDeleteItem.add(lIdItemDelete);
+        frameDeleteItem.add(submitDeleteItem);
 
         //Button function Delete Item
         submitDeleteItem.addActionListener(new ActionListener() {
@@ -133,9 +186,15 @@ public class MenuItem {
                 new ControllerItem().deleteSellerItem(idItemDelete);
             }
         });
-
+        
+        frameDeleteItem.setLayout(null);
+        frameDeleteItem.setVisible(true);
+    }
+    
+    public void MenuEditItem() {
         //Edit Item
         JPanel panelEditItem = new JPanel();
+        panelEditItem.setSize(500, 600);
         
         JTextField tIdEditItem = new JTextField();
         JLabel lIdEditItem = new JLabel("Id item : ");
@@ -220,19 +279,8 @@ public class MenuItem {
             }
         });
         
-        JTabbedPane tp = new JTabbedPane();
-        tp.setBounds(90, 60, 500, 600);
-        tp.add("Add Item", panelAddItem);
-        //tp.add see Items
-        tp.add("Delete Item", panelDeleteItem);
-        tp.add("Edit Item", panelEditItem);
-        sellerMenuFrame.add(tp);
-        
-        panelAddItem.setLayout(null);
-        panelDeleteItem.setLayout(null);
         panelEditItem.setLayout(null);
-        sellerMenuFrame.setLayout(null);
-        sellerMenuFrame.setVisible(true);
+        panelEditItem.setVisible(true);
     }
     
     public void MenuItemForBuyer() {

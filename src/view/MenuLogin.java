@@ -81,7 +81,7 @@ public class MenuLogin {
                             
                             break;
                         case "SELLER":
-                            new MenuItem().MenuItemForSeller();
+                            new MenuItem().SeeItemSeller();
                             break;
                         case "BUYER":
                             new MenuItem().MenuItemForBuyer();
