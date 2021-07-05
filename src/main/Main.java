@@ -5,6 +5,7 @@
  */
 package main;
 
+import view.MainMenuBuyer;
 import view.MenuLogin;
 import view.MenuOrder;
 
@@ -15,6 +16,6 @@ import view.MenuOrder;
 public class Main {
 
     public static void main(String[] args) {
-        new MenuOrder().seeOngoingOrder();
+        new MainMenuBuyer();
     }
 }
