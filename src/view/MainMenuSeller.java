@@ -27,22 +27,22 @@ public class MainMenuSeller {
         lUsername.setBounds(125, 10, 500, 70);
         lUsername.setFont(new Font("Serif", Font.BOLD, 40));
 
-        JButton bProfile = new JButton("Profile>");
+        JButton bProfile = new JButton("Profile >");
         bProfile.setBounds(70, 120, 150, 50);
 
-        JButton bManageItem = new JButton("Manage Items>");
+        JButton bManageItem = new JButton("Manage Items >");
         bManageItem.setBounds(270, 120, 150, 50);
 
-        JButton bManageOrder = new JButton("Manage Orders>");
+        JButton bManageOrder = new JButton("Manage Orders >");
         bManageOrder.setBounds(70, 220, 150, 50);
 
-        JButton bManageVoucher = new JButton("Manage Voucher>");
+        JButton bManageVoucher = new JButton("Manage Voucher >");
         bManageVoucher.setBounds(270, 220, 150, 50);
 
-        JButton bSalesHistory = new JButton("Sales History>");
+        JButton bSalesHistory = new JButton("Sales History >");
         bSalesHistory.setBounds(70, 320, 150, 50);
 
-        JButton bLogOut = new JButton("Log Out>");
+        JButton bLogOut = new JButton("Log Out >");
         bLogOut.setBounds(270, 320, 150, 50);
 
         JLabel lWelcome = new JLabel("Welcome to Bukatronik");

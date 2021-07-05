@@ -27,16 +27,16 @@ public class MainMenuAdmin {
         lUsername.setBounds(125, 10, 500, 70);
         lUsername.setFont(new Font("Serif", Font.BOLD, 40));
 
-        JButton bProfile = new JButton("Profile>");
+        JButton bProfile = new JButton("Profile >");
         bProfile.setBounds(175, 110, 150, 50);
 
-        JButton bManageFlashsale = new JButton("Manage Flashsale>");
+        JButton bManageFlashsale = new JButton("Manage Flashsale >");
         bManageFlashsale.setBounds(175, 180, 150, 50);
 
-        JButton bManageUser = new JButton("Manage User>");
+        JButton bManageUser = new JButton("Manage User >");
         bManageUser.setBounds(175, 250, 150, 50);
 
-        JButton bLogOut = new JButton("Log Out>");
+        JButton bLogOut = new JButton("Log Out >");
         bLogOut.setBounds(175, 320, 150, 50);
 
         JLabel lWelcome = new JLabel("This is Bukatronik ADMIN");
