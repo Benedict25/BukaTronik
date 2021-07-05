@@ -5,11 +5,34 @@
  */
 package controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Benedict
  */
 public class MainController {
 
+    static DatabaseHandler conn = new DatabaseHandler();
     static int activeID = -1;
+
+    public String getActivePersonUsername() {
+        String activeUsername = "";
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                activeUsername = rs.getString("username");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activeUsername;
+    }
 }
