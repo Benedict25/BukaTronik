@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class MainMenuSeller {
 
     public MainMenuSeller() {
-        JFrame frameMainMenuSeller = new JFrame();
+        JFrame frameMainMenuSeller = new JFrame("Main Menu Seller");
         frameMainMenuSeller.setSize(500, 500);
         String username = new MainController().getActivePersonUsername();
         JLabel lUsername = new JLabel("Welcome " + username + "!");

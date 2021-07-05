@@ -77,13 +77,15 @@ public class MenuLogin {
                     System.out.println("Sukses");
                     switch (userType) {
                         case "ADMIN":
-
+                            
                             break;
                         case "SELLER":
                             new MainMenuSeller();
+                            frame.setVisible(false);
                             break;
                         case "BUYER":
-                            new MenuItem().MenuItemForBuyer();
+                            new MainMenuBuyer();
+                            frame.setVisible(false);
                             break;
                         default:
                             throw new AssertionError();
