@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.Flashsale;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +20,31 @@ import java.sql.Statement;
 public class ControllerFlashsale {
 
     static DatabaseHandler conn = new DatabaseHandler();
+    
+    public ArrayList<Flashsale> getFlashsaleDataAdmin() {
+        conn.connect();
+        String query = "SELECT * FROM flashsale";
+        ArrayList<Flashsale> arrFlashsale = new ArrayList();
+        
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Flashsale newFlashsale = new Flashsale();
+                newFlashsale.setIdFlashsale(rs.getInt("idFlashsale"));
+                newFlashsale.setIdItem(rs.getInt("idItem"));
+                newFlashsale.setDiscountedPrice(rs.getInt("discountedPrice"));
+                newFlashsale.setFlashsaleStock(rs.getInt("flashsaleStock"));
+                String date = rs.getDate("endDate").toString();
+                newFlashsale.setEndDate(date);
+                arrFlashsale.add(newFlashsale);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arrFlashsale;
+    }
 
     public void insertFlashsale(Flashsale newFlashsale) {
         conn.connect();
@@ -63,6 +90,27 @@ public class ControllerFlashsale {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Flashsale getFlashsaleDataById(int idFlashsale){
+        conn.connect();
+        String query = "SELECT * FROM flashsale WHERE idFlashsale='"+idFlashsale+"'";
+        Flashsale flashsale = new Flashsale();
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                flashsale.setIdFlashsale(rs.getInt("idFlashsale"));
+                flashsale.setIdItem(rs.getInt("idItem"));
+                flashsale.setDiscountedPrice(rs.getInt("discountedPrice"));
+                flashsale.setFlashsaleStock(rs.getInt("flashsaleStock"));
+                String date = rs.getDate("endDate").toString();
+                flashsale.setEndDate(date);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return flashsale;
     }
     
     

@@ -6,8 +6,10 @@
 package view;
 
 import controller.ControllerFlashsale;
+import java.awt.Color;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -21,16 +23,113 @@ import model.Flashsale;
  * @author Matthew
  */
 public class MenuFlashsale {
+    
+    ControllerFlashsale controllerFlashsale = new ControllerFlashsale();
 
-    public MenuFlashsale() {
+    public void MenuSeeFlashsaleForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
+        ArrayList<Flashsale> arrFlashsale = new ArrayList();
+        arrFlashsale = controllerFlashsale.getFlashsaleDataAdmin();
+
+        JButton bCreate = new JButton("Create Flashsale");
+        bCreate.setBounds(140, 20, 150, 50);
+        
         JFrame frame = new JFrame();
+        frame.setSize(450, 1000);
         
-        JPanel p1 = new JPanel();
-        JPanel p2 = new JPanel();
-        JPanel p3 = new JPanel();
+        int y = 100;
         
-        frame.setSize(800, 900);
+        frame.add(bCreate);
         
+        /*Insert data*/
+            bCreate.addActionListener((ActionEvent e) -> {
+                MenuInsertFlashsale();
+                frame.setVisible(false);
+            });
+
+        for (int i = 0; i < arrFlashsale.size(); i++) {
+            JLabel lidFlashsale, lidItem, ldiscountedPrice, lflashsaleStock, lendDate;
+            JLabel idItem, discountedPrice, idFlashsale, endDate, flashsaleStock;
+            JButton bEdit, bDelete;
+
+            JPanel panel = new JPanel();
+            panel.setBounds(15, y, 400, 110);
+            panel.setBackground(Color.gray);
+
+            lidFlashsale = new JLabel("Id Flashsale : ");
+            lidFlashsale.setBounds(25, 0, 150, 25);
+            lidItem = new JLabel("Id Item : ");
+            lidItem.setBounds(25, 20, 150, 25);
+            ldiscountedPrice = new JLabel("Discounted Price : ");
+            ldiscountedPrice.setBounds(25, 40, 150, 25);
+            lflashsaleStock = new JLabel("Flashsale Stock : ");
+            lflashsaleStock.setBounds(25, 60, 150, 25);
+            lendDate = new JLabel("End Date : ");
+            lendDate.setBounds(25, 80, 150, 25);
+
+            idFlashsale = new JLabel(String.valueOf(arrFlashsale.get(i).getIdFlashsale()));
+            idFlashsale.setBounds(200, 0, 100, 25);
+            idItem = new JLabel(String.valueOf(arrFlashsale.get(i).getIdItem()));
+            idItem.setBounds(200, 20, 100, 25);
+            discountedPrice = new JLabel(String.valueOf(arrFlashsale.get(i).getDiscountedPrice()));
+            discountedPrice.setBounds(200, 40, 100, 25);
+            flashsaleStock = new JLabel(String.valueOf(arrFlashsale.get(i).getFlashsaleStock()));
+            flashsaleStock.setBounds(200, 60, 100, 30);
+            endDate = new JLabel(arrFlashsale.get(i).getEndDate());
+            endDate.setBounds(200, 80, 100, 25);
+
+            bEdit = new JButton("Edit");
+            bEdit.setBounds(300, 20, 75, 25);
+            bDelete = new JButton("Delete");
+            bDelete.setBounds(300, 60, 75, 25);
+
+            panel.add(lidFlashsale);
+            panel.add(idFlashsale);
+            panel.add(lidItem);
+            panel.add(idItem);
+            panel.add(ldiscountedPrice);
+            panel.add(discountedPrice);
+            panel.add(lflashsaleStock);
+            panel.add(flashsaleStock);
+            panel.add(lendDate);
+            panel.add(endDate);
+
+            panel.add(bEdit);
+            panel.add(bDelete);
+
+            frame.add(panel);
+            
+            JLabel id = new JLabel(String.valueOf(arrFlashsale.get(i).getIdFlashsale()));
+//            
+//            /*Insert data*/
+//            bCreate.addActionListener((ActionEvent e) -> {
+//                MenuInsertFlashsale();
+//                frame.setVisible(false);
+//            });
+
+            /*edit data*/
+            bEdit.addActionListener((ActionEvent e) -> {
+                MenuEditFlashsale(Integer.parseInt(id.getText()));
+            });
+
+            /*delete data*/
+            bDelete.addActionListener((ActionEvent e) -> {
+                MenuDeleteFlashsale(Integer.parseInt(id.getText()));
+            });
+
+            panel.setLayout(null);
+            panel.setVisible(true);
+
+            y += 125;
+        }
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void MenuInsertFlashsale() {
+        JFrame frame = new JFrame();
+        frame.setSize(700, 800);
+
         //P1 (Menu Add Flashsale)
         /*variable add*/
         JTextField addIdItem, addFlashsaleStock, addDiscountedPrice, addEndDate;
@@ -57,26 +156,29 @@ public class MenuFlashsale {
         addEndDate = new JTextField();
         addEndDate.setBounds(250, 300, 200, 30);
 
-        JButton buttonP1 = new JButton("Submit");
-        buttonP1.setBounds(100, 400, 95, 30);
+        JButton button = new JButton("Submit");
+        button.setBounds(100, 400, 95, 30);
+        JButton buttonBack = new JButton("Back");
+        buttonBack.setBounds(400, 400, 95, 30);
 
         /*add frame*/
-        p1.add(JInsertIdItem);
-        p1.add(addIdItem);
+        frame.add(JInsertIdItem);
+        frame.add(addIdItem);
 
-        p1.add(JInsertFlashsaleStock);
-        p1.add(addFlashsaleStock);
+        frame.add(JInsertFlashsaleStock);
+        frame.add(addFlashsaleStock);
 
-        p1.add(JInsertDiscountedPrice);
-        p1.add(addDiscountedPrice);
+        frame.add(JInsertDiscountedPrice);
+        frame.add(addDiscountedPrice);
 
-        p1.add(JInsertEndDate);
-        p1.add(addEndDate);
+        frame.add(JInsertEndDate);
+        frame.add(addEndDate);
 
-        p1.add(buttonP1);
+        frame.add(button);
+        frame.add(buttonBack);
 
         /*add data*/
-        buttonP1.addActionListener((ActionEvent e) -> {
+        button.addActionListener((ActionEvent e) -> {
             Flashsale newFlashsale = new Flashsale();
             newFlashsale.setIdItem(Integer.parseInt(addIdItem.getText()));
             newFlashsale.setFlashsaleStock(Integer.parseInt(addFlashsaleStock.getText()));
@@ -85,7 +187,23 @@ public class MenuFlashsale {
 
             new ControllerFlashsale().insertFlashsale(newFlashsale);
         });
+        
+        /*back*/
+        buttonBack.addActionListener((ActionEvent e) -> {
 
+            MenuSeeFlashsaleForAdmin();
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void MenuEditFlashsale(int idFlashsale) {
+        JFrame frame = new JFrame();
+        frame.setSize(700, 800);
+        
+        Flashsale flashsale = new Flashsale();
+        flashsale = controllerFlashsale.getFlashsaleDataById(idFlashsale);
 
         //p2(Menu Edit Flashsale)
         /*variable update*/
@@ -95,44 +213,49 @@ public class MenuFlashsale {
         /*frame posisition & text*/
         JEditFlashsale = new JLabel("input idFlashsale : ");
         JEditFlashsale.setBounds(70, 150, 150, 30);
-        updateIdFlashsale = new JTextField();
+        updateIdFlashsale = new JTextField(String.valueOf(flashsale.getIdFlashsale()));
         updateIdFlashsale.setBounds(250, 150, 200, 30);
 
         JEditFlashsaleStock = new JLabel("input flashsaleStock : ");
         JEditFlashsaleStock.setBounds(70, 200, 150, 30);
-        updateFlashsaleStock = new JTextField();
+        updateFlashsaleStock = new JTextField(String.valueOf(flashsale.getFlashsaleStock()));
         updateFlashsaleStock.setBounds(250, 200, 200, 30);
 
         JEditDiscountedPrice = new JLabel("input discountedPrice : ");
         JEditDiscountedPrice.setBounds(70, 250, 150, 30);
-        updateDiscountedPrice = new JTextField();
+        updateDiscountedPrice = new JTextField(String.valueOf(flashsale.getDiscountedPrice()));
         updateDiscountedPrice.setBounds(250, 250, 200, 30);
 
         JEditEndDate = new JLabel("input endDate (YYYY-MM-DD) : ");
         JEditEndDate.setBounds(70, 300, 200, 30);
-        updateEndDate = new JTextField();
+        updateEndDate = new JTextField(String.valueOf(flashsale.getEndDate()));
         updateEndDate.setBounds(250, 300, 200, 30);
 
-        JButton buttonP2 = new JButton("Submit");
-        buttonP2.setBounds(100, 400, 95, 30);
+        JButton button = new JButton("Edit Flashsale");
+        button.setBounds(100, 400, 150, 30);
+        JButton buttonBack = new JButton("Back");
+        buttonBack.setBounds(400, 400, 95, 30);
 
         /*add frame*/
-        p2.add(JEditFlashsale);
-        p2.add(updateIdFlashsale);
+        frame.add(JEditFlashsale);
+        frame.add(updateIdFlashsale);
 
-        p2.add(JEditFlashsaleStock);
-        p2.add(updateFlashsaleStock);
+        frame.add(JEditFlashsaleStock);
+        frame.add(updateFlashsaleStock);
 
-        p2.add(JEditDiscountedPrice);
-        p2.add(updateDiscountedPrice);
+        frame.add(JEditDiscountedPrice);
+        frame.add(updateDiscountedPrice);
 
-        p2.add(JEditEndDate);
-        p2.add(updateEndDate);
+        frame.add(JEditEndDate);
+        frame.add(updateEndDate);
 
-        p2.add(buttonP2);
+        frame.add(button);
+        frame.add(buttonBack);
+        
+        JLabel id = new JLabel(String.valueOf(flashsale.getIdFlashsale()));
 
         /*add data*/
-        buttonP2.addActionListener((ActionEvent e) -> {
+        button.addActionListener((ActionEvent e) -> {
             Flashsale updateFlashsale = new Flashsale();
             updateFlashsale.setIdFlashsale(Integer.parseInt(updateIdFlashsale.getText()));
             updateFlashsale.setFlashsaleStock(Integer.parseInt(updateFlashsaleStock.getText()));
@@ -141,9 +264,21 @@ public class MenuFlashsale {
 
             new ControllerFlashsale().EditFlashsale(updateFlashsale);
         });
-
-
         
+        /*back*/
+        buttonBack.addActionListener((ActionEvent e) -> {
+
+            MenuSeeFlashsaleForAdmin();
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void MenuDeleteFlashsale(int idFlashsale) {
+        JFrame frame = new JFrame();
+        frame.setSize(700, 800);
+
         //p3(Menu delete Flashsale)
         /*variable update*/
         JTextField deleteIdFlashsale;
@@ -152,39 +287,36 @@ public class MenuFlashsale {
         /*frame posisition & text*/
         JdeleteIdFlashsale = new JLabel("input idFlashsale : ");
         JdeleteIdFlashsale.setBounds(70, 150, 150, 30);
-        deleteIdFlashsale = new JTextField();
+        deleteIdFlashsale = new JTextField(String.valueOf(idFlashsale));
         deleteIdFlashsale.setBounds(250, 150, 200, 30);
 
-        JButton buttonP3 = new JButton("Submit");
-        buttonP3.setBounds(100, 400, 95, 30);
+        JButton button = new JButton("Submit");
+        button.setBounds(100, 400, 95, 30);
+        JButton buttonBack = new JButton("Back");
+        buttonBack.setBounds(400, 400, 95, 30);
 
         /*add frame*/
-        p3.add(JdeleteIdFlashsale);
-        p3.add(deleteIdFlashsale);
+        frame.add(JdeleteIdFlashsale);
+        frame.add(deleteIdFlashsale);
 
-        p3.add(buttonP3);
+        frame.add(button);
+        frame.add(buttonBack);
 
         /*add data*/
-        buttonP3.addActionListener((ActionEvent e) -> {
+        button.addActionListener((ActionEvent e) -> {
             int inputDeleteFlashsale = Integer.parseInt(deleteIdFlashsale.getText());
 
             new ControllerFlashsale().DeleteFlashsale(inputDeleteFlashsale);
         });
         
-        JTabbedPane tp = new JTabbedPane();
-        tp.setBounds(100, 50, 600, 700);
-        
-        tp.add("Add", p1);
-        tp.add("Edit", p2);
-        tp.add("Delete", p3);
-        
-        frame.add(tp);
-        
-        p1.setLayout(null);
-        p2.setLayout(null);
-        p3.setLayout(null);
+        /*back*/
+        buttonBack.addActionListener((ActionEvent e) -> {
+
+            MenuSeeFlashsaleForAdmin();
+        });
+
         frame.setLayout(null);
         frame.setVisible(true);
-
     }
+
 }
