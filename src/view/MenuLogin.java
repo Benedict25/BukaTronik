@@ -77,7 +77,8 @@ public class MenuLogin {
                     System.out.println("Sukses");
                     switch (userType) {
                         case "ADMIN":
-                            
+                            new MainMenuAdmin();
+                            frame.setVisible(false);
                             break;
                         case "SELLER":
                             new MainMenuSeller();
