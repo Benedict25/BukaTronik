@@ -79,7 +79,7 @@ public class MainMenuBuyer {
         bWishlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuWishlist().seeWishlist();
                 frame.setVisible(false);
             }
         });
