@@ -340,22 +340,16 @@ public class MenuVoucher {
             endDate.setBounds(125, 60, 100, 30);
             isAvailable = new JLabel(String.valueOf(arrVoucher.get(i).getIsAvailable()));
             isAvailable.setBounds(125, 80, 100, 25);
-            
-            //check lagi
-            availableInfo = new JLabel();
-            availableInfo.setText("Testt");
-            availableInfo.setBounds(140, 110, 100, 25);
-            
+        
             if (arrVoucher.get(i).getIsAvailable() == 1) {
                 System.out.println("masuk 1");
                 availableInfo = new JLabel("I'm Available!");
-                availableInfo.setBounds(140, 110, 100, 25);
-            }else{
+                availableInfo.setBounds(220, 35, 100, 30);
+            } else {
                 System.out.println("masuk 2");
                 availableInfo = new JLabel("Not Available!");
-                availableInfo.setBounds(140, 110, 100, 25);
+                availableInfo.setBounds(220, 35, 100, 30);
             }
-            
 
             panel.add(lMinTransaction);
             panel.add(minTransaction);
