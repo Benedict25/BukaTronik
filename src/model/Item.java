@@ -11,6 +11,7 @@ package model;
  */
 public class Item {
     private int idItem;
+    private int idPerson;
     private String itemName;
     private int price;
     private int stocks;
@@ -23,6 +24,14 @@ public class Item {
 
     public void setIdItem(int idItem) {
         this.idItem = idItem;
+    }
+
+    public int getIdPerson() {
+        return idPerson;
+    }
+
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getItemName() {
