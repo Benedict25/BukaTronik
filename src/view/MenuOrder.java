@@ -38,31 +38,35 @@ public class MenuOrder {
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lCourierType, lpurchaseDate;
-            JLabel payAmount, discount, courierType, purchaseDate;
+            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType;
+            JLabel payAmount, discount, orderId, purchaseDate, courType;
             JButton bDetails, bDelete;
 
             JPanel panel = new JPanel();
             panel.setBounds(25, y, 325, 105);
             panel.setBackground(new Color(150, 150, 150, 50)); //rgba ; a = %
 
-            lCourierType = new JLabel("Order Id: ");
-            lCourierType.setBounds(25, 0, 100, 25);
+            lOrderId = new JLabel("Order Id: ");
+            lOrderId.setBounds(25, 0, 100, 25);
             lPayAmount = new JLabel("Pay Amount: ");
             lPayAmount.setBounds(25, 20, 100, 25);
             lDiscount = new JLabel("Discount: ");
             lDiscount.setBounds(25, 40, 100, 25);
             lpurchaseDate = new JLabel("Purchase Date: ");
             lpurchaseDate.setBounds(25, 60, 100, 25);
+            lCourType = new JLabel("Cour Type: ");
+            lCourType.setBounds(25, 80, 100, 25);
 
-            courierType = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
-            courierType.setBounds(125, 0, 100, 25);
+            orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
+            orderId.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
             payAmount.setBounds(125, 20, 100, 25);
             discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
             discount.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
+            courType = new JLabel(new ControllerPurchaseHistory().strCourType(arrTrans.get(i)));
+            courType.setBounds(125, 80, 100, 30);
 
             bDetails = new JButton("Details");
             bDetails.setBounds(210, 15, 75, 25);
@@ -73,10 +77,12 @@ public class MenuOrder {
             panel.add(payAmount);
             panel.add(lDiscount);
             panel.add(discount);
-            panel.add(lCourierType);
-            panel.add(courierType);
+            panel.add(lOrderId);
+            panel.add(orderId);
             panel.add(lpurchaseDate);
             panel.add(purchaseDate);
+            panel.add(lCourType);
+            panel.add(courType);
             panel.add(bDelete);
             panel.add(bDetails);
 
@@ -95,7 +101,7 @@ public class MenuOrder {
             bDelete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    cancelOrder(Integer.parseInt(id.getText()));
+                    menuCancelOrder(Integer.parseInt(id.getText()));
                     frameOrder.setVisible(false);
                 }
             });
@@ -192,7 +198,7 @@ public class MenuOrder {
         frameOrder.setVisible(true);
     }
 
-    public void cancelOrder(int idTransaction) {
+    public void menuCancelOrder(int idTransaction) {
         JFrame frameCancelOrder = new JFrame("Delete Voucher");
         frameCancelOrder.setSize(400, 300);
         JLabel lKonfirmasi, lIdOrder, lKonfirmasiFee;

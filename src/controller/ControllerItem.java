@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import model.DetailedTransaction;
 import model.GadgetType;
 import model.Item;
-import model.Transaction;
 
 /**
  *
@@ -91,6 +90,29 @@ public class ControllerItem {
             return GadgetType.ACC;
         }
         return null;
+    }
+
+    public ArrayList<Item> getSellerItemsData() {
+        ArrayList<Item> listItem = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM item WHERE idPerson='" + MainController.activeID + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Item newItem = new Item();
+                newItem.setIdItem(rs.getInt("idItem"));
+                newItem.setItemName(rs.getString("itemName"));
+                newItem.setPrice(rs.getInt("price"));
+                newItem.setStocks(rs.getInt("stock"));
+                newItem.setCategory(enumGadgetType(rs.getString("category")));
+                newItem.setItemWeight(rs.getInt("itemWeight"));
+                listItem.add(newItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listItem;
     }
 
     public ArrayList<Item> getArrItemFromDetailed(ArrayList<DetailedTransaction> listDetailed) {

@@ -59,7 +59,7 @@ public class MainMenuSeller {
         bManageItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuItem().seeItemSeller();
                 frameMainMenuSeller.setVisible(false);
             }
         });
