@@ -38,6 +38,24 @@ public class MainController {
         return activeUsername;
     }
 
+    public int getActivePersonBalance() {
+        int activePersonBalance = 0;
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                activePersonBalance = rs.getInt("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activePersonBalance;
+    }
+
     public Person getPersonDataById() {
         conn.connect();
         String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
@@ -55,12 +73,12 @@ public class MainController {
                 activePerson.setPhoneNumber(rs.getString("phoneNumber"));
                 activePerson.setEmail(rs.getString("email"));
                 activePerson.setBalance(Integer.parseInt(rs.getString("balance")));
-                
+
                 if (rs.getString("userType").equals("BUYER")) {
                     activePerson.setUserType(UserType.BUYER);
-                }else if(rs.getString("userType").equals("SELLER")){
+                } else if (rs.getString("userType").equals("SELLER")) {
                     activePerson.setUserType(UserType.SELLER);
-                }else {
+                } else {
                     activePerson.setUserType(UserType.ADMIN);
                 }
 
