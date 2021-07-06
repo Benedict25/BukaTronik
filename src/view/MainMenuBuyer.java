@@ -22,7 +22,7 @@ public class MainMenuBuyer {
     public MainMenuBuyer() {
         JFrame frame = new JFrame("Main Menu Buyer");
         frame.setSize(500, 500);
-        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bPurchaseHistory, bLogout;
+        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bPurchaseHistory, bLogout, bVoucher;
         JLabel lWelcome, lAppName;
         String activeUsername = new MainController().getActivePersonUsername();
 
@@ -50,6 +50,8 @@ public class MainMenuBuyer {
         lWelcome.setBounds(75, 20, 450, 50);
         lAppName = new JLabel("Welcome to Bukatronik");
         lAppName.setBounds(175, 375, 150, 50);
+        bVoucher = new JButton("Available Voucher");
+        bVoucher.setBounds(165, 420, 150, 30);
 
         frame.add(bProfile);
         frame.add(bSeeItems);
@@ -59,11 +61,12 @@ public class MainMenuBuyer {
         frame.add(bLogout);
         frame.add(lWelcome);
         frame.add(lAppName);
+        frame.add(bVoucher);
         
         bProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuProfile().seeProfile();
                 frame.setVisible(false);
             }
         });
@@ -101,6 +104,14 @@ public class MainMenuBuyer {
         });
         
         bLogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MenuLogin();
+                frame.setVisible(false);
+            }
+        });
+        
+        bVoucher.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MenuLogin();

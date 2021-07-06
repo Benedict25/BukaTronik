@@ -5,6 +5,7 @@
  */
 package main;
 
+import view.MainMenuBuyer;
 import view.MenuLogin;
 import view.MenuOrder;
 
