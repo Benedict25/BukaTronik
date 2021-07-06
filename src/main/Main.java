@@ -16,6 +16,6 @@ import view.MenuOrder;
 public class Main {
 
     public static void main(String[] args) {
-        new MenuLogin();
+        new MenuOrder().seePurchaseHistory();
     }
 }
