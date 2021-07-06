@@ -15,6 +15,6 @@ import view.MenuOrder;
 public class Main {
 
     public static void main(String[] args) {
-        new MenuOrder().seeOngoingOrder();
+        new MenuOrder().seePurchaseHistory();
     }
 }

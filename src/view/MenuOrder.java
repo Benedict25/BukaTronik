@@ -87,7 +87,7 @@ public class MenuOrder {
             bDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    seeDetailedOrder(Integer.parseInt(id.getText()));
+                    seeDetailedOrder(Integer.parseInt(id.getText()), "seeOngoingOrder");
                     frameOrder.setVisible(false);
                 }
             });
@@ -111,7 +111,7 @@ public class MenuOrder {
         frameOrder.setVisible(true);
     }
 
-    public void seeDetailedOrder(int idTransaction) {
+    public void seeDetailedOrder(int idTransaction, String backPath) {
         JFrame frameOrder = new JFrame("See Detailed Orders");
         frameOrder.setSize(390, 1000);
         int y = 90;
@@ -173,7 +173,11 @@ public class MenuOrder {
             bBack.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    seeOngoingOrder();
+                    if (backPath.equals("seeOngoingOrder")) {
+                        seeOngoingOrder();
+                    } else if (backPath.equals("seePurchaseHistory")) {
+                        seePurchaseHistory();
+                    }
                     frameOrder.setVisible(false);
                 }
             });
@@ -235,7 +239,7 @@ public class MenuOrder {
 
         JLabel lHeading = new JLabel("History Order " + new MainController().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
-        lHeading.setFont(new Font("Serif", Font.BOLD, 40));
+        lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
             JLabel lPayAmount, lDiscount, lCourierType, lpurchaseDate;
@@ -284,7 +288,7 @@ public class MenuOrder {
             bDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    seeDetailedOrder(Integer.parseInt(id.getText()));
+                    seeDetailedOrder(Integer.parseInt(id.getText()), "seePurchaseHistory");
                     framePurchaseHistory.setVisible(false);
                 }
             });
