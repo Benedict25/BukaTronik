@@ -11,6 +11,7 @@ package model;
  */
 public enum DeliveryStatus {
     PROCESSED,
+    CANCELLING,
     DELIVERED,
     CANCELLED
 }

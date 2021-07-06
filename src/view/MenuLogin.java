@@ -57,7 +57,6 @@ public class MenuLogin {
         //last
         frame.setLayout(null);
         frame.setVisible(true);
-        
 
         //button login
         bLogin.addActionListener(new ActionListener() {
@@ -78,22 +77,25 @@ public class MenuLogin {
                     System.out.println("Sukses");
                     switch (userType) {
                         case "ADMIN":
-                            
+                            new MainMenuAdmin();
+                            frame.setVisible(false);
                             break;
                         case "SELLER":
-                            new MenuItem().SeeItemSeller();
+                            new MainMenuSeller();
+                            frame.setVisible(false);
                             break;
                         case "BUYER":
-                            new MenuItem().MenuItemForBuyer();
+                            new MainMenuBuyer();
+                            frame.setVisible(false);
                             break;
                         default:
                             throw new AssertionError();
                     }
-                }else{
+                } else {
                     System.out.println("Gagal");
                 }
 //                frame.setVisible(false);
-            } 
+            }
         });
 
         //button register

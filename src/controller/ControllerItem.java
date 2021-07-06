@@ -5,11 +5,13 @@
  */
 package controller;
 
+import static controller.MainController.conn;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import model.DetailedTransaction;
 import model.GadgetType;
 import model.Item;
 
@@ -79,12 +81,21 @@ public class ControllerItem {
         }
     }
 
+    private GadgetType enumGadgetType(String category) {
+        if (category.equals("LAPTOP")) {
+            return GadgetType.LAPTOP;
+        } else if (category.equals("HANDPHONE")) {
+            return GadgetType.HANDPHONE;
+        } else if (category.equals("ACCESSORIES")) {
+            return GadgetType.ACC;
+        }
+        return null;
+    }
+
     public ArrayList<Item> getSellerItemsData() {
-        DatabaseHandler conn = new DatabaseHandler();
+        ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();
         String query = "SELECT * FROM item WHERE idPerson='" + MainController.activeID + "'";
-        ArrayList<Item> arrItem = new ArrayList();
-
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -94,21 +105,67 @@ public class ControllerItem {
                 newItem.setItemName(rs.getString("itemName"));
                 newItem.setPrice(rs.getInt("price"));
                 newItem.setStocks(rs.getInt("stock"));
-                String currentCategory = rs.getString("category");
-                if (currentCategory.equals("LAPTOP")) {
-                    newItem.setCategory(GadgetType.LAPTOP);
-                } else if (currentCategory.equals("HANDPHONE")) {
-                    newItem.setCategory(GadgetType.HANDPHONE);
-                } else if (currentCategory.equals("ACCESSORIES")) {
-                    newItem.setCategory(GadgetType.ACC);
-                }
+                newItem.setCategory(enumGadgetType(rs.getString("category")));
                 newItem.setItemWeight(rs.getInt("itemWeight"));
-                arrItem.add(newItem);
+                listItem.add(newItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listItem;
+    }
+
+    public ArrayList<Item> getArrItemFromDetailed(ArrayList<DetailedTransaction> listDetailed) {
+        ArrayList<Item> listItem = new ArrayList<>();
+        conn.connect();
+        for (int i = 0; i < listDetailed.size(); i++) {
+            String query = "SELECT * FROM item WHERE idItem='" + listDetailed.get(i).getIdItem() + "'";
+            try {
+                Statement stmt = conn.con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    Item newItem = new Item();
+                    newItem.setItemName(rs.getString("itemName"));
+                    newItem.setPrice(rs.getInt("price"));
+                    newItem.setStocks(rs.getInt("stock"));
+                    newItem.setCategory(enumGadgetType(rs.getString("category")));
+                    newItem.setItemWeight(rs.getInt("itemWeight"));
+                    listItem.add(newItem);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listItem;
+    }
+
+    public Item getDataItemByID(int idItem) {
+        Item item = new Item();
+
+        String query = "SELECT * FROM item WHERE idItem='" + idItem + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                item.setIdItem(rs.getInt("idItem")); //idItem untuk nanti diparsing ke function delete
+                item.setItemName(rs.getString("itemName"));
+                item.setPrice(rs.getInt("price"));
+                item.setStocks(rs.getInt("stock"));
+
+                if (rs.getString("category").equals("LAPTOP")) {
+                    item.setCategory(GadgetType.LAPTOP);
+                } else if (rs.getString("category").equals("HANDPHONE")) {
+                    item.setCategory(GadgetType.HANDPHONE);
+                } else {
+                    item.setCategory(GadgetType.ACC);
+                }
+
+                item.setItemWeight(rs.getInt("itemWeight"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return arrItem;
+        return item;
     }
 }
