@@ -116,5 +116,34 @@ public class ControllerItem {
         }
         return listItem;
     }
-}
 
+    public Item getDataItemByID(int idItem) {
+        Item item = new Item();
+
+        String query = "SELECT * FROM item WHERE idItem='" + idItem + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                item.setIdItem(rs.getInt("idItem")); //idItem untuk nanti diparsing ke function delete
+                item.setItemName(rs.getString("itemName"));
+                item.setPrice(rs.getInt("price"));
+                item.setStocks(rs.getInt("stock"));
+
+                if (rs.getString("category").equals("LAPTOP")) {
+                    item.setCategory(GadgetType.LAPTOP);
+                } else if (rs.getString("category").equals("HANDPHONE")) {
+                    item.setCategory(GadgetType.HANDPHONE);
+                } else {
+                    item.setCategory(GadgetType.ACC);
+                }
+
+                item.setItemWeight(rs.getInt("itemWeight"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return item;
+    }
+}
