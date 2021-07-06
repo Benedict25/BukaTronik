@@ -51,7 +51,8 @@ public class MainMenuSeller {
         bProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuProfile().seeProfile();
+                frameMainMenuSeller.setVisible(false);
             }
         });
 
@@ -59,6 +60,7 @@ public class MainMenuSeller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frameMainMenuSeller.setVisible(false);
             }
         });
 
@@ -66,6 +68,7 @@ public class MainMenuSeller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frameMainMenuSeller.setVisible(false);
             }
         });
 
@@ -80,7 +83,8 @@ public class MainMenuSeller {
         bSalesHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
+                frameMainMenuSeller.setVisible(false);
             }
         });
 

@@ -66,7 +66,7 @@ public class MainMenuBuyer {
         bProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuProfile().seeProfile();
                 frame.setVisible(false);
             }
         });

@@ -20,8 +20,8 @@ import javax.swing.JLabel;
 public class MainMenuAdmin {
 
     public MainMenuAdmin() {
-        JFrame frameMainMenuSeller = new JFrame("Main Menu Admin");
-        frameMainMenuSeller.setSize(500, 500);
+        JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
+        frameMainMenuAdmin.setSize(500, 500);
         String username = new MainController().getActivePersonUsername();
         JLabel lUsername = new JLabel("Welcome " + username + "!");
         lUsername.setBounds(125, 10, 500, 70);
@@ -45,7 +45,8 @@ public class MainMenuAdmin {
         bProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuProfile().seeProfile();
+                frameMainMenuAdmin.setVisible(false);
             }
         });
 
@@ -53,6 +54,7 @@ public class MainMenuAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frameMainMenuAdmin.setVisible(false);
             }
         });
 
@@ -60,6 +62,7 @@ public class MainMenuAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frameMainMenuAdmin.setVisible(false);
             }
         });
 
@@ -67,18 +70,18 @@ public class MainMenuAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MenuLogin();
-                frameMainMenuSeller.setVisible(false);
+                frameMainMenuAdmin.setVisible(false);
             }
         });
 
-        frameMainMenuSeller.add(lUsername);
-        frameMainMenuSeller.add(bProfile);
-        frameMainMenuSeller.add(bManageFlashsale);
-        frameMainMenuSeller.add(bManageUser);
-        frameMainMenuSeller.add(bLogOut);
-        frameMainMenuSeller.add(lWelcome);
-        frameMainMenuSeller.setLayout(null);
-        frameMainMenuSeller.setVisible(true);
+        frameMainMenuAdmin.add(lUsername);
+        frameMainMenuAdmin.add(bProfile);
+        frameMainMenuAdmin.add(bManageFlashsale);
+        frameMainMenuAdmin.add(bManageUser);
+        frameMainMenuAdmin.add(bLogOut);
+        frameMainMenuAdmin.add(lWelcome);
+        frameMainMenuAdmin.setLayout(null);
+        frameMainMenuAdmin.setVisible(true);
     }
 
 }
