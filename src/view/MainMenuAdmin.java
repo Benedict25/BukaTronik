@@ -61,7 +61,7 @@ public class MainMenuAdmin {
         bManageUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuRemovePerson().menuSeePersonList();
                 frameMainMenuAdmin.setVisible(false);
             }
         });
