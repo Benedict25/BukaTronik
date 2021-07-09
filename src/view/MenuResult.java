@@ -558,7 +558,7 @@ public class MenuResult {
         JFrame frame = new JFrame("Result Create Voucher");
         frame.setSize(450, 410);
 
-        JLabel lResult, lVoucherCode;
+        JLabel lResult;
         JButton bConfirm;
 
         lResult = new JLabel();
@@ -591,7 +591,7 @@ public class MenuResult {
         JFrame frame = new JFrame("Result Create Voucher");
         frame.setSize(450, 410);
 
-        JLabel lResult, lVoucherCode;
+        JLabel lResult;
         JButton bConfirm;
 
         lResult = new JLabel();
@@ -624,7 +624,7 @@ public class MenuResult {
         JFrame frame = new JFrame("Result Remove Voucher");
         frame.setSize(450, 410);
 
-        JLabel lResult, lVoucherCode;
+        JLabel lResult;
         JButton bConfirm;
 
         lResult = new JLabel();
