@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import model.Flashsale;
 
 /**
@@ -23,28 +22,39 @@ import model.Flashsale;
  * @author Matthew
  */
 public class MenuFlashsale {
-    
+
     ControllerFlashsale controllerFlashsale = new ControllerFlashsale();
+    MenuResult menuResult = new MenuResult();
 
     public void MenuSeeFlashsaleForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
         ArrayList<Flashsale> arrFlashsale = new ArrayList();
         arrFlashsale = controllerFlashsale.getFlashsaleDataAdmin();
 
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 20, 70, 50);
+
         JButton bCreate = new JButton("Create Flashsale");
         bCreate.setBounds(140, 20, 150, 50);
-        
+
         JFrame frame = new JFrame();
         frame.setSize(450, 1000);
-        
+
         int y = 100;
-        
+
+        frame.add(bBack);
         frame.add(bCreate);
         
+         /*back to menu admin*/
+        bBack.addActionListener((ActionEvent e) -> {
+            new MainMenuAdmin();
+            frame.setVisible(false);
+        });
+
         /*Insert data*/
-            bCreate.addActionListener((ActionEvent e) -> {
-                MenuInsertFlashsale();
-                frame.setVisible(false);
-            });
+        bCreate.addActionListener((ActionEvent e) -> {
+            MenuInsertFlashsale();
+            frame.setVisible(false);
+        });
 
         for (int i = 0; i < arrFlashsale.size(); i++) {
             JLabel lidFlashsale, lidItem, ldiscountedPrice, lflashsaleStock, lendDate;
@@ -73,7 +83,7 @@ public class MenuFlashsale {
             discountedPrice = new JLabel(String.valueOf(arrFlashsale.get(i).getDiscountedPrice()));
             discountedPrice.setBounds(200, 40, 100, 25);
             flashsaleStock = new JLabel(String.valueOf(arrFlashsale.get(i).getFlashsaleStock()));
-            flashsaleStock.setBounds(200, 60, 100, 30);
+            flashsaleStock.setBounds(200, 60, 100, 25);
             endDate = new JLabel(arrFlashsale.get(i).getEndDate());
             endDate.setBounds(200, 80, 100, 25);
 
@@ -97,23 +107,19 @@ public class MenuFlashsale {
             panel.add(bDelete);
 
             frame.add(panel);
-            
+
             JLabel id = new JLabel(String.valueOf(arrFlashsale.get(i).getIdFlashsale()));
-//            
-//            /*Insert data*/
-//            bCreate.addActionListener((ActionEvent e) -> {
-//                MenuInsertFlashsale();
-//                frame.setVisible(false);
-//            });
 
             /*edit data*/
             bEdit.addActionListener((ActionEvent e) -> {
                 MenuEditFlashsale(Integer.parseInt(id.getText()));
+                frame.setVisible(false);
             });
 
             /*delete data*/
             bDelete.addActionListener((ActionEvent e) -> {
                 MenuDeleteFlashsale(Integer.parseInt(id.getText()));
+                frame.setVisible(false);
             });
 
             panel.setLayout(null);
@@ -185,13 +191,16 @@ public class MenuFlashsale {
             newFlashsale.setDiscountedPrice(Integer.parseInt(addDiscountedPrice.getText()));
             newFlashsale.setEndDate(addEndDate.getText());
 
-            new ControllerFlashsale().insertFlashsale(newFlashsale);
+            boolean result = controllerFlashsale.insertFlashsale(newFlashsale);
+            frame.setVisible(false);
+            menuResult.menuResultCreateFlashsale(result, addIdItem.getText());
         });
-        
+
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
             MenuSeeFlashsaleForAdmin();
+            frame.setVisible(false);
         });
 
         frame.setLayout(null);
@@ -201,7 +210,7 @@ public class MenuFlashsale {
     public void MenuEditFlashsale(int idFlashsale) {
         JFrame frame = new JFrame();
         frame.setSize(700, 800);
-        
+
         Flashsale flashsale = new Flashsale();
         flashsale = controllerFlashsale.getFlashsaleDataById(idFlashsale);
 
@@ -251,10 +260,10 @@ public class MenuFlashsale {
 
         frame.add(button);
         frame.add(buttonBack);
-        
+
         JLabel id = new JLabel(String.valueOf(flashsale.getIdFlashsale()));
 
-        /*add data*/
+        /*edit data*/
         button.addActionListener((ActionEvent e) -> {
             Flashsale updateFlashsale = new Flashsale();
             updateFlashsale.setIdFlashsale(Integer.parseInt(updateIdFlashsale.getText()));
@@ -262,13 +271,16 @@ public class MenuFlashsale {
             updateFlashsale.setDiscountedPrice(Integer.parseInt(updateDiscountedPrice.getText()));
             updateFlashsale.setEndDate(updateEndDate.getText());
 
-            new ControllerFlashsale().EditFlashsale(updateFlashsale);
+            boolean result = new ControllerFlashsale().EditFlashsale(updateFlashsale);
+            frame.setVisible(false);
+            menuResult.menuResultEditFlashsale(result, updateIdFlashsale.getText());
         });
-        
+
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
             MenuSeeFlashsaleForAdmin();
+            frame.setVisible(false);
         });
 
         frame.setLayout(null);
@@ -302,17 +314,19 @@ public class MenuFlashsale {
         frame.add(button);
         frame.add(buttonBack);
 
-        /*add data*/
+        /*delete data*/
         button.addActionListener((ActionEvent e) -> {
             int inputDeleteFlashsale = Integer.parseInt(deleteIdFlashsale.getText());
-
-            new ControllerFlashsale().DeleteFlashsale(inputDeleteFlashsale);
+            boolean result = controllerFlashsale.DeleteFlashsale(inputDeleteFlashsale);
+            frame.setVisible(false);
+            menuResult.menuResultDeleteFlashsale(result, deleteIdFlashsale.getText());
         });
-        
+
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
             MenuSeeFlashsaleForAdmin();
+            frame.setVisible(false);
         });
 
         frame.setLayout(null);

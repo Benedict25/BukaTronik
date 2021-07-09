@@ -120,7 +120,7 @@ public class MenuIndividualItem {
         bAddToCart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuShoppingCart().MenuInsertToShoppingCart(Integer.parseInt(invisibleIdItem.getText()));
                 frame.setVisible(false);
             }
         });

@@ -21,8 +21,8 @@ public class MainMenuBuyer {
 
     public MainMenuBuyer() {
         JFrame frame = new JFrame("Main Menu Buyer");
-        frame.setSize(500, 500);
-        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bPurchaseHistory, bLogout, bVoucher;
+        frame.setSize(500, 600);
+        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bPurchaseHistory, bLogout, bVoucher, bFlashsale;
         JLabel lWelcome, lAppName;
         String activeUsername = new MainController().getActivePersonUsername();
 
@@ -52,6 +52,8 @@ public class MainMenuBuyer {
         lAppName.setBounds(175, 375, 150, 50);
         bVoucher = new JButton("Available Voucher");
         bVoucher.setBounds(165, 420, 150, 30);
+        bFlashsale = new JButton("Flashsale");
+        bFlashsale.setBounds(165, 470, 150, 30);
 
         frame.add(bProfile);
         frame.add(bSeeItems);
@@ -62,6 +64,7 @@ public class MainMenuBuyer {
         frame.add(lWelcome);
         frame.add(lAppName);
         frame.add(bVoucher);
+        frame.add(bFlashsale);
         
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -90,7 +93,7 @@ public class MainMenuBuyer {
         bShoppingCart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuShoppingCart().MenuSeeShoppingCart();
                 frame.setVisible(false);
             }
         });
@@ -115,6 +118,14 @@ public class MainMenuBuyer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MenuLogin();
+                frame.setVisible(false);
+            }
+        });
+        
+        bFlashsale.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Menu Flashsale untuk Buyer
                 frame.setVisible(false);
             }
         });

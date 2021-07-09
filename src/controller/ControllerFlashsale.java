@@ -46,7 +46,7 @@ public class ControllerFlashsale {
         return arrFlashsale;
     }
 
-    public void insertFlashsale(Flashsale newFlashsale) {
+    public boolean insertFlashsale(Flashsale newFlashsale) {
         conn.connect();
         String query = "INSERT INTO flashsale VALUES(?,?,?,?,?)";
         try {
@@ -59,12 +59,14 @@ public class ControllerFlashsale {
             Date date = Date.valueOf(str);
             stmt.setDate(5, date);
             stmt.executeUpdate();
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
-    public void EditFlashsale(Flashsale updateFlashsale) {
+    public boolean EditFlashsale(Flashsale updateFlashsale) {
         conn.connect();
         String str = updateFlashsale.getEndDate();
         Date date = Date.valueOf(str);
@@ -76,19 +78,23 @@ public class ControllerFlashsale {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
     
-    public void DeleteFlashsale(int inputDeleteFlashsale){
+    public boolean DeleteFlashsale(int inputDeleteFlashsale){
         conn.connect();
         String query = "DELETE FROM flashsale WHERE idFlashsale='"+inputDeleteFlashsale+"'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
     
