@@ -284,7 +284,7 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     //Result Profile & Balance
     public void menuResultEditProfile(boolean result, String username) {
         JFrame frame = new JFrame("Result Edit Profile");
@@ -323,7 +323,7 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void menuResultDepositBalance(boolean result, int balance) {
         JFrame frame = new JFrame("Result Deposit Balance");
         frame.setSize(450, 410);
@@ -361,7 +361,7 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void menuResultWithdrawBalance(boolean result, int withdrawAmount, String noTujuan) {
         JFrame frame = new JFrame("Result Withdraw Balance To " + noTujuan);
         frame.setSize(450, 410);
@@ -393,6 +393,45 @@ public class MenuResult {
 
         bConfirm.addActionListener((ActionEvent e) -> {
             new MenuProfile().seeProfile();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    //Result Remove
+    public void menuResultRemoveUser(boolean result, String username) {
+        JFrame frame = new JFrame("Result Remove User");
+        frame.setSize(450, 410);
+
+        JLabel lResult, lUsername;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        lUsername = new JLabel("UN: " + username);
+        lUsername.setBounds(50, 120, 500, 100);
+        lUsername.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("User Removed");
+        } else {
+            lResult.setText("Failed to Remove");
+        }
+
+        frame.add(lResult);
+        frame.add(lUsername);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuRemovePerson().menuSeePersonList();
             frame.setVisible(false);
         });
 
