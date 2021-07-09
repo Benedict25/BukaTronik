@@ -5,7 +5,6 @@
  */
 package main;
 
-import view.MenuItem;
 import view.MenuLogin;
 
 /**
