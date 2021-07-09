@@ -114,7 +114,7 @@ public class MainMenuBuyer {
         bVoucher.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MenuLogin();
+                new MenuVoucher().MenuSeeVoucherForBuyer();
                 frame.setVisible(false);
             }
         });

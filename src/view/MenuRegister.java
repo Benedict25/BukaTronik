@@ -122,9 +122,9 @@ public class MenuRegister {
                     newPerson.setUserType(UserType.SELLER);
                 }
 
-                new ControllerRegister().insertNewPerson(newPerson);
+                boolean result = new ControllerRegister().insertNewPerson(newPerson);
+                new MenuResult().menuResultRegister(result, tUsername.getText());
                 frame.setVisible(false);
-                new MenuLogin();
 
             }
         });
