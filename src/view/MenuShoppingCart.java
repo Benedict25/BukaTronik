@@ -34,16 +34,31 @@ public class MenuShoppingCart {
 
         ArrayList<Item> arrItem = new ArrayList();
         arrItem = controlShoppingCart.getItemDataForShoppingCart(arrShoppingCart);
-        
+
         ArrayList<Person> arrPerson = new ArrayList();
         arrPerson = controlShoppingCart.getSellerData(arrItem);
 
         JFrame frame = new JFrame("Shopping Cart");
         frame.setSize(450, 1000);
 
+        //UNTUK CHECK OUT
+//        JButton bCheckOut = new JButton("CheckOut");
+//        bCheckOut.setBounds(160, 10, 100, 50);
+//        frame.add(bCheckOut);
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(160, 10, 100, 50);
         frame.add(bBack);
+
+        //LISTENER CHECK OUT
+//        bCheckOut.addActionListener((ActionEvent e) -> {
+//            ArrayList<ItemInShoppingCart> arrShoppingCart1 = new ArrayList();
+//            arrShoppingCart1 = controlShoppingCart.getShoppingCartData();
+//            ArrayList<Item> arrItem1 = new ArrayList();
+//            arrItem1 = controlShoppingCart.getItemDataForShoppingCart(arrShoppingCart1);
+//            new MenuCheckOut().MenuCheckOutCourier(arrShoppingCart1, arrItem1);
+//            frame.setVisible(false);
+//        });
 
         bBack.addActionListener((ActionEvent e) -> {
             new MainMenuBuyer();
@@ -88,7 +103,7 @@ public class MenuShoppingCart {
             panel.add(lQuantity);
             panel.add(lHarga);
             panel.add(lSeller);
-            
+
             panel.add(itemName);
             panel.add(Quantity);
             panel.add(Harga);
@@ -163,7 +178,7 @@ public class MenuShoppingCart {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void MenuRemoveFromShoppingCart(int id, String itemName) {
         JFrame frame = new JFrame();
         frame.setSize(400, 200);
@@ -173,7 +188,7 @@ public class MenuShoppingCart {
 
         JLabel jItemName = new JLabel(itemName);
         jItemName.setBounds(120, 40, 100, 25);
-        
+
         JLabel jLabel2 = new JLabel("dari keranjang kamu ?");
         jLabel2.setBounds(120, 70, 200, 25);
 
