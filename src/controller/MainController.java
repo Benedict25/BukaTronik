@@ -107,4 +107,22 @@ public class MainController {
 
         return membershipStatus;
     }
+
+    public String getSellerNameById(int id) {
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + id + "'";
+        String sellerName = "";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                sellerName = rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sellerName;
+    }
 }
