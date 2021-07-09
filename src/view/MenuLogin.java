@@ -72,9 +72,7 @@ public class MenuLogin {
                     successLogin = false;
                 }
                 //Masuk menu tiap user
-                System.out.println(userType);
                 if (successLogin) {
-                    System.out.println("Sukses");
                     switch (userType) {
                         case "ADMIN":
                             new MainMenuAdmin();
@@ -91,10 +89,10 @@ public class MenuLogin {
                         default:
                             throw new AssertionError();
                     }
+                    new MenuResult().menuResultLogin(successLogin, username);
                 } else {
-                    System.out.println("Gagal");
+                    new MenuResult().menuResultLogin(successLogin, username);
                 }
-//                frame.setVisible(false);
             }
         });
 

@@ -76,18 +76,20 @@ public class ControllerWishlist {
         return arrItem;
     }
     
-    public void removeFromWishlist(int idItemRemove) {
+    public boolean removeFromWishlist(int idItemRemove) {
         conn.connect();
         String query = "DELETE FROM wishlist WHERE idPerson='" + MainController.activeID + "'&& idItem='" + idItemRemove + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
     
-    public void addToWishlist(int idItem){
+    public boolean addToWishlist(int idItem){
         conn.connect();
         String query = "INSERT INTO wishlist VALUES(?,?,?)";
         try {
@@ -96,8 +98,10 @@ public class ControllerWishlist {
             stmt.setInt(2, MainController.activeID);
             stmt.setInt(3, idItem);
             stmt.executeUpdate();
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
 
     }

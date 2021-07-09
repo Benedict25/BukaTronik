@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import model.CourierType;
 import model.DeliveryStatus;
 import model.DetailedTransaction;
-import model.GadgetType;
-import model.Item;
 import model.Transaction;
 
 /**
@@ -45,20 +43,8 @@ public class ControllerPurchaseHistory {
         }
         return ongoingOrders;
     }
-
-    public String strCourType(Transaction newTrans) {
-        String category = "";
-        if (newTrans.getCourierType() == CourierType.INSTANT) {
-            category = "INSTANT";
-        } else if (newTrans.getCourierType() == CourierType.REG) {
-            category = "REGULAR";
-        } else if (newTrans.getCourierType() == CourierType.YES) {
-            category = "YES";
-        }
-        return category;
-    }
-
-    private CourierType enumCourType(String category) {
+    
+    public CourierType enumCourType(String category) {
         if (category.equals("INSTANT")) {
             return CourierType.INSTANT;
         } else if (category.equals("REGULAR")) {

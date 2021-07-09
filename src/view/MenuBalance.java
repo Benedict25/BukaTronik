@@ -64,8 +64,9 @@ public class MenuBalance {
         bKonfirmasi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlBalance.depositBalance((int)sJumlahTopUp.getValue());
-
+                boolean result = controlBalance.depositBalance((int) sJumlahTopUp.getValue());
+                new MenuResult().menuResultDepositBalance(result, (int) sJumlahTopUp.getValue());
+                frame.setVisible(false);
             }
         });
 
@@ -128,8 +129,9 @@ public class MenuBalance {
         bKonfirmasi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlBalance.withdrawBalance((int) sJumlahWd.getValue());
-                
+                boolean result = controlBalance.withdrawBalance((int) sJumlahWd.getValue());
+                new MenuResult().menuResultWithdrawBalance(result, (int) sJumlahWd.getValue(), tNoTujuan.getText());
+                frame.setVisible(false);
             }
         });
 

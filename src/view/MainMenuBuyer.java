@@ -44,7 +44,7 @@ public class MainMenuBuyer {
         bLogout = new JButton("Log Out >");
         bLogout.setBounds(250, 300, 150, 50);
         bLogout.setFont(new Font("Serif", Font.BOLD, 20));
-        
+
         lWelcome = new JLabel("Welcome " + activeUsername + "!");
         lWelcome.setFont(new Font("Serif", Font.BOLD, 40));
         lWelcome.setBounds(75, 20, 450, 50);
@@ -65,7 +65,7 @@ public class MainMenuBuyer {
         frame.add(lAppName);
         frame.add(bVoucher);
         frame.add(bFlashsale);
-        
+
         bProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,15 +73,15 @@ public class MainMenuBuyer {
                 frame.setVisible(false);
             }
         });
-        
+
         bSeeItems.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuItem().menuItemForBuyer();
                 frame.setVisible(false);
             }
         });
-        
+
         bWishlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,7 +89,7 @@ public class MainMenuBuyer {
                 frame.setVisible(false);
             }
         });
-        
+
         bShoppingCart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,15 +97,15 @@ public class MainMenuBuyer {
                 frame.setVisible(false);
             }
         });
-        
+
         bPurchaseHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 frame.setVisible(false);
             }
         });
-        
+
         bLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,11 +113,11 @@ public class MainMenuBuyer {
                 frame.setVisible(false);
             }
         });
-        
+
         bVoucher.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MenuLogin();
+                new MenuVoucher().MenuSeeVoucherForBuyer();
                 frame.setVisible(false);
             }
         });

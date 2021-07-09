@@ -20,15 +20,17 @@ public class ControllerRemovePerson {
 
     DatabaseHandler conn = new DatabaseHandler();
 
-    public void removePerson(int idPerson) {
+    public boolean removePerson(int idPerson) {
         conn.connect();
 
         String query = "DELETE FROM person WHERE idPerson='" + idPerson + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
 
     }
