@@ -26,17 +26,18 @@ import model.Person;
  */
 public class MenuShoppingCart {
 
-    ControllerShoppingCart controlShoppingCart = new ControllerShoppingCart();
+    ControllerShoppingCart controllerShoppingCart = new ControllerShoppingCart();
+    MenuResult menuResult = new MenuResult();
 
     public void MenuSeeShoppingCart() {
         ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
-        arrShoppingCart = controlShoppingCart.getShoppingCartData();
+        arrShoppingCart = controllerShoppingCart.getShoppingCartData();
 
         ArrayList<Item> arrItem = new ArrayList();
-        arrItem = controlShoppingCart.getItemDataForShoppingCart(arrShoppingCart);
+        arrItem = controllerShoppingCart.getItemDataForShoppingCart(arrShoppingCart);
 
         ArrayList<Person> arrPerson = new ArrayList();
-        arrPerson = controlShoppingCart.getSellerData(arrItem);
+        arrPerson = controllerShoppingCart.getSellerData(arrItem);
 
         JFrame frame = new JFrame("Shopping Cart");
         frame.setSize(450, 1000);
@@ -137,6 +138,11 @@ public class MenuShoppingCart {
         frame.setLayout(null);
         frame.setVisible(true);
     }
+    
+    public void MenuInsertToShoppingCart(int inputIdItem){
+        boolean result = controllerShoppingCart.insertShoppingCart(inputIdItem);
+        menuResult.menuResultAddToShoppingCart(result);
+    }
 
     public void MenuChangeQuantity(int id, int quantity) {
         JFrame frame = new JFrame();
@@ -165,7 +171,10 @@ public class MenuShoppingCart {
         /*change quantity*/
         bSubmit.addActionListener((ActionEvent e) -> {
 
-            new ControllerShoppingCart().changeQuantity((int) Squantity.getValue(), id);
+            boolean result = controllerShoppingCart.changeQuantity((int) Squantity.getValue(), id);
+            frame.setVisible(false);
+            menuResult.menuResultChangeQuantityShoppingCart(result);
+            
         });
 
         /*Back*/
@@ -208,7 +217,9 @@ public class MenuShoppingCart {
 
         /*Yes*/
         bSubmit.addActionListener((ActionEvent e) -> {
-            new ControllerShoppingCart().removeFromShoppingCart(id);
+            boolean result = controllerShoppingCart.removeFromShoppingCart(id);
+            frame.setVisible(false);
+            menuResult.menuResultRemoveShoppingCart(result);
         });
 
         /*No*/

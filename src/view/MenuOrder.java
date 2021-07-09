@@ -65,7 +65,7 @@ public class MenuOrder {
             discount.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
-            courType = new JLabel(new ControllerPurchaseHistory().strCourType(arrTrans.get(i)));
+            courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
             courType.setBounds(125, 80, 100, 30);
 
             bDetails = new JButton("Details");
@@ -88,12 +88,10 @@ public class MenuOrder {
 
             frameOrder.add(panel);
 
-            JLabel id = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction())); //invisible j label untuk menampung id
-
             bDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    seeDetailedOrder(Integer.parseInt(id.getText()), "seeOngoingOrder");
+                    seeDetailedOrder(Integer.parseInt(orderId.getText()), "seeOngoingOrder");
                     frameOrder.setVisible(false);
                 }
             });
@@ -101,7 +99,7 @@ public class MenuOrder {
             bDelete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    menuCancelOrder(Integer.parseInt(id.getText()));
+                    menuCancelOrder(Integer.parseInt(orderId.getText()));
                     frameOrder.setVisible(false);
                 }
             });
@@ -183,6 +181,10 @@ public class MenuOrder {
                         seeOngoingOrder();
                     } else if (backPath.equals("seePurchaseHistory")) {
                         seePurchaseHistory();
+                    } else if (backPath.equals("seeSalesHistory")) {
+                        new MenuSalesHistory().seeSalesHistorySeller();
+                    } else if (backPath.equals("seeSalesAll")) {
+                        new MenuSalesHistory().seeSalesHistoryAdmin();
                     }
                     frameOrder.setVisible(false);
                 }

@@ -90,9 +90,9 @@ public class MenuIndividualItem {
         frame.add(bAddToWishlist);
         frame.add(bBackToList);
         frame.add(bAddToCart);
-        
+
         JLabel invisibleIdItem = new JLabel(String.valueOf(idItem));
-        
+
         bSeeWishlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -100,7 +100,7 @@ public class MenuIndividualItem {
                 frame.setVisible(false);
             }
         });
-        
+
         bAddToWishlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,19 +108,19 @@ public class MenuIndividualItem {
                 frame.setVisible(false);
             }
         });
-        
+
         bBackToList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuItem().menuItemForBuyer();
                 frame.setVisible(false);
             }
         });
-        
+
         bAddToCart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuShoppingCart().MenuInsertToShoppingCart(Integer.parseInt(invisibleIdItem.getText()));
                 frame.setVisible(false);
             }
         });
