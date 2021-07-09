@@ -80,7 +80,7 @@ public class ControllerShoppingCart {
         return arrItem;
     }
 
-    public void insertShoppingCart(int inputIdItem) {
+    public boolean insertShoppingCart(int inputIdItem) {
         conn.connect();
         String query = "INSERT INTO iteminShoppingCart VALUES(?,?,?)";
         try {
@@ -89,30 +89,36 @@ public class ControllerShoppingCart {
             stmt.setInt(2, inputIdItem);
             stmt.setInt(3, 1);
             stmt.executeUpdate();
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
-    public void removeFromShoppingCart(int idItem) {
+    public boolean removeFromShoppingCart(int idItem) {
         conn.connect();
         String query = "DELETE FROM iteminshoppingcart WHERE idPerson='" + MainController.activeID + "'&& idItem='" + idItem + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
-    public void changeQuantity(int quantity, int idItem) {
+    public boolean changeQuantity(int quantity, int idItem) {
         conn.connect();
         String query = "UPDATE iteminshoppingcart SET quantity='" + quantity + "' WHERE idItem='" + idItem + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
