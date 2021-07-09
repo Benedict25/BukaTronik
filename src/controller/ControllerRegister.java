@@ -18,7 +18,7 @@ public class ControllerRegister {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public void insertNewPerson(Person person) {
+    public boolean insertNewPerson(Person person) {
 
         conn.connect();
         String query = "INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -40,8 +40,10 @@ public class ControllerRegister {
                 stmt.setString(10, "SELLER");
             }
             stmt.executeUpdate();
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
 
     }

@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerItem;
+import controller.MainController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,12 +26,6 @@ import model.Item;
  * @author Ignatius Dariel
  */
 public class MenuItem {
-
-    public void mainMenuItemSeller() {
-        JFrame frameMenuItem = new JFrame();
-        frameMenuItem.setSize(500, 600);
-
-    }
 
     public void seeItemSeller() {
         JFrame frameSeeItem = new JFrame("See Item Seller");
@@ -391,11 +386,76 @@ public class MenuItem {
     }
 
     public void menuItemForBuyer() {
-        JFrame buyerMenuFrame = new JFrame("Buyer Menu");
-        buyerMenuFrame.setSize(700, 800);
+        JFrame frameSeeItem = new JFrame("See Item's for Buyer");
+        frameSeeItem.setSize(390, 1000);
 
-        buyerMenuFrame.setLayout(null);
-        buyerMenuFrame.setVisible(true);
+        ArrayList<Item> itemList = new ControllerItem().getBuyerItemsData();
+        int y = 20;
+
+        for (int i = 0; i < itemList.size(); i++) {
+            JLabel lItemName, lPrice, lStock;
+            JLabel itemName, price, stock;
+            JButton bItemDetails;
+
+            JPanel panel = new JPanel();
+            panel.setBounds(10, y, 350, 105);
+            panel.setBackground(new Color(150, 150, 150, 50));
+
+            lItemName = new JLabel("Name: ");
+            lItemName.setBounds(30, 20, 100, 25);
+            lPrice = new JLabel("Price: ");
+            lPrice.setBounds(30, 40, 100, 25);
+            lStock = new JLabel("Stock: ");
+            lStock.setBounds(30, 60, 100, 25);
+
+            itemName = new JLabel(itemList.get(i).getItemName());
+            itemName.setBounds(90, 20, 100, 25);
+            price = new JLabel(String.valueOf(itemList.get(i).getPrice()));
+            price.setBounds(90, 40, 100, 25);
+            stock = new JLabel(String.valueOf(itemList.get(i).getStocks()));
+            stock.setBounds(90, 60, 100, 25);
+
+            bItemDetails = new JButton("Details");
+            bItemDetails.setBounds(195, 50, 100, 25);
+
+            panel.add(lItemName);
+            panel.add(itemName);
+            panel.add(lPrice);
+            panel.add(price);
+            panel.add(lStock);
+            panel.add(stock);
+            panel.add(bItemDetails);
+            panel.setLayout(null);
+            panel.setVisible(true);
+            frameSeeItem.add(panel);
+
+            int itemId = itemList.get(i).getIdItem();
+
+            bItemDetails.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new MenuIndividualItem().ShowIndividualData(itemId);
+                    frameSeeItem.setVisible(false);
+                }
+            });
+
+            y += 135;
+        }
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(170, 900, 100, 50);
+
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuBuyer();
+                frameSeeItem.setVisible(false);
+            }
+        });
+
+        frameSeeItem.add(bBack);
+        frameSeeItem.setLayout(null);
+        frameSeeItem.setVisible(true);
     }
 
 }

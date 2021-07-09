@@ -22,7 +22,7 @@ public class ControllerVoucher {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public void createVoucher(Voucher newVoucher) {
+    public boolean createVoucher(Voucher newVoucher) {
         conn.connect();
         String query = "INSERT INTO voucher VALUES(?,?,?,?,?,?,?)";
         try {
@@ -37,8 +37,44 @@ public class ControllerVoucher {
             stmt.setDate(6, date);
             stmt.setInt(7, 1);
             stmt.executeUpdate();
+            return (true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return (false);
+        }
+    }
+
+    public boolean editVoucher(Voucher editVoucher) {
+        conn.connect();
+        String str = editVoucher.getEndDate();
+        Date date = Date.valueOf(str);
+
+        String query = "UPDATE voucher SET minTransaction='" + editVoucher.getMinTransaction() + "', "
+                + "cashback='" + editVoucher.getCashback() + "', "
+                + "voucherCode='" + editVoucher.getVoucherCode() + "', "
+                + "endDate='" + date + "', "
+                + "isAvailable='" + editVoucher.getIsAvailable() + "' "
+                + "WHERE idVoucher='" + editVoucher.getIdVoucher() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+
+    public boolean deleteVoucher(int idVoucherDelete) {
+        conn.connect();
+        String query = "DELETE FROM voucher WHERE idVoucher='" + idVoucherDelete + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
         }
     }
 
@@ -66,36 +102,6 @@ public class ControllerVoucher {
         }
 
         return arrVoucher;
-    }
-
-    public void editVoucher(Voucher editVoucher) {
-        conn.connect();
-        String str = editVoucher.getEndDate();
-        Date date = Date.valueOf(str);
-
-        String query = "UPDATE voucher SET minTransaction='" + editVoucher.getMinTransaction() + "', "
-                + "cashback='" + editVoucher.getCashback() + "', "
-                + "voucherCode='" + editVoucher.getVoucherCode() + "', "
-                + "endDate='" + date + "', "
-                + "isAvailable='" + editVoucher.getIsAvailable() + "' "
-                + "WHERE idVoucher='" + editVoucher.getIdVoucher() + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteVoucher(int idVoucherDelete) {
-        conn.connect();
-        String query = "DELETE FROM voucher WHERE idVoucher='" + idVoucherDelete + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public ArrayList<Voucher> getVoucherDataNonSeller() {

@@ -232,7 +232,7 @@ public class MenuProfile {
         tEmail = new JTextField(activePerson.getEmail());
         tEmail.setBounds(290, 641, 350, 50);
         tEmail.setFont(new Font("Serif", Font.BOLD, 30));
-        tPass = new JTextField("budi123");
+        tPass = new JTextField(activePerson.getPassword());
         tPass.setBounds(290, 741, 350, 50);
         tPass.setFont(new Font("Serif", Font.BOLD, 30));
         
@@ -262,8 +262,6 @@ public class MenuProfile {
         frame.add(bEdit);
         frame.add(bBack);
         
-        JLabel invisibleType = new JLabel(String.valueOf(activePerson.getUserType()));
-        
         bEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -275,20 +273,16 @@ public class MenuProfile {
                 person.setPhoneNumber(tPhone.getText());
                 person.setEmail(tEmail.getText());
                 person.setPassword(tPass.getText());
-                new ControllerProfile().editProfile(person);
+                boolean result = new ControllerProfile().editProfile(person);
+                new MenuResult().menuResultEditProfile(result, tUsername.getText());
+                frame.setVisible(false);
             }
         });
         
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (invisibleType.getText().equals("BUYER")) {
-                    new MainMenuBuyer();
-                } else if (invisibleType.getText().equals("SELLER")) {
-                    new MainMenuSeller();
-                } else {
-                    new MainMenuAdmin();
-                }
+                seeProfile();
                 frame.setVisible(false);
             }
         });

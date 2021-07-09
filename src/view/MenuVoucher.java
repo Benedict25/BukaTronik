@@ -24,6 +24,7 @@ import model.Voucher;
 public class MenuVoucher {
 
     ControllerVoucher controlVoucher = new ControllerVoucher();
+    MenuResult menuResult = new MenuResult();
 
     public void MenuCreateVoucher() {
         JFrame frame = new JFrame("Create Voucher");
@@ -64,7 +65,9 @@ public class MenuVoucher {
             newVoucher.setCashback(Integer.parseInt(tCashback.getText()));
             newVoucher.setVoucherCode(tVoucherCode.getText());
             newVoucher.setEndDate(tEndDate.getText());
-            controlVoucher.createVoucher(newVoucher);
+            boolean result = controlVoucher.createVoucher(newVoucher);
+            menuResult.menuResultCreateVoucher(result, tVoucherCode.getText());
+            frame.setVisible(false);
         });
 
         bBack.addActionListener((ActionEvent e) -> {
@@ -86,10 +89,133 @@ public class MenuVoucher {
         frame.setLayout(null);
         frame.setVisible(true);
     }
+    
+    public void MenuEditVoucher(int idVoucher) {
+        JFrame frame = new JFrame("Edit Voucher");
+        frame.setSize(500, 720);
+
+        Voucher voucher = new Voucher();
+        voucher = controlVoucher.getVoucherDataById(idVoucher); //ambil data untuk di text field
+
+        JTextField tNewMinimum, tNewCashback, tNewCode, tNewEndDate, tNewStatus;
+        JLabel lNM, lNC, lNCd, lNED, lNS, lDescription;
+
+        lNM = new JLabel("New Minimum: ");
+        lNM.setBounds(65, 125, 200, 25);
+        tNewMinimum = new JTextField(String.valueOf(voucher.getMinTransaction()));
+        tNewMinimum.setBounds(210, 125, 200, 25);
+
+        lNC = new JLabel("New Cashback (Rp.): ");
+        lNC.setBounds(65, 175, 200, 25);
+        tNewCashback = new JTextField(String.valueOf(voucher.getCashback()));
+        tNewCashback.setBounds(210, 175, 200, 25);
+
+        lNCd = new JLabel("New Code: ");
+        lNCd.setBounds(65, 225, 200, 25);
+        tNewCode = new JTextField(voucher.getVoucherCode());
+        tNewCode.setBounds(210, 225, 200, 25);
+
+        lNED = new JLabel("End Date (YYYY-MM-DD): ");
+        lNED.setBounds(65, 275, 200, 25);
+        tNewEndDate = new JTextField(voucher.getEndDate());
+        tNewEndDate.setBounds(210, 275, 200, 25);
+
+        lNS = new JLabel("New Status (0/1): ");
+        lNS.setBounds(65, 325, 200, 25);
+        tNewStatus = new JTextField(String.valueOf(voucher.getIsAvailable()));
+        tNewStatus.setBounds(210, 325, 200, 25);
+
+        lDescription = new JLabel("0 = Unavailable / 1 = Available");
+        lDescription.setBounds(160, 375, 200, 25);
+
+        JButton bEditVoucher = new JButton("Edit Voucher!");
+        bEditVoucher.setBounds(140, 425, 200, 30);
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(165, 475, 150, 30);
+
+        frame.add(lNM);
+        frame.add(tNewMinimum);
+        frame.add(lNC);
+        frame.add(tNewCashback);
+        frame.add(lNCd);
+        frame.add(tNewCode);
+        frame.add(lNED);
+        frame.add(tNewEndDate);
+        frame.add(lNS);
+        frame.add(tNewStatus);
+        frame.add(lDescription);
+        frame.add(bEditVoucher);
+        frame.add(bBack);
+
+        JLabel id = new JLabel(String.valueOf(voucher.getIdVoucher())); //invisible j label untuk menampung id
+
+        bEditVoucher.addActionListener((ActionEvent e) -> {
+            Voucher editVoucher = new Voucher();
+            editVoucher.setIdVoucher(Integer.parseInt(id.getText())); //parsing id
+            editVoucher.setMinTransaction(Integer.parseInt(tNewMinimum.getText()));
+            editVoucher.setCashback(Integer.parseInt(tNewCashback.getText()));
+            editVoucher.setVoucherCode(tNewCode.getText());
+            editVoucher.setEndDate(tNewEndDate.getText());
+            editVoucher.setIsAvailable(Integer.parseInt(tNewStatus.getText()));
+            boolean result = controlVoucher.editVoucher(editVoucher);
+            menuResult.menuResultEditVoucher(result, tNewCode.getText());
+            frame.setVisible(false);
+        });
+
+        bBack.addActionListener((ActionEvent e) -> {
+            MenuSeeVoucherForSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void MenuDeleteVoucher(String idVoucher, String voucherCode) {
+        JFrame frame = new JFrame("Delete Voucher");
+        frame.setSize(400, 300);
+        JLabel lKonfirmasi, lIdVoucher, lVoucherCode;
+
+        lKonfirmasi = new JLabel("Yakin Ingin Hapus Voucher ini?");
+        lKonfirmasi.setBounds(100, 25, 400, 25);
+        lVoucherCode = new JLabel("Voucher Code: " + voucherCode);
+        lVoucherCode.setBounds(125, 75, 200, 25);
+
+        JButton bDeleteVoucher = new JButton("Delete Voucher!");
+        bDeleteVoucher.setBounds(115, 125, 150, 40);
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(140, 185, 100, 40);
+
+        frame.add(lKonfirmasi);
+        frame.add(lVoucherCode);
+        frame.add(bDeleteVoucher);
+        frame.add(bBack);
+
+        lIdVoucher = new JLabel(idVoucher); //invisible
+
+        bDeleteVoucher.addActionListener((ActionEvent e) -> {
+            boolean result = controlVoucher.deleteVoucher(Integer.parseInt(lIdVoucher.getText()));
+            menuResult.menuResultDeleteVoucher(result, voucherCode);
+            frame.setVisible(false);
+        });
+
+        bBack.addActionListener((ActionEvent e) -> {
+            MenuSeeVoucherForSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
 
     public void MenuSeeVoucherForSeller() { //bedanya dengan buyer adalah di seller ada edit delete
         ArrayList<Voucher> arrVoucher = new ArrayList();
         arrVoucher = controlVoucher.getVoucherDataSeller();
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 25, 70, 40);
 
         JButton bCreate = new JButton("Create Voucher");
         bCreate.setBounds(110, 20, 150, 50);
@@ -99,11 +225,20 @@ public class MenuVoucher {
         int y = 90;
 
         frame.add(bCreate);
+        frame.add(bBack);
 
         bCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MenuCreateVoucher();
+                frame.setVisible(false);
+            }
+        });
+        
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuSeller();
                 frame.setVisible(false);
             }
         });
@@ -187,129 +322,27 @@ public class MenuVoucher {
         frame.setVisible(true);
     }
 
-    public void MenuEditVoucher(int idVoucher) {
-        JFrame frame = new JFrame("Edit Voucher");
-        frame.setSize(500, 720);
-
-        Voucher voucher = new Voucher();
-        voucher = controlVoucher.getVoucherDataById(idVoucher); //ambil data untuk di text field
-
-        JTextField tNewMinimum, tNewCashback, tNewCode, tNewEndDate, tNewStatus;
-        JLabel lNM, lNC, lNCd, lNED, lNS, lDescription;
-
-        lNM = new JLabel("New Minimum: ");
-        lNM.setBounds(65, 125, 200, 25);
-        tNewMinimum = new JTextField(String.valueOf(voucher.getMinTransaction()));
-        tNewMinimum.setBounds(210, 125, 200, 25);
-
-        lNC = new JLabel("New Cashback (Rp.): ");
-        lNC.setBounds(65, 175, 200, 25);
-        tNewCashback = new JTextField(String.valueOf(voucher.getCashback()));
-        tNewCashback.setBounds(210, 175, 200, 25);
-
-        lNCd = new JLabel("New Code: ");
-        lNCd.setBounds(65, 225, 200, 25);
-        tNewCode = new JTextField(voucher.getVoucherCode());
-        tNewCode.setBounds(210, 225, 200, 25);
-
-        lNED = new JLabel("End Date (YYYY-MM-DD): ");
-        lNED.setBounds(65, 275, 200, 25);
-        tNewEndDate = new JTextField(voucher.getEndDate());
-        tNewEndDate.setBounds(210, 275, 200, 25);
-
-        lNS = new JLabel("New Status (0/1): ");
-        lNS.setBounds(65, 325, 200, 25);
-        tNewStatus = new JTextField(String.valueOf(voucher.getIsAvailable()));
-        tNewStatus.setBounds(210, 325, 200, 25);
-
-        lDescription = new JLabel("0 = Unavailable / 1 = Available");
-        lDescription.setBounds(160, 375, 200, 25);
-
-        JButton bEditVoucher = new JButton("Edit Voucher!");
-        bEditVoucher.setBounds(140, 425, 200, 30);
-
-        JButton bBack = new JButton("Back");
-        bBack.setBounds(165, 475, 150, 30);
-
-        frame.add(lNM);
-        frame.add(tNewMinimum);
-        frame.add(lNC);
-        frame.add(tNewCashback);
-        frame.add(lNCd);
-        frame.add(tNewCode);
-        frame.add(lNED);
-        frame.add(tNewEndDate);
-        frame.add(lNS);
-        frame.add(tNewStatus);
-        frame.add(lDescription);
-        frame.add(bEditVoucher);
-        frame.add(bBack);
-
-        JLabel id = new JLabel(String.valueOf(voucher.getIdVoucher())); //invisible j label untuk menampung id
-
-        bEditVoucher.addActionListener((ActionEvent e) -> {
-            Voucher editVoucher = new Voucher();
-            editVoucher.setIdVoucher(Integer.parseInt(id.getText())); //parsing id
-            editVoucher.setMinTransaction(Integer.parseInt(tNewMinimum.getText()));
-            editVoucher.setCashback(Integer.parseInt(tNewCashback.getText()));
-            editVoucher.setVoucherCode(tNewCode.getText());
-            editVoucher.setEndDate(tNewEndDate.getText());
-            editVoucher.setIsAvailable(Integer.parseInt(tNewStatus.getText()));
-            controlVoucher.editVoucher(editVoucher);
-        });
-
-        bBack.addActionListener((ActionEvent e) -> {
-            MenuSeeVoucherForSeller();
-            frame.setVisible(false);
-        });
-
-        frame.setLayout(null);
-        frame.setVisible(true);
-    }
-
-    public void MenuDeleteVoucher(String idVoucher, String voucherCode) {
-        JFrame frame = new JFrame("Delete Voucher");
-        frame.setSize(400, 300);
-        JLabel lKonfirmasi, lIdVoucher, lVoucherCode;
-
-        lKonfirmasi = new JLabel("Yakin Ingin Hapus Voucher ini?");
-        lKonfirmasi.setBounds(100, 25, 400, 25);
-        lVoucherCode = new JLabel("Voucher Code: " + voucherCode);
-        lVoucherCode.setBounds(125, 75, 200, 25);
-
-        JButton bDeleteVoucher = new JButton("Delete Voucher!");
-        bDeleteVoucher.setBounds(115, 125, 150, 40);
-
-        JButton bBack = new JButton("Back");
-        bBack.setBounds(140, 185, 100, 40);
-
-        frame.add(lKonfirmasi);
-        frame.add(lVoucherCode);
-        frame.add(bDeleteVoucher);
-        frame.add(bBack);
-
-        lIdVoucher = new JLabel(idVoucher); //invisible
-
-        bDeleteVoucher.addActionListener((ActionEvent e) -> {
-            controlVoucher.deleteVoucher(Integer.parseInt(lIdVoucher.getText()));
-        });
-
-        bBack.addActionListener((ActionEvent e) -> {
-            MenuSeeVoucherForSeller();
-            frame.setVisible(false);
-        });
-
-        frame.setLayout(null);
-        frame.setVisible(true);
-    }
-
     public void MenuSeeVoucherForBuyer() {
         ArrayList<Voucher> arrVoucher = new ArrayList();
         arrVoucher = controlVoucher.getVoucherDataNonSeller();
 
         JFrame frame = new JFrame("Voucher List");
         frame.setSize(390, 1000);
-        int y = 20;
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(150, 10, 70, 40);
+        
+        frame.add(bBack);
+        
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuBuyer();
+                frame.setVisible(false);
+            }
+        });
+        
+        int y = 60;
 
         for (int i = 0; i < arrVoucher.size(); i++) {
             JLabel lMinTransaction, lCashback, lVoucherCode, lEndDate, lIsAvailable;

@@ -16,7 +16,7 @@ public class ControllerBalance {
 
     DatabaseHandler conn = new DatabaseHandler();
 
-    public void depositBalance(int addBalance) {
+    public boolean depositBalance(int addBalance) {
         conn.connect();
 
         int initialBalance = new MainController().getActivePersonBalance();
@@ -27,13 +27,15 @@ public class ControllerBalance {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
 
     }
 
-    public void withdrawBalance(int withdrawBalance) {
+    public boolean withdrawBalance(int withdrawBalance) {
         conn.connect();
 
         int initialBalance = new MainController().getActivePersonBalance();
@@ -44,8 +46,10 @@ public class ControllerBalance {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
