@@ -83,7 +83,7 @@ public class MainMenuSeller {
         bSalesHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new MenuSalesHistory().seeSalesHistorySeller();
                 frameMainMenuSeller.setVisible(false);
             }
         });
