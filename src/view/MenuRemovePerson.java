@@ -223,7 +223,9 @@ public class MenuRemovePerson {
         lIdPerson = new JLabel(String.valueOf(idPerson)); //invisible
 
         bRemove.addActionListener((ActionEvent e) -> {
-            controlRemove.removePerson(Integer.parseInt(lIdPerson.getText()));
+            boolean result = controlRemove.removePerson(Integer.parseInt(lIdPerson.getText()));
+            new MenuResult().menuResultRemoveUser(result, username);
+            frame.setVisible(false);
         });
 
         bBack.addActionListener((ActionEvent e) -> {
