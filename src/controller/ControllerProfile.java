@@ -17,7 +17,7 @@ public class ControllerProfile {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public void editProfile(Person person) {
+    public boolean editProfile(Person person) {
         conn.connect();
         String query = "UPDATE person SET username='" + person.getUsername() + "', "
                 + "password='" + person.getPassword()+ "', "
@@ -30,9 +30,11 @@ public class ControllerProfile {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
 
         }
 

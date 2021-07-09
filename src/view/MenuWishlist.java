@@ -149,7 +149,9 @@ public class MenuWishlist {
         lidWishlist = new JLabel(String.valueOf(idWishlist)); //invisible
 
         bRemove.addActionListener((ActionEvent e) -> {
-            controlWishlist.removeFromWishlist(Integer.parseInt(lidWishlist.getText()));
+            boolean result = controlWishlist.removeFromWishlist(Integer.parseInt(lidWishlist.getText()));
+            new MenuResult().menuResultRemoveFromWishlist(result, itemName);
+            frame.setVisible(false);
         });
 
         bBack.addActionListener((ActionEvent e) -> {
@@ -189,8 +191,9 @@ public class MenuWishlist {
         JLabel invisibleIDItem = new JLabel(String.valueOf(idItem));
         
         bAdd.addActionListener((ActionEvent e) -> {
-            controlWishlist.addToWishlist(Integer.parseInt(invisibleIDItem.getText()));
-            
+            boolean result = controlWishlist.addToWishlist(Integer.parseInt(invisibleIDItem.getText()));
+            new MenuResult().menuResultAddToWishlist(result, itemName);
+            frame.setVisible(false);
         });
         
         bBack.addActionListener((ActionEvent e) -> {
