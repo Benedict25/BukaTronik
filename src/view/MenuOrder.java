@@ -199,19 +199,19 @@ public class MenuOrder {
     }
 
     public void menuCancelOrder(int idTransaction) {
-        JFrame frameCancelOrder = new JFrame("Delete Voucher");
+        JFrame frameCancelOrder = new JFrame("Menu Cancel Order");
         frameCancelOrder.setSize(400, 300);
         JLabel lKonfirmasi, lIdOrder, lKonfirmasiFee;
-
-        lKonfirmasi = new JLabel("Yakin Ingin Hapus Order ini?");
+        JButton bCancelOrder;
+        lKonfirmasi = new JLabel("Yakin Ingin Cancel Order ini?");
         lKonfirmasi.setBounds(100, 25, 400, 25);
         lIdOrder = new JLabel("Id Order: " + idTransaction);
         lIdOrder.setBounds(125, 55, 200, 25);
         lKonfirmasiFee = new JLabel("Fee Cancel: 10.000");
         lKonfirmasiFee.setBounds(125, 75, 200, 25);
 
-        JButton bDeleteVoucher = new JButton("Cancel Order!");
-        bDeleteVoucher.setBounds(100, 125, 200, 40);
+        bCancelOrder = new JButton("Cancel Order!");
+        bCancelOrder.setBounds(100, 125, 200, 40);
 
         JButton bBack = new JButton("Back");
         bBack.setBounds(165, 175, 70, 40);
@@ -219,10 +219,10 @@ public class MenuOrder {
         frameCancelOrder.add(lKonfirmasi);
         frameCancelOrder.add(lIdOrder);
         frameCancelOrder.add(lKonfirmasiFee);
-        frameCancelOrder.add(bDeleteVoucher);
+        frameCancelOrder.add(bCancelOrder);
         frameCancelOrder.add(bBack);
 
-        bDeleteVoucher.addActionListener((ActionEvent e) -> {
+        bCancelOrder.addActionListener((ActionEvent e) -> {
             new ControllerPurchaseHistory().cancelOrder(idTransaction);
             seeOngoingOrder();
             frameCancelOrder.setVisible(false);
