@@ -555,7 +555,7 @@ public class MenuResult {
 
     //result shopping cart
     public void menuResultAddToShoppingCart(boolean result) {
-        JFrame frame = new JFrame("Result Create Voucher");
+        JFrame frame = new JFrame("Result Add To Shopping Cart");
         frame.setSize(450, 410);
 
         JLabel lResult;
@@ -588,7 +588,7 @@ public class MenuResult {
     }
 
     public void menuResultChangeQuantityShoppingCart(boolean result) {
-        JFrame frame = new JFrame("Result Create Voucher");
+        JFrame frame = new JFrame("Result Change Quantity");
         frame.setSize(450, 410);
 
         JLabel lResult;
@@ -621,7 +621,7 @@ public class MenuResult {
     }
 
     public void menuResultRemoveShoppingCart(boolean result) {
-        JFrame frame = new JFrame("Result Remove Voucher");
+        JFrame frame = new JFrame("Result Remove From Shopping Cart");
         frame.setSize(450, 410);
 
         JLabel lResult;
@@ -646,6 +646,74 @@ public class MenuResult {
 
         bConfirm.addActionListener((ActionEvent e) -> {
             new MenuShoppingCart().MenuSeeShoppingCart();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    //result Order
+    
+    public void menuResultApproveOrder(boolean result) {
+        JFrame frame = new JFrame("Result Approve Order");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Approved!");
+        } else {
+            lResult.setText("Failed!");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuManageOrder().menuSeeOrder();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    public void menuResultApproveCancelOrder(boolean result) {
+        JFrame frame = new JFrame("Result Approve Cancel Order");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Cancellation Approved!");
+        } else {
+            lResult.setText("Failed!");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuManageOrder().menuSeeOrder();
             frame.setVisible(false);
         });
 

@@ -67,7 +67,7 @@ public class MainMenuSeller {
         bManageOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuManageOrder().menuSeeOrder();
                 frameMainMenuSeller.setVisible(false);
             }
         });

@@ -176,7 +176,7 @@ public class MenuOrder {
 
             bBack.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) { //backpath untuk pengembalian menu (back button)
                     if (backPath.equals("seeOngoingOrder")) {
                         seeOngoingOrder();
                     } else if (backPath.equals("seePurchaseHistory")) {
@@ -185,6 +185,8 @@ public class MenuOrder {
                         new MenuSalesHistory().seeSalesHistorySeller();
                     } else if (backPath.equals("seeSalesAll")) {
                         new MenuSalesHistory().seeSalesHistoryAdmin();
+                    } else if (backPath.equals("manageOrder")) {
+                        new MenuManageOrder().menuSeeOrder();
                     }
                     frameOrder.setVisible(false);
                 }
