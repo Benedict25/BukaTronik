@@ -226,7 +226,7 @@ public class MenuProfile {
         tCity = new JTextField(activePerson.getCity());
         tCity.setBounds(270, 441, 370, 50);
         tCity.setFont(new Font("Serif", Font.BOLD, 30));
-        tPhone = new JTextField("0811");
+        tPhone = new JTextField(activePerson.getPhoneNumber());
         tPhone.setBounds(295, 541, 345, 50);
         tPhone.setFont(new Font("Serif", Font.BOLD, 30));
         tEmail = new JTextField(activePerson.getEmail());

@@ -375,11 +375,9 @@ public class MenuVoucher {
             isAvailable.setBounds(125, 80, 100, 25);
         
             if (arrVoucher.get(i).getIsAvailable() == 1) {
-                System.out.println("masuk 1");
                 availableInfo = new JLabel("I'm Available!");
                 availableInfo.setBounds(220, 35, 100, 30);
             } else {
-                System.out.println("masuk 2");
                 availableInfo = new JLabel("Not Available!");
                 availableInfo.setBounds(220, 35, 100, 30);
             }
