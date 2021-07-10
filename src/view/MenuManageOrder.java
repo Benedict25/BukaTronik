@@ -126,7 +126,7 @@ public class MenuManageOrder {
             }
         }
 
-        //Panel Seller
+        //Panel Status Cancelling
         x = 45;
         y = 15;
         counterPanel = 0;
