@@ -723,17 +723,17 @@ public class MenuResult {
     
     public void menuResultCheckOut(boolean result) {
         JFrame frame = new JFrame("Result Check Out");
-        frame.setSize(450, 410);
+        frame.setSize(750, 410);
 
         JLabel lResult;
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(50, 20, 500, 100);
+        lResult.setBounds(60, 20, 800, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
         
         bConfirm = new JButton("Ok!");
-        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setBounds(300, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
 
         if (result == true) {
