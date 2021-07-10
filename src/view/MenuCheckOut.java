@@ -23,6 +23,7 @@ import model.Person;
 public class MenuCheckOut {
 
     ControllerCheckOut controllerCheckOut = new ControllerCheckOut();
+    MenuResult menuResult = new MenuResult();
 
     public void MenuCheckOutCourier() {
         JFrame frame = new JFrame("Check Out");
