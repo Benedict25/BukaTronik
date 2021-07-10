@@ -6,7 +6,9 @@
 package view;
 
 import controller.ControllerFlashsale;
+import controller.ControllerItem;
 import java.awt.Color;
+import java.awt.Font;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Flashsale;
+import model.Item;
 
 /**
  *
@@ -26,9 +29,9 @@ public class MenuFlashsale {
     ControllerFlashsale controllerFlashsale = new ControllerFlashsale();
     MenuResult menuResult = new MenuResult();
 
-    public void MenuSeeFlashsaleForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
+    public void menuSeeFlashsaleForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
         ArrayList<Flashsale> arrFlashsale = new ArrayList();
-        arrFlashsale = controllerFlashsale.getFlashsaleDataAdmin();
+        arrFlashsale = controllerFlashsale.getFlashsaleData();
 
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 20, 70, 50);
@@ -43,8 +46,8 @@ public class MenuFlashsale {
 
         frame.add(bBack);
         frame.add(bCreate);
-        
-         /*back to menu admin*/
+
+        /*back to menu admin*/
         bBack.addActionListener((ActionEvent e) -> {
             new MainMenuAdmin();
             frame.setVisible(false);
@@ -52,7 +55,7 @@ public class MenuFlashsale {
 
         /*Insert data*/
         bCreate.addActionListener((ActionEvent e) -> {
-            MenuInsertFlashsale();
+            menuInsertFlashsale();
             frame.setVisible(false);
         });
 
@@ -112,13 +115,13 @@ public class MenuFlashsale {
 
             /*edit data*/
             bEdit.addActionListener((ActionEvent e) -> {
-                MenuEditFlashsale(Integer.parseInt(id.getText()));
+                menuEditFlashsale(Integer.parseInt(id.getText()));
                 frame.setVisible(false);
             });
 
             /*delete data*/
             bDelete.addActionListener((ActionEvent e) -> {
-                MenuDeleteFlashsale(Integer.parseInt(id.getText()));
+                menuDeleteFlashsale(Integer.parseInt(id.getText()));
                 frame.setVisible(false);
             });
 
@@ -132,7 +135,7 @@ public class MenuFlashsale {
         frame.setVisible(true);
     }
 
-    public void MenuInsertFlashsale() {
+    public void menuInsertFlashsale() {
         JFrame frame = new JFrame();
         frame.setSize(700, 800);
 
@@ -199,7 +202,7 @@ public class MenuFlashsale {
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
-            MenuSeeFlashsaleForAdmin();
+            menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 
@@ -207,7 +210,7 @@ public class MenuFlashsale {
         frame.setVisible(true);
     }
 
-    public void MenuEditFlashsale(int idFlashsale) {
+    public void menuEditFlashsale(int idFlashsale) {
         JFrame frame = new JFrame();
         frame.setSize(700, 800);
 
@@ -271,7 +274,7 @@ public class MenuFlashsale {
             updateFlashsale.setDiscountedPrice(Integer.parseInt(updateDiscountedPrice.getText()));
             updateFlashsale.setEndDate(updateEndDate.getText());
 
-            boolean result = new ControllerFlashsale().EditFlashsale(updateFlashsale);
+            boolean result = new ControllerFlashsale().editFlashsale(updateFlashsale);
             frame.setVisible(false);
             menuResult.menuResultEditFlashsale(result, updateIdFlashsale.getText());
         });
@@ -279,7 +282,7 @@ public class MenuFlashsale {
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
-            MenuSeeFlashsaleForAdmin();
+            menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 
@@ -287,7 +290,7 @@ public class MenuFlashsale {
         frame.setVisible(true);
     }
 
-    public void MenuDeleteFlashsale(int idFlashsale) {
+    public void menuDeleteFlashsale(int idFlashsale) {
         JFrame frame = new JFrame();
         frame.setSize(700, 800);
 
@@ -317,7 +320,7 @@ public class MenuFlashsale {
         /*delete data*/
         button.addActionListener((ActionEvent e) -> {
             int inputDeleteFlashsale = Integer.parseInt(deleteIdFlashsale.getText());
-            boolean result = controllerFlashsale.DeleteFlashsale(inputDeleteFlashsale);
+            boolean result = controllerFlashsale.deleteFlashsale(inputDeleteFlashsale);
             frame.setVisible(false);
             menuResult.menuResultDeleteFlashsale(result, deleteIdFlashsale.getText());
         });
@@ -325,7 +328,7 @@ public class MenuFlashsale {
         /*back*/
         buttonBack.addActionListener((ActionEvent e) -> {
 
-            MenuSeeFlashsaleForAdmin();
+            menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 
@@ -333,4 +336,160 @@ public class MenuFlashsale {
         frame.setVisible(true);
     }
 
+    public void menuSeeFlashsaleForBuyer() {
+        JFrame frame = new JFrame("Flashsale Items !!!");
+        frame.setSize(450, 1000);
+        
+        ArrayList<Flashsale> arrFlashsale = new ArrayList();
+        arrFlashsale = controllerFlashsale.getFlashsaleData();
+
+        ArrayList<Item> arrItem = new ArrayList();
+        arrItem = controllerFlashsale.getItemDataForFlashsale(arrFlashsale);
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(160, 10, 100, 50);
+        frame.add(bBack);
+
+        bBack.addActionListener((ActionEvent e) -> {
+            new MainMenuBuyer();
+            frame.setVisible(false);
+        });
+        
+        int y = 100;
+
+        for (int i = 0; i < arrItem.size(); i++) {
+            JLabel lItemName, lPrice, lStock, lEndDate;
+            JLabel itemName, price, stock, endDate;
+            JButton bItemDetails;
+
+            JPanel panel = new JPanel();
+            panel.setBounds(15, y, 400, 110);
+            panel.setBackground(Color.gray);
+
+            lItemName = new JLabel("Name: ");
+            lItemName.setBounds(25, 0, 150, 25);
+            lPrice = new JLabel("Price: ");
+            lPrice.setBounds(25, 20, 150, 25);
+            lStock = new JLabel("Stock: ");
+            lStock.setBounds(25, 40, 100, 25);
+            lEndDate = new JLabel("End Date: ");
+            lEndDate.setBounds(25, 40, 100, 25);
+
+            itemName = new JLabel(arrItem.get(i).getItemName());
+            itemName.setBounds(100, 0, 100, 25);
+            price = new JLabel(String.valueOf(arrFlashsale.get(i).getDiscountedPrice()));
+            price.setBounds(100, 20, 100, 25);
+            stock = new JLabel(String.valueOf(arrFlashsale.get(i).getFlashsaleStock()));
+            stock.setBounds(100, 40, 100, 25);
+            endDate = new JLabel(String.valueOf(arrFlashsale.get(i).getEndDate()));
+            endDate.setBounds(100, 40, 100, 25);
+
+            bItemDetails = new JButton("Details");
+            bItemDetails.setBounds(240, 40, 100, 25);
+
+            panel.add(lItemName);
+            panel.add(itemName);
+            panel.add(lPrice);
+            panel.add(price);
+            panel.add(lStock);
+            panel.add(stock);
+            panel.add(bItemDetails);
+            panel.setLayout(null);
+            panel.setVisible(true);
+            frame.add(panel);
+
+            int itemId = arrItem.get(i).getIdItem();
+            int idFlashsale = arrFlashsale.get(i).getIdFlashsale();
+
+            bItemDetails.addActionListener((ActionEvent e) -> {
+                menuShowIndividualDataItemFlashsale(itemId, idFlashsale);
+                frame.setVisible(false);
+            });
+
+            y += 125;
+        }
+        frame.setLayout(null);
+        frame.setVisible(true);
+
+    }
+    
+    public void menuShowIndividualDataItemFlashsale(int idItem, int idFlashsale) {
+        Item item = new Item();
+        item = new ControllerItem().getDataItemByID(idItem);
+        Flashsale flashsale = new Flashsale();
+        flashsale = controllerFlashsale.getFlashsaleDataById(idFlashsale);
+        JFrame frame = new JFrame("Detailed Info");
+        frame.setSize(500, 485);
+        JLabel lItemName, lPrice, lStock, lCategory, litemWeight;
+        JLabel itemName, price, stock, category, itemWeight;
+        JButton bBackToList, bBuy;
+
+        lItemName = new JLabel("Name: ");
+        lItemName.setBounds(120, 100, 150, 30);
+        lItemName.setFont(new Font("Serif", Font.BOLD, 25));
+        lPrice = new JLabel("Price: Rp. ");
+        lPrice.setBounds(120, 150, 150, 30);
+        lPrice.setFont(new Font("Serif", Font.BOLD, 25));
+        lStock = new JLabel("Stock: ");
+        lStock.setBounds(120, 200, 150, 30);
+        lStock.setFont(new Font("Serif", Font.BOLD, 25));
+        lCategory = new JLabel("Category: ");
+        lCategory.setBounds(120, 250, 150, 30);
+        lCategory.setFont(new Font("Serif", Font.BOLD, 25));
+        litemWeight = new JLabel("Item Weight: ");
+        litemWeight.setBounds(120, 300, 150, 30);
+        litemWeight.setFont(new Font("Serif", Font.BOLD, 25));
+
+        itemName = new JLabel(item.getItemName());
+        itemName.setBounds(200, 100, 500, 30);
+        itemName.setFont(new Font("Serif", Font.BOLD, 25));
+        price = new JLabel(String.valueOf(flashsale.getDiscountedPrice()));
+        price.setBounds(235, 150, 150, 30);
+        price.setFont(new Font("Serif", Font.BOLD, 25));
+        stock = new JLabel(String.valueOf(flashsale.getFlashsaleStock()));
+        stock.setBounds(200, 200, 150, 30);
+        stock.setFont(new Font("Serif", Font.BOLD, 25));
+        category = new JLabel(String.valueOf(item.getCategory()));
+        category.setBounds(235, 250, 150, 30);
+        category.setFont(new Font("Serif", Font.BOLD, 25));
+        itemWeight = new JLabel(String.valueOf(item.getItemWeight()));
+        itemWeight.setBounds(270, 300, 150, 30);
+        itemWeight.setFont(new Font("Serif", Font.BOLD, 25));
+
+        bBackToList = new JButton("Back to Flashsale");
+        bBackToList.setBounds(20, 370, 200, 40);
+        bBackToList.setFont(new Font("Serif", Font.BOLD, 20));
+        bBuy = new JButton("Buy");
+        bBuy.setBounds(260, 370, 200, 40);
+        bBuy.setFont(new Font("Serif", Font.BOLD, 20));
+
+        frame.add(lItemName);
+        frame.add(lPrice);
+        frame.add(lStock);
+        frame.add(lCategory);
+        frame.add(litemWeight);
+        frame.add(itemName);
+        frame.add(price);
+        frame.add(stock);
+        frame.add(category);
+        frame.add(itemWeight);
+        frame.add(bBackToList);
+        frame.add(bBuy);
+
+//        JLabel invisibleIdItem = new JLabel(String.valueOf(idItem));
+
+        bBackToList.addActionListener((ActionEvent e) -> {
+            menuSeeFlashsaleForBuyer();
+            frame.setVisible(false);
+        });
+
+        bBuy.addActionListener((ActionEvent e) -> {
+            //langsung ngarah ke check out khusus flashsale
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+
+    }
 }

@@ -53,7 +53,7 @@ public class MainMenuAdmin {
         bManageFlashsale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MenuFlashsale().MenuSeeFlashsaleForAdmin();
+                new MenuFlashsale().menuSeeFlashsaleForAdmin();
                 frameMainMenuAdmin.setVisible(false);
             }
         });
