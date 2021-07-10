@@ -469,7 +469,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuFlashsale().MenuSeeFlashsaleForAdmin();
+            new MenuFlashsale().menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 
@@ -507,7 +507,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuFlashsale().MenuSeeFlashsaleForAdmin();
+            new MenuFlashsale().menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 
@@ -545,7 +545,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuFlashsale().MenuSeeFlashsaleForAdmin();
+            new MenuFlashsale().menuSeeFlashsaleForAdmin();
             frame.setVisible(false);
         });
 

@@ -12,6 +12,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import model.GadgetType;
+import model.Item;
 
 /**
  *
@@ -21,7 +23,7 @@ public class ControllerFlashsale {
 
     static DatabaseHandler conn = new DatabaseHandler();
     
-    public ArrayList<Flashsale> getFlashsaleDataAdmin() {
+    public ArrayList<Flashsale> getFlashsaleData() {
         conn.connect();
         String query = "SELECT * FROM flashsale";
         ArrayList<Flashsale> arrFlashsale = new ArrayList();
@@ -66,7 +68,7 @@ public class ControllerFlashsale {
         }
     }
 
-    public boolean EditFlashsale(Flashsale updateFlashsale) {
+    public boolean editFlashsale(Flashsale updateFlashsale) {
         conn.connect();
         String str = updateFlashsale.getEndDate();
         Date date = Date.valueOf(str);
@@ -85,7 +87,7 @@ public class ControllerFlashsale {
         }
     }
     
-    public boolean DeleteFlashsale(int inputDeleteFlashsale){
+    public boolean deleteFlashsale(int inputDeleteFlashsale){
         conn.connect();
         String query = "DELETE FROM flashsale WHERE idFlashsale='"+inputDeleteFlashsale+"'";
         try {
@@ -119,5 +121,39 @@ public class ControllerFlashsale {
         return flashsale;
     }
     
-    
+    public ArrayList<Item> getItemDataForFlashsale(ArrayList<Flashsale> arrFlashsale) {
+        conn.connect();
+        ArrayList<Item> arrItem = new ArrayList();
+
+        for (int i = 0; i < arrFlashsale.size(); i++) {
+            String query = "SELECT * FROM item WHERE idItem='" + arrFlashsale.get(i).getIdItem() + "'";
+            try {
+                Statement stmt = conn.con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    Item newItem = new Item();
+                    newItem.setIdItem(rs.getInt("idItem")); 
+                    newItem.setIdPerson(rs.getInt("idPerson"));
+                    newItem.setItemName(rs.getString("itemName"));
+                    newItem.setPrice(rs.getInt("price"));
+                    newItem.setStocks(rs.getInt("stock"));
+
+                    if (rs.getString("category").equals("LAPTOP")) {
+                        newItem.setCategory(GadgetType.LAPTOP);
+                    } else if (rs.getString("category").equals("HANDPHONE")) {
+                        newItem.setCategory(GadgetType.HANDPHONE);
+                    } else {
+                        newItem.setCategory(GadgetType.ACC);
+                    }
+
+                    newItem.setStocks(rs.getInt("itemWeight"));
+                    arrItem.add(newItem);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return arrItem;
+    }
 }

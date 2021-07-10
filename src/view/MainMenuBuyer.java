@@ -126,6 +126,7 @@ public class MainMenuBuyer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Menu Flashsale untuk Buyer
+                new MenuFlashsale().menuSeeFlashsaleForBuyer();
                 frame.setVisible(false);
             }
         });
