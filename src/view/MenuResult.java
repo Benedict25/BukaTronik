@@ -570,7 +570,7 @@ public class MenuResult {
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
 
         if (result == true) {
-            lResult.setText("Success Add Item to Shopping Cart");
+            lResult.setText("Add Item to Shopping Cart Succeed");
         } else {
             lResult.setText("Add Item Failed");
         }
@@ -714,6 +714,39 @@ public class MenuResult {
 
         bConfirm.addActionListener((ActionEvent e) -> {
             new MenuManageOrder().menuSeeOrder();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    public void menuResultCheckOut(boolean result) {
+        JFrame frame = new JFrame("Result Check Out");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Check Out Succeed");
+        } else {
+            lResult.setText("Check Out Failed, Please Check Your Balance");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MainMenuBuyer();
             frame.setVisible(false);
         });
 
