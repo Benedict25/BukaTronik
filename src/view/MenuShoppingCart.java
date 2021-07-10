@@ -42,24 +42,20 @@ public class MenuShoppingCart {
         JFrame frame = new JFrame("Shopping Cart");
         frame.setSize(450, 1000);
 
-        //UNTUK CHECK OUT
-//        JButton bCheckOut = new JButton("CheckOut");
-//        bCheckOut.setBounds(160, 10, 100, 50);
-//        frame.add(bCheckOut);
+        //CHECK OUT
+        JButton bCheckOut = new JButton("CheckOut");
+        bCheckOut.setBounds(160, 10, 100, 50);
+        frame.add(bCheckOut);
 
         JButton bBack = new JButton("Back");
-        bBack.setBounds(160, 10, 100, 50);
+        bBack.setBounds(25, 10, 70, 50);
         frame.add(bBack);
 
         //LISTENER CHECK OUT
-//        bCheckOut.addActionListener((ActionEvent e) -> {
-//            ArrayList<ItemInShoppingCart> arrShoppingCart1 = new ArrayList();
-//            arrShoppingCart1 = controlShoppingCart.getShoppingCartData();
-//            ArrayList<Item> arrItem1 = new ArrayList();
-//            arrItem1 = controlShoppingCart.getItemDataForShoppingCart(arrShoppingCart1);
-//            new MenuCheckOut().MenuCheckOutCourier(arrShoppingCart1, arrItem1);
-//            frame.setVisible(false);
-//        });
+        bCheckOut.addActionListener((ActionEvent e) -> {
+            new MenuCheckOut().MenuCheckOutCourier();
+            frame.setVisible(false);
+        });
 
         bBack.addActionListener((ActionEvent e) -> {
             new MainMenuBuyer();
