@@ -57,7 +57,6 @@ public class MenuLogin {
         //last
         frame.setLayout(null);
         frame.setVisible(true);
-        
 
         //button login
         bLogin.addActionListener(new ActionListener() {
@@ -73,27 +72,28 @@ public class MenuLogin {
                     successLogin = false;
                 }
                 //Masuk menu tiap user
-                System.out.println(userType);
                 if (successLogin) {
-                    System.out.println("Sukses");
                     switch (userType) {
                         case "ADMIN":
-                            
+                            new MainMenuAdmin();
+                            frame.setVisible(false);
                             break;
                         case "SELLER":
-                            new MenuAddItem();
+                            new MainMenuSeller();
+                            frame.setVisible(false);
                             break;
                         case "BUYER":
-                            
+                            new MainMenuBuyer();
+                            frame.setVisible(false);
                             break;
                         default:
                             throw new AssertionError();
                     }
-                }else{
-                    System.out.println("Gagal");
+                    new MenuResult().menuResultLogin(successLogin, username);
+                } else {
+                    new MenuResult().menuResultLogin(successLogin, username);
                 }
-                frame.setVisible(false);
-            } 
+            }
         });
 
         //button register
