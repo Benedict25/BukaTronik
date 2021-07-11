@@ -21,7 +21,7 @@ import model.Item;
  */
 public class ControllerItem {
 
-    public void insertSellerItem(Item newItem) {
+    public boolean insertSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "INSERT INTO item VALUES(?,?,?,?,?,?,?)";
@@ -35,8 +35,10 @@ public class ControllerItem {
             stmt.setString(6, strGadgetType(newItem));
             stmt.setInt(7, newItem.getItemWeight());
             stmt.executeUpdate();
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
@@ -52,19 +54,21 @@ public class ControllerItem {
         return category;
     }
 
-    public void deleteSellerItem(int idItem) {
+    public boolean deleteSellerItem(int idItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "DELETE FROM item WHERE idItem='" + idItem + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 
-    public void editSellerItem(Item newItem) {
+    public boolean editSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "UPDATE item SET itemName='" + newItem.getItemName() + "', "
@@ -76,8 +80,10 @@ public class ControllerItem {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 

@@ -36,6 +36,7 @@ public class ControllerPurchaseHistory {
                 newTrans.setCourierPrice(rs.getInt("courierPrice"));
                 newTrans.setDiscount(rs.getInt("discount"));
                 newTrans.setPayAmount(rs.getInt("payAmount"));
+                newTrans.setDeliveryStatus(enumOrderStatus(rs.getString("deliveryStatus")));
                 ongoingOrders.add(newTrans);
             }
         } catch (SQLException e) {
@@ -43,7 +44,7 @@ public class ControllerPurchaseHistory {
         }
         return ongoingOrders;
     }
-    
+
     public CourierType enumCourType(String category) {
         if (category.equals("INSTANT")) {
             return CourierType.INSTANT;
@@ -51,10 +52,25 @@ public class ControllerPurchaseHistory {
             return CourierType.REG;
         } else if (category.equals("YES")) {
             return CourierType.YES;
+        } else {
+            return null;
         }
-        return null;
     }
-    
+
+    public DeliveryStatus enumOrderStatus(String status) {
+        if (status.equals("PROCESSED")) {
+            return DeliveryStatus.PROCESSED;
+        } else if (status.equals("CANCELLING")) {
+            return DeliveryStatus.CANCELLING;
+        } else if (status.equals("DELIVERED")) {
+            return DeliveryStatus.DELIVERED;
+        } else if (status.equals("CANCELLED")) {
+            return DeliveryStatus.CANCELLED;
+        } else {
+            return null;
+        }
+    }
+
     public ArrayList<DetailedTransaction> catchArrDetailed(int idTransaction) {
         ArrayList<DetailedTransaction> detailedList = new ArrayList<>();
         conn.connect();
@@ -73,8 +89,8 @@ public class ControllerPurchaseHistory {
         }
         return detailedList;
     }
-    
-    public void cancelOrder(int idTransaction){
+
+    public boolean cancelOrder(int idTransaction) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
         String query = "UPDATE transaction SET deliveryStatus='" + DeliveryStatus.CANCELLING + "' "
@@ -82,8 +98,10 @@ public class ControllerPurchaseHistory {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            return(false);
         }
     }
 }

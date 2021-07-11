@@ -16,6 +16,8 @@ import javax.swing.JLabel;
  * @author Benedict
  */
 public class MenuResult {
+
+    //Ben
     //Result Log In & Register
     public void menuResultLogin(boolean result, String username) {
         JFrame frame = new JFrame("Result Login");
@@ -437,8 +439,9 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
-    //result flashsale
+
+    //Matthew
+    //Result Flashsale
     public void menuResultCreateFlashsale(boolean result, String idFlashsale) {
         JFrame frame = new JFrame("Result Create Flashsale");
         frame.setSize(450, 410);
@@ -553,7 +556,7 @@ public class MenuResult {
         frame.setVisible(true);
     }
 
-    //result shopping cart
+    //Result Shopping Cart
     public void menuResultAddToShoppingCart(boolean result) {
         JFrame frame = new JFrame("Result Add To Shopping Cart");
         frame.setSize(450, 410);
@@ -564,7 +567,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(140, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -597,7 +600,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(140, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -630,7 +633,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(140, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -652,9 +655,8 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
-    //result Order
-    
+
+    //Result Order
     public void menuResultApproveOrder(boolean result) {
         JFrame frame = new JFrame("Result Approve Order");
         frame.setSize(450, 410);
@@ -665,7 +667,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(140, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -687,7 +689,7 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void menuResultApproveCancelOrder(boolean result) {
         JFrame frame = new JFrame("Result Approve Cancel Order");
         frame.setSize(450, 410);
@@ -698,7 +700,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(140, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -720,7 +722,7 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void menuResultCheckOut(boolean result) {
         JFrame frame = new JFrame("Result Check Out");
         frame.setSize(750, 410);
@@ -731,7 +733,7 @@ public class MenuResult {
         lResult = new JLabel();
         lResult.setBounds(60, 20, 800, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
-        
+
         bConfirm = new JButton("Ok!");
         bConfirm.setBounds(300, 250, 150, 50);
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
@@ -747,6 +749,141 @@ public class MenuResult {
 
         bConfirm.addActionListener((ActionEvent e) -> {
             new MainMenuBuyer();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    //Igna
+    //Result Item
+    public void menuResultAddSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Add Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Added Successfully");
+        } else {
+            lResult.setText("Add Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuItem().seeItemSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void menuResultEditSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Edit Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Edited Successfully");
+        } else {
+            lResult.setText("Edit Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuItem().seeItemSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    public void menuResultDeleteSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Delete Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Deleted Successfully");
+        } else {
+            lResult.setText("Delete Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuItem().seeItemSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    //Result Order
+    public void menuResultCancelOrderBuyer(boolean result) {
+        JFrame frame = new JFrame("Result Cancel Order");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Cancelled!");
+        } else {
+            lResult.setText("Failed to Cancel");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuOrder().subMenuOrder();
             frame.setVisible(false);
         });
 

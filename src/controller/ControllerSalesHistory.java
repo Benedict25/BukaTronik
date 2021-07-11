@@ -22,7 +22,7 @@ public class ControllerSalesHistory {
     public ArrayList<Transaction> catchArrSalesSeller() {
         ArrayList<Transaction> arrSalesSeller = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idSeller='" + MainController.activeID + "' AND deliveryStatus='DELIVERED' OR deliveryStatus='CANCELED'";
+        String query = "SELECT * FROM transaction WHERE idSeller='" + MainController.activeID + "' AND deliveryStatus='DELIVERED' OR deliveryStatus='CANCELLED'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -74,9 +74,10 @@ public class ControllerSalesHistory {
             return DeliveryStatus.CANCELLING;
         } else if (str.equals("DELIVERED")) {
             return DeliveryStatus.DELIVERED;
-        } else if (str.equals("CANCELED")) {
+        } else if (str.equals("CANCELLED")) {
             return DeliveryStatus.CANCELLED;
+        } else {
+            return null;
         }
-        return null;
     }
 }

@@ -34,6 +34,10 @@ public class MenuSalesHistory {
         JLabel lHeading = new JLabel("List Sales " + new MainController().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 900, 100, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
             JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
@@ -54,7 +58,7 @@ public class MenuSalesHistory {
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lCourType = new JLabel("Cour Type: ");
             lCourType.setBounds(25, 80, 100, 25);
-            lDeliveryStatus = new JLabel("Cour Type: ");
+            lDeliveryStatus = new JLabel("Status: ");
             lDeliveryStatus.setBounds(25, 100, 100, 25);
 
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
@@ -102,6 +106,16 @@ public class MenuSalesHistory {
 
             y += 145;
         }
+        
+        frameSHSeller.add(bBack);
+        
+        bBack.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new MainMenuSeller();
+                    frameSHSeller.setVisible(false);
+                }
+            });
 
         frameSHSeller.add(lHeading);
         frameSHSeller.setLayout(null);
@@ -117,6 +131,10 @@ public class MenuSalesHistory {
         JLabel lHeading = new JLabel("List All Sales");
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 900, 100, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
             JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
@@ -185,6 +203,16 @@ public class MenuSalesHistory {
 
             y += 145;
         }
+        
+        frameSHAdmin.add(bBack);
+        
+        bBack.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new MainMenuAdmin();
+                    frameSHAdmin.setVisible(false);
+                }
+            });
 
         frameSHAdmin.add(lHeading);
         frameSHAdmin.setLayout(null);

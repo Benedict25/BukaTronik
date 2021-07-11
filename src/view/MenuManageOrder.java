@@ -170,11 +170,15 @@ public class MenuManageOrder {
                 panelSeller.add(panel);
 
                 JLabel invisibleId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
+                JLabel invisibleIdBuyer = new JLabel(String.valueOf(arrTrans.get(i).getIdBuyer()));
 
                 bApproveCancel.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         boolean result = controlOrder.updateStatusOrder(Integer.parseInt(invisibleId.getText()), "CANCELLED");
+                        if (result == true) {
+                            controlOrder.refundFromCancellation(Integer.parseInt(invisibleIdBuyer.getText()), Integer.parseInt(payAmount.getText()));
+                        }
                         new MenuResult().menuResultApproveCancelOrder(result);
                         frame.setVisible(false);
                     }

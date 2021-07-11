@@ -22,7 +22,7 @@ public class MainMenuBuyer {
     public MainMenuBuyer() {
         JFrame frame = new JFrame("Main Menu Buyer");
         frame.setSize(500, 600);
-        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bPurchaseHistory, bLogout, bVoucher, bFlashsale;
+        JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bOrders, bLogout, bVoucher, bFlashsale;
         JLabel lWelcome, lAppName;
         String activeUsername = new MainController().getActivePersonUsername();
 
@@ -38,9 +38,9 @@ public class MainMenuBuyer {
         bShoppingCart = new JButton("Shopping Cart >");
         bShoppingCart.setBounds(250, 200, 150, 50);
         bShoppingCart.setFont(new Font("Serif", Font.BOLD, 15));
-        bPurchaseHistory = new JButton("Purchase History >");
-        bPurchaseHistory.setBounds(75, 300, 150, 50);
-        bPurchaseHistory.setFont(new Font("Serif", Font.BOLD, 13));
+        bOrders = new JButton("Orders >");
+        bOrders.setBounds(75, 300, 150, 50);
+        bOrders.setFont(new Font("Serif", Font.BOLD, 20));
         bLogout = new JButton("Log Out >");
         bLogout.setBounds(250, 300, 150, 50);
         bLogout.setFont(new Font("Serif", Font.BOLD, 20));
@@ -59,7 +59,7 @@ public class MainMenuBuyer {
         frame.add(bSeeItems);
         frame.add(bWishlist);
         frame.add(bShoppingCart);
-        frame.add(bPurchaseHistory);
+        frame.add(bOrders);
         frame.add(bLogout);
         frame.add(lWelcome);
         frame.add(lAppName);
@@ -98,10 +98,10 @@ public class MainMenuBuyer {
             }
         });
 
-        bPurchaseHistory.addActionListener(new ActionListener() {
+        bOrders.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new MenuOrder().subMenuOrder();
                 frame.setVisible(false);
             }
         });

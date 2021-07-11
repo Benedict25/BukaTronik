@@ -21,7 +21,7 @@ public class MainMenuAdmin {
 
     public MainMenuAdmin() {
         JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
-        frameMainMenuAdmin.setSize(500, 500);
+        frameMainMenuAdmin.setSize(550, 600);
         String username = new MainController().getActivePersonUsername();
         JLabel lUsername = new JLabel("Welcome " + username + "!");
         lUsername.setBounds(125, 10, 500, 70);
@@ -36,11 +36,14 @@ public class MainMenuAdmin {
         JButton bManageUser = new JButton("Manage User >");
         bManageUser.setBounds(175, 250, 150, 50);
 
+        JButton bSeeSalesHistory = new JButton("See Sales >");
+        bSeeSalesHistory.setBounds(175, 320, 150, 50);
+
         JButton bLogOut = new JButton("Log Out >");
-        bLogOut.setBounds(175, 320, 150, 50);
+        bLogOut.setBounds(175, 390, 150, 50);
 
         JLabel lWelcome = new JLabel("This is Bukatronik ADMIN");
-        lWelcome.setBounds(175, 395, 150, 50);
+        lWelcome.setBounds(175, 460, 150, 50);
 
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -74,6 +77,15 @@ public class MainMenuAdmin {
             }
         });
 
+        bSeeSalesHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MenuSalesHistory().seeSalesHistoryAdmin();
+                frameMainMenuAdmin.setVisible(false);
+            }
+        });
+
+        frameMainMenuAdmin.add(bSeeSalesHistory);
         frameMainMenuAdmin.add(lUsername);
         frameMainMenuAdmin.add(bProfile);
         frameMainMenuAdmin.add(bManageFlashsale);

@@ -45,6 +45,7 @@ public class ControllerManageOrder {
             while (rs.next()) {
                 Transaction newTrans = new Transaction();
                 newTrans.setIdBuyer(rs.getInt("idBuyer"));
+                newTrans.setIdSeller(MainController.activeID);
                 newTrans.setIdTransaction(rs.getInt("idTransaction"));
                 newTrans.setPurchaseDate(rs.getString("purchaseDate"));
                 newTrans.setCourierType(new ControllerPurchaseHistory().enumCourType(rs.getString("courierType")));
@@ -72,6 +73,51 @@ public class ControllerManageOrder {
             e.printStackTrace();
             return (false);
         }
+    }
+
+    public void refundFromCancellation(int idBuyer, int amount) {
+        conn.connect();
+
+        int balanceBuyer = getBalanceById(idBuyer);
+        int balanceSeller = getBalanceById(MainController.activeID);
+
+        int newBalanceBuyer = balanceBuyer + amount - 10_000;
+        int newBalanceSeller = balanceSeller + 10_000;
+
+        String queryBuyer = "UPDATE person SET balance='" + newBalanceBuyer + "' " //fee 10k untuk cancel
+                + "WHERE idPerson='" + idBuyer + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(queryBuyer);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        String querySeller = "UPDATE person SET balance='" + newBalanceSeller + "' " //fee dimasukan ke balance seller
+                + "WHERE idPerson='" + MainController.activeID + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(querySeller);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getBalanceById(int idPerson) {
+        int balance = 0;
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + idPerson + "'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                balance = rs.getInt("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return balance;
     }
 
 }

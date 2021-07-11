@@ -120,6 +120,19 @@ public class MenuItem {
             });
             y += 135;
         }
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(130, 900, 100, 50);
+
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuSeller();
+                frameSeeItem.setVisible(false);
+            }
+        });
+
+        frameSeeItem.add(bBack);
         frameSeeItem.add(bAddItem);
         frameSeeItem.setLayout(null);
         frameSeeItem.setVisible(true);
@@ -204,8 +217,8 @@ public class MenuItem {
                     newItem.setCategory(GadgetType.ACC);
                 }
                 newItem.setItemWeight(Integer.parseInt(tItemWeight.getText()));
-                new ControllerItem().insertSellerItem(newItem);
-                seeItemSeller();
+                boolean result = new ControllerItem().insertSellerItem(newItem);
+                new MenuResult().menuResultAddSellerItem(result);
                 frameAddItem.setVisible(false);
             }
         });
@@ -257,8 +270,8 @@ public class MenuItem {
         bDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ControllerItem().deleteSellerItem(currentItem.getIdItem());
-                seeItemSeller();
+                boolean result = new ControllerItem().deleteSellerItem(currentItem.getIdItem());
+                new MenuResult().menuResultDeleteSellerItem(result);
                 frameDeleteItem.setVisible(false);
             }
         });
@@ -367,8 +380,8 @@ public class MenuItem {
                     newItem.setCategory(GadgetType.ACC);
                 }
                 newItem.setItemWeight(Integer.parseInt(tNewItemWeight.getText()));
-                new ControllerItem().editSellerItem(newItem);
-                seeItemSeller();
+                boolean result = new ControllerItem().editSellerItem(newItem);
+                new MenuResult().menuResultEditSellerItem(result);
                 frameEditItem.setVisible(false);
             }
         });

@@ -17,9 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import model.DeliveryStatus;
 import model.DetailedTransaction;
 import model.Item;
+import model.Person;
 import model.Transaction;
+import model.UserType;
 
 /**
  *
@@ -27,23 +31,23 @@ import model.Transaction;
  */
 public class MenuOrder {
 
-    public void seeOngoingOrder() {
-        JFrame frameOrder = new JFrame("See Orders");
+    public void seeOngoingOrder() { //bedanya dengan function seeOtherStatusOrder adalah disini ada button cancel order
+        JFrame frameOrder = new JFrame("Ongoing Orders");
         frameOrder.setSize(390, 1000);
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder("PROCESSED");
 
-        JLabel lHeading = new JLabel("List Order " + new MainController().getActivePersonUsername());
+        JLabel lHeading = new JLabel("Order - " + new MainController().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
-        lHeading.setFont(new Font("Serif", Font.BOLD, 40));
+        lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType;
-            JLabel payAmount, discount, orderId, purchaseDate, courType;
+            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lStatus;
+            JLabel payAmount, discount, orderId, purchaseDate, courType, status;
             JButton bDetails, bDelete;
 
             JPanel panel = new JPanel();
-            panel.setBounds(25, y, 325, 105);
+            panel.setBounds(25, y, 325, 125);
             panel.setBackground(new Color(150, 150, 150, 50)); //rgba ; a = %
 
             lOrderId = new JLabel("Order Id: ");
@@ -56,6 +60,8 @@ public class MenuOrder {
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lCourType = new JLabel("Cour Type: ");
             lCourType.setBounds(25, 80, 100, 25);
+            lStatus = new JLabel("Status: ");
+            lStatus.setBounds(25, 100, 100, 25);
 
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             orderId.setBounds(125, 0, 100, 25);
@@ -67,6 +73,8 @@ public class MenuOrder {
             purchaseDate.setBounds(125, 60, 100, 30);
             courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
             courType.setBounds(125, 80, 100, 30);
+            status = new JLabel(String.valueOf(arrTrans.get(i).getDeliveryStatus()));
+            status.setBounds(125, 100, 100, 30);
 
             bDetails = new JButton("Details");
             bDetails.setBounds(210, 15, 75, 25);
@@ -83,6 +91,8 @@ public class MenuOrder {
             panel.add(purchaseDate);
             panel.add(lCourType);
             panel.add(courType);
+            panel.add(lStatus);
+            panel.add(status);
             panel.add(bDelete);
             panel.add(bDetails);
 
@@ -107,12 +117,119 @@ public class MenuOrder {
             panel.setLayout(null);
             panel.setVisible(true);
 
-            y += 125;
+            y += 145;
         }
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 900, 100, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 30));
+
+        frameOrder.add(bBack);
+
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                subMenuOrder();
+                frameOrder.setVisible(false);
+            }
+        });
 
         frameOrder.add(lHeading);
         frameOrder.setLayout(null);
         frameOrder.setVisible(true);
+    }
+    
+    public void seeOtherStatusOrder(String status) {
+        JFrame framePurchaseHistory = new JFrame("Orders");
+        framePurchaseHistory.setSize(390, 1000);
+        int y = 90;
+        ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder(status);
+
+        JLabel lHeading = new JLabel("Order - " + new MainController().getActivePersonUsername());
+        lHeading.setBounds(25, 10, 300, 60);
+        lHeading.setFont(new Font("Serif", Font.BOLD, 30));
+
+        for (int i = 0; i < arrTrans.size(); i++) {
+            JLabel lPayAmount, lDiscount, lCourierType, lpurchaseDate, lStatus;
+            JLabel payAmount, discount, courierType, purchaseDate, showStatus;
+            JButton bDetails;
+
+            JPanel panel = new JPanel();
+            panel.setBounds(25, y, 325, 105);
+            panel.setBackground(new Color(150, 150, 150, 50)); //rgba ; a = %
+
+            lCourierType = new JLabel("Order Id: ");
+            lCourierType.setBounds(25, 0, 100, 25);
+            lPayAmount = new JLabel("Pay Amount: ");
+            lPayAmount.setBounds(25, 20, 100, 25);
+            lDiscount = new JLabel("Discount: ");
+            lDiscount.setBounds(25, 40, 100, 25);
+            lpurchaseDate = new JLabel("Purchase Date: ");
+            lpurchaseDate.setBounds(25, 60, 100, 25);
+            lStatus = new JLabel("Status: ");
+            lStatus.setBounds(25, 80, 100, 25);
+
+            courierType = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
+            courierType.setBounds(125, 0, 100, 25);
+            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+            payAmount.setBounds(125, 20, 100, 25);
+            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
+            discount.setBounds(125, 40, 100, 25);
+            purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
+            purchaseDate.setBounds(125, 60, 100, 30);
+            showStatus = new JLabel(String.valueOf(arrTrans.get(i).getDeliveryStatus()));
+            showStatus.setBounds(125, 80, 100, 30);
+
+            bDetails = new JButton("Details");
+            bDetails.setBounds(210, 15, 75, 25);
+
+            panel.add(lPayAmount);
+            panel.add(payAmount);
+            panel.add(lDiscount);
+            panel.add(discount);
+            panel.add(lCourierType);
+            panel.add(courierType);
+            panel.add(lpurchaseDate);
+            panel.add(purchaseDate);
+            panel.add(lStatus);
+            panel.add(showStatus);
+            panel.add(bDetails);
+
+            framePurchaseHistory.add(panel);
+
+            JLabel id = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction())); //invisible j label untuk menampung id
+
+            bDetails.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    seeDetailedOrder(Integer.parseInt(id.getText()), "seeOtherStatusOrder");
+                    framePurchaseHistory.setVisible(false);
+                }
+            });
+
+            panel.setLayout(null);
+            panel.setVisible(true);
+
+            y += 125;
+        }
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(25, 900, 100, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 30));
+
+        framePurchaseHistory.add(bBack);
+
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                subMenuOrder();
+                framePurchaseHistory.setVisible(false);
+            }
+        });
+
+        framePurchaseHistory.add(lHeading);
+        framePurchaseHistory.setLayout(null);
+        framePurchaseHistory.setVisible(true);
     }
 
     public void seeDetailedOrder(int idTransaction, String backPath) {
@@ -178,9 +295,9 @@ public class MenuOrder {
                 @Override
                 public void actionPerformed(ActionEvent e) { //backpath untuk pengembalian menu (back button)
                     if (backPath.equals("seeOngoingOrder")) {
-                        seeOngoingOrder();
-                    } else if (backPath.equals("seePurchaseHistory")) {
-                        seePurchaseHistory();
+                        subMenuOrder();
+                    } else if (backPath.equals("seeOtherStatusOrder")) {
+                        subMenuOrder();
                     } else if (backPath.equals("seeSalesHistory")) {
                         new MenuSalesHistory().seeSalesHistorySeller();
                     } else if (backPath.equals("seeSalesAll")) {
@@ -227,8 +344,8 @@ public class MenuOrder {
         frameCancelOrder.add(bBack);
 
         bCancelOrder.addActionListener((ActionEvent e) -> {
-            new ControllerPurchaseHistory().cancelOrder(idTransaction);
-            seeOngoingOrder();
+            boolean result = new ControllerPurchaseHistory().cancelOrder(idTransaction);
+            new MenuResult().menuResultCancelOrderBuyer(result);
             frameCancelOrder.setVisible(false);
         });
 
@@ -241,76 +358,64 @@ public class MenuOrder {
         frameCancelOrder.setVisible(true);
     }
 
-    public void seePurchaseHistory() {
-        JFrame framePurchaseHistory = new JFrame("History Orders");
-        framePurchaseHistory.setSize(390, 1000);
-        int y = 90;
-        ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder("DELIVERED");
+    public void subMenuOrder(){
+        JFrame frame = new JFrame("Oders");
+        frame.setSize(600, 650);
 
-        JLabel lHeading = new JLabel("History Order " + new MainController().getActivePersonUsername());
-        lHeading.setBounds(25, 10, 300, 60);
-        lHeading.setFont(new Font("Serif", Font.BOLD, 30));
+        JButton bProcessed, bCancelling, bDelivered, bCancelled, bBack;
 
-        for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lCourierType, lpurchaseDate;
-            JLabel payAmount, discount, courierType, purchaseDate;
-            JButton bDetails;
+        bProcessed = new JButton("Processed");
+        bProcessed.setBounds(160, 50, 250, 75);
+        bProcessed.setFont(new Font("Serif", Font.BOLD, 20));
 
-            JPanel panel = new JPanel();
-            panel.setBounds(25, y, 325, 105);
-            panel.setBackground(new Color(150, 150, 150, 50)); //rgba ; a = %
+        bCancelling = new JButton("Cancelling");
+        bCancelling.setBounds(160, 150, 250, 75);
+        bCancelling.setFont(new Font("Serif", Font.BOLD, 20));
 
-            lCourierType = new JLabel("Order Id: ");
-            lCourierType.setBounds(25, 0, 100, 25);
-            lPayAmount = new JLabel("Pay Amount: ");
-            lPayAmount.setBounds(25, 20, 100, 25);
-            lDiscount = new JLabel("Discount: ");
-            lDiscount.setBounds(25, 40, 100, 25);
-            lpurchaseDate = new JLabel("Purchase Date: ");
-            lpurchaseDate.setBounds(25, 60, 100, 25);
+        bDelivered = new JButton("Delivered");
+        bDelivered.setBounds(160, 250, 250, 75);
+        bDelivered.setFont(new Font("Serif", Font.BOLD, 20));
 
-            courierType = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
-            courierType.setBounds(125, 0, 100, 25);
-            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
-            payAmount.setBounds(125, 20, 100, 25);
-            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
-            discount.setBounds(125, 40, 100, 25);
-            purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
-            purchaseDate.setBounds(125, 60, 100, 30);
+        bCancelled = new JButton("Cancelled");
+        bCancelled.setBounds(160, 350, 250, 75);
+        bCancelled.setFont(new Font("Serif", Font.BOLD, 20));
 
-            bDetails = new JButton("Details");
-            bDetails.setBounds(210, 15, 75, 25);
+        bBack = new JButton("Back");
+        bBack.setBounds(233, 470, 100, 75);
+        bBack.setFont(new Font("Serif", Font.BOLD, 20));
 
-            panel.add(lPayAmount);
-            panel.add(payAmount);
-            panel.add(lDiscount);
-            panel.add(discount);
-            panel.add(lCourierType);
-            panel.add(courierType);
-            panel.add(lpurchaseDate);
-            panel.add(purchaseDate);
-            panel.add(bDetails);
+        frame.add(bProcessed);
+        frame.add(bCancelling);
+        frame.add(bDelivered);
+        frame.add(bCancelled);
+        frame.add(bBack);
 
-            framePurchaseHistory.add(panel);
-
-            JLabel id = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction())); //invisible j label untuk menampung id
-
-            bDetails.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    seeDetailedOrder(Integer.parseInt(id.getText()), "seePurchaseHistory");
-                    framePurchaseHistory.setVisible(false);
-                }
-            });
-
-            panel.setLayout(null);
-            panel.setVisible(true);
-
-            y += 125;
-        }
-
-        framePurchaseHistory.add(lHeading);
-        framePurchaseHistory.setLayout(null);
-        framePurchaseHistory.setVisible(true);
+        bProcessed.addActionListener((ActionEvent e) -> {
+            seeOngoingOrder();
+            frame.setVisible(false);
+        });
+        
+        bCancelling.addActionListener((ActionEvent e) -> {
+            seeOtherStatusOrder(String.valueOf(DeliveryStatus.CANCELLING));
+            frame.setVisible(false);
+        });
+        
+        bDelivered.addActionListener((ActionEvent e) -> {
+            seeOtherStatusOrder(String.valueOf(DeliveryStatus.DELIVERED));
+            frame.setVisible(false);
+        });
+        
+        bCancelled.addActionListener((ActionEvent e) -> {
+            seeOtherStatusOrder(String.valueOf(DeliveryStatus.CANCELLED));
+            frame.setVisible(false);
+        });
+        
+        bBack.addActionListener((ActionEvent e) -> {
+            new MainMenuBuyer();
+            frame.setVisible(false);
+        });
+        
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
 }
