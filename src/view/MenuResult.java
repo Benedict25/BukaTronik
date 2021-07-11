@@ -652,4 +652,102 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
+    
+    public void menuResultAddSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Add Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Added Successfully");
+        } else {
+            lResult.setText("Add Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuShoppingCart().MenuSeeShoppingCart();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    public void menuResultEditSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Edit Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Edited Successfully");
+        } else {
+            lResult.setText("Edit Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuShoppingCart().MenuSeeShoppingCart();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    public void menuResultDeleteSellerItem(boolean result) {
+        JFrame frame = new JFrame("Result Delete Seller Item");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(50, 20, 500, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("Item Deleted Successfully");
+        } else {
+            lResult.setText("Delete Item Failed");
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuShoppingCart().MenuSeeShoppingCart();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
 }
