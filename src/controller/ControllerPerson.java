@@ -111,7 +111,7 @@ public class ControllerPerson {
 
     public void setMembershipStatus() {
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idBuyer='" + SingletonActiveId.getInstance().getActiveId() + "'&&deliveryStatus='DELIVERED'";
+        String query = "SELECT * FROM transaction WHERE idBuyer='" + SingletonActiveId.getInstance().getActiveId() + "'&&deliveryStatus='DELIVERED'"; //hanya status delivered yang dihitung pembelian berhasil
         int total = 0;
 
         try {
