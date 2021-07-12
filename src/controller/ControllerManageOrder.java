@@ -37,7 +37,7 @@ public class ControllerManageOrder {
         ArrayList<Transaction> arrTransaction = new ArrayList();
 
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idSeller='" + MainController.activeID + "'";
+        String query = "SELECT * FROM transaction WHERE idSeller='" + SingletonActiveId.getInstance().getActiveId() + "'";
 
         try {
             Statement stmt = conn.con.createStatement();
@@ -45,7 +45,7 @@ public class ControllerManageOrder {
             while (rs.next()) {
                 Transaction newTrans = new Transaction();
                 newTrans.setIdBuyer(rs.getInt("idBuyer"));
-                newTrans.setIdSeller(MainController.activeID);
+                newTrans.setIdSeller(SingletonActiveId.getInstance().getActiveId());
                 newTrans.setIdTransaction(rs.getInt("idTransaction"));
                 newTrans.setPurchaseDate(rs.getString("purchaseDate"));
                 newTrans.setCourierType(new ControllerPurchaseHistory().enumCourType(rs.getString("courierType")));
@@ -79,7 +79,7 @@ public class ControllerManageOrder {
         conn.connect();
 
         int balanceBuyer = getBalanceById(idBuyer);
-        int balanceSeller = getBalanceById(MainController.activeID);
+        int balanceSeller = getBalanceById(SingletonActiveId.getInstance().getActiveId());
 
         int newBalanceBuyer = balanceBuyer + amount - 10_000;
         int newBalanceSeller = balanceSeller + 10_000;
@@ -92,9 +92,9 @@ public class ControllerManageOrder {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         String querySeller = "UPDATE person SET balance='" + newBalanceSeller + "' " //fee dimasukan ke balance seller
-                + "WHERE idPerson='" + MainController.activeID + "'";
+                + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(querySeller);

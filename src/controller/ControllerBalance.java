@@ -23,7 +23,7 @@ public class ControllerBalance {
         int newBalance = initialBalance + addBalance;
 
         String query = "UPDATE person SET balance=" + newBalance + " "
-                + "WHERE idPerson='" + MainController.activeID + "'";
+                + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -42,7 +42,7 @@ public class ControllerBalance {
         int newBalance = initialBalance - withdrawBalance;
 
         String query = "UPDATE person SET balance=" + newBalance + " "
-                + "WHERE idPerson='" + MainController.activeID + "'";
+                + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);

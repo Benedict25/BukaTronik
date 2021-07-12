@@ -24,7 +24,7 @@ public class ControllerPurchaseHistory {
     public ArrayList<Transaction> catchArrOrder(String statusOrder) {
         ArrayList<Transaction> ongoingOrders = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idBuyer='" + MainController.activeID + "' AND deliveryStatus='" + statusOrder + "'";
+        String query = "SELECT * FROM transaction WHERE idBuyer='" + SingletonActiveId.getInstance().getActiveId() + "' AND deliveryStatus='" + statusOrder + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);

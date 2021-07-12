@@ -19,12 +19,11 @@ import model.UserType;
 public class MainController {
 
     static DatabaseHandler conn = new DatabaseHandler();
-    public static int activeID = -1;
 
     public String getActivePersonUsername() {
         String activeUsername = "";
         conn.connect();
-        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM person WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
 
         try {
             Statement stmt = conn.con.createStatement();
@@ -42,7 +41,7 @@ public class MainController {
     public int getActivePersonBalance() {
         int activePersonBalance = 0;
         conn.connect();
-        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM person WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
 
         try {
             Statement stmt = conn.con.createStatement();
@@ -59,7 +58,7 @@ public class MainController {
 
     public Person getPersonDataById() {
         conn.connect();
-        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM person WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         Person activePerson = new Person();
 
         try {
@@ -94,7 +93,7 @@ public class MainController {
     public String getMembershipStatus() {
         setMembershipStatus(); //set dahulu, hitung dari total payment
         conn.connect();
-        String query = "SELECT * FROM buyer WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM buyer WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         String membershipStatus = "";
 
         try {
@@ -109,10 +108,10 @@ public class MainController {
 
         return membershipStatus;
     }
-    
-    public void setMembershipStatus(){
+
+    public void setMembershipStatus() {
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idBuyer='" + MainController.activeID + "'";
+        String query = "SELECT * FROM transaction WHERE idBuyer='" + SingletonActiveId.getInstance().getActiveId() + "'";
         int total = 0;
 
         try {
@@ -124,21 +123,21 @@ public class MainController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         //update
         String query2 = "";
-        
+
         if (total >= 10_000_000) {
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.GOLD) + "' "
-                + "WHERE idPerson='" + MainController.activeID + "'";
-        }else if(total >= 5_000_000){
+                    + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
+        } else if (total >= 5_000_000) {
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.SILVER) + "' "
-                + "WHERE idPerson='" + MainController.activeID + "'";
-        }else{ //dibawah 5jta
+                    + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
+        } else { //dibawah 5jta
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.BRONZE) + "' "
-                + "WHERE idPerson='" + MainController.activeID + "'";
+                    + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         }
-        
+
         try {
             Statement stmt2 = conn.con.createStatement();
             stmt2.executeUpdate(query2);

@@ -28,7 +28,7 @@ public class ControllerVoucher {
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
-            stmt.setInt(2, MainController.activeID);
+            stmt.setInt(2, SingletonActiveId.getInstance().getActiveId());
             stmt.setInt(3, newVoucher.getMinTransaction());
             stmt.setInt(4, newVoucher.getCashback());
             stmt.setString(5, newVoucher.getVoucherCode());
@@ -80,7 +80,7 @@ public class ControllerVoucher {
 
     public ArrayList<Voucher> getVoucherDataSeller() {
         conn.connect();
-        String query = "SELECT * FROM voucher WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM voucher WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         ArrayList<Voucher> arrVoucher = new ArrayList();
 
         try {

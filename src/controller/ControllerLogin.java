@@ -8,6 +8,7 @@ package controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /**
  *
  * @author Benedict
@@ -25,7 +26,8 @@ public class ControllerLogin {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 if (rs.getString("username").equals(checkUsername) && rs.getString("password").equals(checkPassword)) {
-                    MainController.activeID = rs.getInt("idPerson");
+                    int activeId = rs.getInt("idPerson");
+                    SingletonActiveId.getInstance().setActiveId(activeId);
                     returnUserType = rs.getString("userType");
                 }
             }

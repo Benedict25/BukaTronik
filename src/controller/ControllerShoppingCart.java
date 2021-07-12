@@ -25,7 +25,7 @@ public class ControllerShoppingCart {
 
     public ArrayList<ItemInShoppingCart> getShoppingCartData() {
         conn.connect();
-        String query = "SELECT * FROM iteminshoppingcart WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM iteminshoppingcart WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
 
         try {
@@ -85,7 +85,7 @@ public class ControllerShoppingCart {
         String query = "INSERT INTO iteminShoppingCart VALUES(?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setInt(1, MainController.activeID);
+            stmt.setInt(1, SingletonActiveId.getInstance().getActiveId());
             stmt.setInt(2, inputIdItem);
             stmt.setInt(3, 1);
             stmt.executeUpdate();
@@ -98,7 +98,7 @@ public class ControllerShoppingCart {
 
     public boolean removeFromShoppingCart(int idItem) {
         conn.connect();
-        String query = "DELETE FROM iteminshoppingcart WHERE idPerson='" + MainController.activeID + "'&& idItem='" + idItem + "'";
+        String query = "DELETE FROM iteminshoppingcart WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'&& idItem='" + idItem + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
