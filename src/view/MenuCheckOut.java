@@ -26,24 +26,28 @@ public class MenuCheckOut {
     MenuResult menuResult = new MenuResult();
 
     public void MenuCheckOutCourier() {
+        
+        Person person = new Person();
+        person = controllerCheckOut.cekUser();
+        
         JFrame frame = new JFrame("Check Out");
         frame.setSize(400, 400);
 
-        JLabel lShipment, lCourier, lCity;
-        JTextArea tShipment;
+        JLabel lShipmentTo, lCourier, lCity, lShipment;
         JComboBox cCourier, cCity;
         JButton bConfirm, bBack;
 
-        lShipment = new JLabel("Shipment to : ");
-        lShipment.setBounds(25, 0, 300, 25);
+        lShipmentTo = new JLabel("Shipment to : ");
+        lShipmentTo.setBounds(25, 0, 300, 25);
         lCourier = new JLabel("Courier Type :  ");
         lCourier.setBounds(25, 80, 200, 25);
         lCity = new JLabel("Kota Tujuan : ");
         lCity.setBounds(25, 120, 200, 25);
 
-        tShipment = new JTextArea();
-        tShipment.setBounds(25, 30, 100, 25);
-
+        lShipment = new JLabel(person.getAddress());
+        lShipment.setBounds(25, 30, 300, 25);
+        lShipment.setFont (lShipment.getFont().deriveFont (20.0f));
+        
         String Courier[] = {"REG", "YES"};
         cCourier = new JComboBox(Courier);
         cCourier.setBounds(120, 80, 100, 25);
@@ -57,8 +61,8 @@ public class MenuCheckOut {
         bBack = new JButton("Back");
         bBack.setBounds(150, 240, 100, 25);
 
+        frame.add(lShipmentTo);
         frame.add(lShipment);
-        frame.add(tShipment);
         frame.add(lCourier);
         frame.add(cCourier);
         frame.add(lCity);
@@ -69,10 +73,10 @@ public class MenuCheckOut {
 
         /*confirm data*/
         bConfirm.addActionListener((ActionEvent e) -> {
-            String courier = (String) cCourier.getItemAt(cCourier.getSelectedIndex());
+            String courierType = (String) cCourier.getItemAt(cCourier.getSelectedIndex());
             String city = (String) cCity.getItemAt(cCity.getSelectedIndex());
-            double totalHargaCourier = new ControllerCheckOut().hitungTotalCourier(courier,city);
-            MenuCheckOutPayment(totalHargaCourier);
+            int totalHargaCourier = new ControllerCheckOut().hitungTotalCourier(courierType,city);
+            MenuCheckOutPayment(totalHargaCourier,courierType);
             frame.setVisible(false);
         });
 
@@ -86,16 +90,16 @@ public class MenuCheckOut {
         frame.setVisible(true);
     }
 
-    public void MenuCheckOutPayment(double totalHargaCourier) {
+    public void MenuCheckOutPayment(int hargaCourier,String courierType) {
         
-        double totalHargaItem = controllerCheckOut.hitungTotalHargaItem();
+        int totalHargaItem = controllerCheckOut.hitungTotalHargaItem();
         
         Person person = new Person();
-        person = controllerCheckOut.cekSaldoUser();
+        person = controllerCheckOut.cekUser();
         
-        double biayaAdministrasi = controllerCheckOut.hitungBiayaAdministrasi(totalHargaItem);
+        int biayaAdministrasi = controllerCheckOut.hitungBiayaAdministrasi();
         
-        double totalKeseluruhan = controllerCheckOut.hitungTotalHargaKeseluruhan(totalHargaCourier, totalHargaItem, biayaAdministrasi);
+        int totalKeseluruhan = controllerCheckOut.hitungTotalHargaKeseluruhan(hargaCourier, totalHargaItem, biayaAdministrasi);
         
         JFrame frame = new JFrame("Check Out");
         frame.setSize(400, 400);
@@ -121,7 +125,7 @@ public class MenuCheckOut {
         lBayar = new JLabel("Bayar ?");
         lBayar.setBounds(25, 240, 150, 25);
         
-        lTotalHargaCourier = new JLabel(String.valueOf(totalHargaCourier));
+        lTotalHargaCourier = new JLabel(String.valueOf(hargaCourier));
         lTotalHargaCourier.setBounds(150, 0, 150, 25);
         lTotalItemPrice = new JLabel(String.valueOf(totalHargaItem));
         lTotalItemPrice.setBounds(150, 40, 150, 25);
@@ -158,11 +162,11 @@ public class MenuCheckOut {
         frame.add(bConfirm);
         frame.add(bBack);
         
-        double saldoUser = person.getBalance();
+        int saldoUser = person.getBalance();
 
         /*pengecekan saldo sekaligus pemotongan saldo*/
         bConfirm.addActionListener((ActionEvent e) -> {
-            boolean result = controllerCheckOut.pengecekanSaldo(totalKeseluruhan, saldoUser);
+            boolean result = controllerCheckOut.pengecekanSaldo(hargaCourier, totalKeseluruhan, saldoUser, courierType);
             frame.setVisible(false);
             menuResult.menuResultCheckOut(result);
         });
