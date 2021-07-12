@@ -27,7 +27,7 @@ public class ControllerCheckOut {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public int hitungTotalCourier(String courier, String city) {
+    public int hitungHargaCourier(String courier, String city) {
         int hargaKurir = 0;
 
         if (courier.equals("REG")) {
@@ -45,6 +45,46 @@ public class ControllerCheckOut {
             }
         }
         return hargaKurir;
+    }
+
+    public int hitungTotalHargaCourier(int hargaKurir) {
+        ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
+        arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
+
+        int totalHargaCourier = 0;
+
+        for (int i = 0; i < arrShoppingCart.size(); i++) {
+            totalHargaCourier += hargaKurir * arrShoppingCart.get(i).getQuantity();
+        }
+
+        return totalHargaCourier;
+    }
+    
+    public void updateTotalbayarCourier(int tambahBiaya, int idTransaction){
+        conn.connect();
+        int initialPrice = 0;
+        int newTotal = 0;
+
+        String query = "SELECT * FROM transaction WHERE idTransaction='" + idTransaction + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                initialPrice = rs.getInt("courierPrice"); //get initial price
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        newTotal = initialPrice + tambahBiaya;
+
+        String query2 = "UPDATE transaction SET courierPrice='" + newTotal + "'WHERE idTransaction='" + idTransaction + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public int hitungTotalHargaItem() {
@@ -91,16 +131,16 @@ public class ControllerCheckOut {
         return totalKeseluruhan;
     }
 
-    public boolean pengecekanSaldo(int totalHargaCourier, int totalKeseluruhan, int saldoUser, String courierType) {
+    public boolean pengecekanSaldo(int hargaKurir, int totalKeseluruhan, int saldoUser, String courierType) {
         if (totalKeseluruhan < saldoUser) {
-            penguranganSaldoUser(totalKeseluruhan, saldoUser);
+            penguranganSaldoBuyerDanPenambahanSaldoSeller(totalKeseluruhan, saldoUser, hargaKurir);
 
             ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
             arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
 
             updateStock(arrShoppingCart);
 
-            transaksi(totalHargaCourier, totalKeseluruhan, courierType);
+            transaksi(hargaKurir, totalKeseluruhan, courierType);
 
             resetShoppingCart();
             return (true);
@@ -109,18 +149,56 @@ public class ControllerCheckOut {
         }
     }
 
-    public void penguranganSaldoUser(int totalKeseluruhan, int saldoUser) {
-        int Hasil = saldoUser - totalKeseluruhan;
+    public void penguranganSaldoBuyerDanPenambahanSaldoSeller(int totalKeseluruhan, int saldoUser, int hargaKurir) {
+
+        ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
+        arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
+
+        ArrayList<Item> arrItem = new ArrayList();
+        arrItem = new ControllerShoppingCart().getItemDataForShoppingCart(arrShoppingCart);
+
+        int penguranganSaldoBuyer = saldoUser - totalKeseluruhan;
 
         conn.connect();
 
-        String query = "UPDATE person SET balance='" + Hasil + "'WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
+        String query1 = "UPDATE person SET balance='" + penguranganSaldoBuyer + "'WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
+            stmt.executeUpdate(query1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        for (int i = 0; i < arrShoppingCart.size(); i++) {
+            int saldoAwalSeller = getSellerBalance(arrItem.get(i).getIdPerson());
+            int newSaldo = saldoAwalSeller + (arrItem.get(i).getPrice() * arrShoppingCart.get(i).getQuantity()) + hargaKurir;
+            String query2 = "UPDATE person SET balance='" + newSaldo + "'WHERE idPerson='" + arrItem.get(i).getIdPerson() +"'";
+            try {
+                Statement stmt = conn.con.createStatement();
+                stmt.executeUpdate(query2);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
+    public int getSellerBalance(int idSeller) {
+        int sellerBalance = 0;
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + idSeller + "'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                sellerBalance = rs.getInt("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sellerBalance;
     }
 
     public void resetShoppingCart() {
@@ -285,14 +363,12 @@ public class ControllerCheckOut {
         return payAmount;
     }
 
-    public void transaksi(int totalHargaCourier, int totalKeseluruhan, String courierType) {
+    public void transaksi(int hargaKurir, int totalKeseluruhan, String courierType) {
         ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
         arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
 
         ArrayList<Item> arrItem = new ArrayList();
         arrItem = new ControllerShoppingCart().getItemDataForShoppingCart(arrShoppingCart);
-
-        System.out.println(arrShoppingCart.size());
 
         int temp = 0;
         int counterInit = 0;
@@ -301,6 +377,7 @@ public class ControllerCheckOut {
         int idSeller = 0;
         int checkIdSeller = 0;
         int currentItemPrice = 0;
+        int totalBayarCourier = 0;
 
         for (int i = 0; i < arrShoppingCart.size(); i++) {
 
@@ -316,26 +393,30 @@ public class ControllerCheckOut {
                 for (int j = 0; j < arrShoppingCart.size(); j++) {
                     for (int k = 0; k < arrItem.size(); k++) { //get id seller to check
                         if (arrShoppingCart.get(j).getIdItem() == arrItem.get(k).getIdItem()) {
+                            totalBayarCourier = hargaKurir * arrShoppingCart.get(j).getQuantity();
                             checkIdSeller = arrItem.get(k).getIdPerson();
                             currentItemPrice = arrItem.get(k).getPrice();
                         }
                     }
-
-                    System.out.println(checkIdSeller);
-
+                    
                     if (temp == checkIdSeller) {
                         if (counterInit == 0) {
-                            newTransaction(totalHargaCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity()); //temp = id for current seller
+                            newTransaction(totalBayarCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity()); //temp = id for current seller
                             idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
                             insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
                             counterInit++;
                         } else {
+                            idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
+                            updateTotalbayarCourier(totalBayarCourier, idTransaction);
                             updateTransaction(idTransaction, currentItemPrice, arrShoppingCart.get(j).getQuantity());
                             insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
                         }
                         counter++;
                     }
                 }
+                
+                idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId()); //get latest buyer's transaction
+                finalizeTotalPayment(idTransaction);
 
                 if (counter == arrShoppingCart.size()) {
                     break;
@@ -343,6 +424,35 @@ public class ControllerCheckOut {
             }
 
             counterInit = 0;
+        }
+    }
+    
+    public void finalizeTotalPayment(int idTransaction){
+        conn.connect();
+        int initialTotal = 0;
+        int totalCourierPrice = 0;
+        int newTotal = 0;
+
+        String query = "SELECT * FROM transaction WHERE idTransaction='" + idTransaction + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                initialTotal = rs.getInt("payAmount"); //get initial price
+                totalCourierPrice = rs.getInt("courierPrice");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        newTotal = initialTotal + totalCourierPrice;
+
+        String query2 = "UPDATE transaction SET payAmount='" + newTotal + "'WHERE idTransaction='" + idTransaction + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

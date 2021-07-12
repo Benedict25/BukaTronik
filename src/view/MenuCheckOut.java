@@ -13,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import model.Person;
 
 /**
@@ -75,8 +74,9 @@ public class MenuCheckOut {
         bConfirm.addActionListener((ActionEvent e) -> {
             String courierType = (String) cCourier.getItemAt(cCourier.getSelectedIndex());
             String city = (String) cCity.getItemAt(cCity.getSelectedIndex());
-            int totalHargaCourier = new ControllerCheckOut().hitungTotalCourier(courierType,city);
-            MenuCheckOutPayment(totalHargaCourier,courierType);
+            int hargaKurir = controllerCheckOut.hitungHargaCourier(courierType,city);
+            int totalHargaCourier = controllerCheckOut.hitungTotalHargaCourier(hargaKurir);
+            MenuCheckOutPayment(totalHargaCourier, hargaKurir ,courierType);
             frame.setVisible(false);
         });
 
@@ -90,7 +90,7 @@ public class MenuCheckOut {
         frame.setVisible(true);
     }
 
-    public void MenuCheckOutPayment(int hargaCourier,String courierType) {
+    public void MenuCheckOutPayment(int totalHargaCourier, int hargaKurir ,String courierType) {
         
         int totalHargaItem = controllerCheckOut.hitungTotalHargaItem();
         
@@ -99,7 +99,7 @@ public class MenuCheckOut {
         
         int biayaAdministrasi = controllerCheckOut.hitungBiayaAdministrasi();
         
-        int totalKeseluruhan = controllerCheckOut.hitungTotalHargaKeseluruhan(hargaCourier, totalHargaItem, biayaAdministrasi);
+        int totalKeseluruhan = controllerCheckOut.hitungTotalHargaKeseluruhan(totalHargaCourier, totalHargaItem, biayaAdministrasi);
         
         JFrame frame = new JFrame("Check Out");
         frame.setSize(400, 400);
@@ -125,7 +125,7 @@ public class MenuCheckOut {
         lBayar = new JLabel("Bayar ?");
         lBayar.setBounds(25, 240, 150, 25);
         
-        lTotalHargaCourier = new JLabel(String.valueOf(hargaCourier));
+        lTotalHargaCourier = new JLabel(String.valueOf(totalHargaCourier));
         lTotalHargaCourier.setBounds(150, 0, 150, 25);
         lTotalItemPrice = new JLabel(String.valueOf(totalHargaItem));
         lTotalItemPrice.setBounds(150, 40, 150, 25);
@@ -166,7 +166,7 @@ public class MenuCheckOut {
 
         /*pengecekan saldo sekaligus pemotongan saldo*/
         bConfirm.addActionListener((ActionEvent e) -> {
-            boolean result = controllerCheckOut.pengecekanSaldo(hargaCourier, totalKeseluruhan, saldoUser, courierType);
+            boolean result = controllerCheckOut.pengecekanSaldo(hargaKurir, totalKeseluruhan, saldoUser, courierType);
             frame.setVisible(false);
             menuResult.menuResultCheckOut(result);
         });
