@@ -19,7 +19,7 @@ public class ControllerBalance {
     public boolean depositBalance(int addBalance) {
         conn.connect();
 
-        int initialBalance = new MainController().getActivePersonBalance();
+        int initialBalance = new ControllerPerson().getActivePersonBalance();
         int newBalance = initialBalance + addBalance;
 
         String query = "UPDATE person SET balance=" + newBalance + " "
@@ -38,7 +38,7 @@ public class ControllerBalance {
     public boolean withdrawBalance(int withdrawBalance) {
         conn.connect();
 
-        int initialBalance = new MainController().getActivePersonBalance();
+        int initialBalance = new ControllerPerson().getActivePersonBalance();
         int newBalance = initialBalance - withdrawBalance;
 
         String query = "UPDATE person SET balance=" + newBalance + " "

@@ -7,7 +7,7 @@ package view;
 
 import controller.ControllerPurchaseHistory;
 import controller.ControllerSalesHistory;
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -31,7 +31,7 @@ public class MenuSalesHistory {
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerSalesHistory().catchArrSalesSeller();
 
-        JLabel lHeading = new JLabel("List Sales " + new MainController().getActivePersonUsername());
+        JLabel lHeading = new JLabel("List Sales " + new ControllerPerson().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
         

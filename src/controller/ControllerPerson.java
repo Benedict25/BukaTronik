@@ -16,7 +16,7 @@ import model.UserType;
  *
  * @author Benedict
  */
-public class MainController {
+public class ControllerPerson {
 
     static DatabaseHandler conn = new DatabaseHandler();
 

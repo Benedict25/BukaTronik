@@ -7,7 +7,7 @@ package view;
 
 import controller.ControllerItem;
 import controller.ControllerPurchaseHistory;
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -37,7 +37,7 @@ public class MenuOrder {
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder("PROCESSED");
 
-        JLabel lHeading = new JLabel("Order - " + new MainController().getActivePersonUsername());
+        JLabel lHeading = new JLabel("Order - " + new ControllerPerson().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
@@ -145,7 +145,7 @@ public class MenuOrder {
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder(status);
 
-        JLabel lHeading = new JLabel("Order - " + new MainController().getActivePersonUsername());
+        JLabel lHeading = new JLabel("Order - " + new ControllerPerson().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 

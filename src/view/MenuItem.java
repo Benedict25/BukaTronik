@@ -6,7 +6,7 @@
 package view;
 
 import controller.ControllerItem;
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

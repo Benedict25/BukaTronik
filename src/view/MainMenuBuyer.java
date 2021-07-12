@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import controller.MainController;
+import controller.ControllerPerson;
 
 /**
  *
@@ -24,7 +24,7 @@ public class MainMenuBuyer {
         frame.setSize(500, 600);
         JButton bProfile, bSeeItems, bWishlist, bShoppingCart, bOrders, bLogout, bVoucher, bFlashsale;
         JLabel lWelcome, lAppName;
-        String activeUsername = new MainController().getActivePersonUsername();
+        String activeUsername = new ControllerPerson().getActivePersonUsername();
 
         bProfile = new JButton("Profile >");
         bProfile.setBounds(75, 100, 150, 50);

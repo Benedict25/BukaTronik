@@ -5,7 +5,7 @@
  */
 package controller;
 
-import static controller.MainController.conn;
+import static controller.ControllerPerson.conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
