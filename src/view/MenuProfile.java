@@ -6,7 +6,7 @@
 package view;
 
 import controller.ControllerProfile;
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,7 @@ import model.UserType;
  */
 public class MenuProfile {
     
-    MainController control = new MainController();
+    ControllerPerson control = new ControllerPerson();
     
     public void seeProfile() {
         Person activePerson = new Person();

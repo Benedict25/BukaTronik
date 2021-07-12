@@ -6,7 +6,7 @@
 package view;
 
 import controller.ControllerBalance;
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ import model.Person;
  */
 public class MenuBalance {
 
-    MainController control = new MainController();
+    ControllerPerson control = new ControllerPerson();
     ControllerBalance controlBalance = new ControllerBalance();
 
     public void depositBalance() {

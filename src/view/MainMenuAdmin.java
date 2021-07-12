@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.MainController;
+import controller.ControllerPerson;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +22,7 @@ public class MainMenuAdmin {
     public MainMenuAdmin() {
         JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
         frameMainMenuAdmin.setSize(550, 600);
-        String username = new MainController().getActivePersonUsername();
+        String username = new ControllerPerson().getActivePersonUsername();
         JLabel lUsername = new JLabel("Welcome " + username + "!");
         lUsername.setBounds(125, 10, 500, 70);
         lUsername.setFont(new Font("Serif", Font.BOLD, 40));
