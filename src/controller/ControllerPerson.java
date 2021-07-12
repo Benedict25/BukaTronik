@@ -127,13 +127,13 @@ public class ControllerPerson {
         //update
         String query2 = "";
 
-        if (total >= 10_000_000) {
+        if (total >= 100_000_000) {
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.GOLD) + "' "
                     + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
-        } else if (total >= 5_000_000) {
+        } else if (total >= 50_000_000) {
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.SILVER) + "' "
                     + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
-        } else { //dibawah 5jta
+        } else { //dibawah 50jta
             query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.BRONZE) + "' "
                     + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         }

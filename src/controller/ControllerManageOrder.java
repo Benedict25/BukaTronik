@@ -82,7 +82,7 @@ public class ControllerManageOrder {
         int balanceSeller = getBalanceById(SingletonActiveId.getInstance().getActiveId());
 
         int newBalanceBuyer = balanceBuyer + amount - 10_000;
-        int newBalanceSeller = balanceSeller + 10_000;
+        int newBalanceSeller = balanceSeller - amount + 10_000;
 
         String queryBuyer = "UPDATE person SET balance='" + newBalanceBuyer + "' " //fee 10k untuk cancel
                 + "WHERE idPerson='" + idBuyer + "'";
