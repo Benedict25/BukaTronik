@@ -8,6 +8,7 @@ package controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.MembershipStatus;
 import model.Person;
 import model.UserType;
 
@@ -91,6 +92,7 @@ public class MainController {
     }
 
     public String getMembershipStatus() {
+        setMembershipStatus(); //set dahulu, hitung dari total payment
         conn.connect();
         String query = "SELECT * FROM buyer WHERE idPerson='" + MainController.activeID + "'";
         String membershipStatus = "";
@@ -106,6 +108,43 @@ public class MainController {
         }
 
         return membershipStatus;
+    }
+    
+    public void setMembershipStatus(){
+        conn.connect();
+        String query = "SELECT * FROM transaction WHERE idBuyer='" + MainController.activeID + "'";
+        int total = 0;
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                total += rs.getInt("payAmount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        //update
+        String query2 = "";
+        
+        if (total >= 10_000_000) {
+            query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.GOLD) + "' "
+                + "WHERE idPerson='" + MainController.activeID + "'";
+        }else if(total >= 5_000_000){
+            query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.SILVER) + "' "
+                + "WHERE idPerson='" + MainController.activeID + "'";
+        }else{ //dibawah 5jta
+            query2 = "UPDATE buyer SET membershipStatus='" + String.valueOf(MembershipStatus.BRONZE) + "' "
+                + "WHERE idPerson='" + MainController.activeID + "'";
+        }
+        
+        try {
+            Statement stmt2 = conn.con.createStatement();
+            stmt2.executeUpdate(query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getSellerNameById(int id) {

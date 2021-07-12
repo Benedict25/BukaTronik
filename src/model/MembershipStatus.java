@@ -12,6 +12,5 @@ package model;
 public enum MembershipStatus {
     BRONZE,
     SILVER,
-    GOLD,
-    PLATINUM
+    GOLD
 }
