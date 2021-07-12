@@ -573,7 +573,7 @@ public class MenuResult {
         bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
 
         if (result == true) {
-            lResult.setText("Add Item to Shopping Cart Succeed");
+            lResult.setText("Added to Shopping Cart");
         } else {
             lResult.setText("Add Item Failed");
         }
