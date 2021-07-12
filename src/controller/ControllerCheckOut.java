@@ -125,9 +125,38 @@ public class ControllerCheckOut {
     public int hitungBiayaAdministrasi() {
         return 10_000;
     }
+    
+    public void insertToAdmin(int biayaAdministrasi){
+        conn.connect();
+
+        int initialBalance = 0;
+        int newBalance = 0;
+        
+        String query1 = "SELECT * FROM person WHERE userType= 'ADMIN'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query1);
+            while (rs.next()) {
+                initialBalance = rs.getInt("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        newBalance = initialBalance + biayaAdministrasi;
+        
+        String query2 = "UPDATE person SET balance='" + newBalance + "'WHERE userType= 'ADMIN'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public int hitungTotalHargaKeseluruhan(int totalHargaCourier, int totalHargaItem, int biayaAdministrasi) {
         int totalKeseluruhan = totalHargaCourier + totalHargaItem + biayaAdministrasi;
+        
         return totalKeseluruhan;
     }
 
@@ -141,6 +170,8 @@ public class ControllerCheckOut {
             updateStock(arrShoppingCart);
 
             transaksi(hargaKurir, totalKeseluruhan, courierType);
+            
+            insertToAdmin(hitungBiayaAdministrasi());
 
             resetShoppingCart();
             return (true);
