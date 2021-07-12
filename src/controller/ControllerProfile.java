@@ -26,7 +26,7 @@ public class ControllerProfile {
                 + "city='" + person.getCity()+ "', "
                 + "phoneNumber='" + person.getPhoneNumber()+ "', "
                 + "email='" + person.getEmail()+ "' "
-                + "WHERE idPerson='" + MainController.activeID + "'";
+                + "WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);

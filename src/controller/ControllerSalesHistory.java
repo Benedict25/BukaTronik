@@ -22,7 +22,7 @@ public class ControllerSalesHistory {
     public ArrayList<Transaction> catchArrSalesSeller() {
         ArrayList<Transaction> arrSalesSeller = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM transaction WHERE idSeller='" + MainController.activeID + "' AND deliveryStatus='DELIVERED' OR deliveryStatus='CANCELLED'";
+        String query = "SELECT * FROM transaction WHERE idSeller='" + SingletonActiveId.getInstance().getActiveId() + "' AND deliveryStatus='DELIVERED' OR deliveryStatus='CANCELLED'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);

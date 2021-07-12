@@ -28,17 +28,17 @@ public class ControllerItem {
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
-            stmt.setInt(2, MainController.activeID);
+            stmt.setInt(2, SingletonActiveId.getInstance().getActiveId());
             stmt.setString(3, newItem.getItemName());
             stmt.setInt(4, newItem.getPrice());
             stmt.setInt(5, newItem.getStocks());
             stmt.setString(6, strGadgetType(newItem));
             stmt.setInt(7, newItem.getItemWeight());
             stmt.executeUpdate();
-            return(true);
+            return (true);
         } catch (SQLException e) {
             e.printStackTrace();
-            return(false);
+            return (false);
         }
     }
 
@@ -61,10 +61,10 @@ public class ControllerItem {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
-            return(true);
+            return (true);
         } catch (SQLException e) {
             e.printStackTrace();
-            return(false);
+            return (false);
         }
     }
 
@@ -80,10 +80,10 @@ public class ControllerItem {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
-            return(true);
+            return (true);
         } catch (SQLException e) {
             e.printStackTrace();
-            return(false);
+            return (false);
         }
     }
 
@@ -101,7 +101,7 @@ public class ControllerItem {
     public ArrayList<Item> getSellerItemsData() {
         ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM item WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM item WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -174,7 +174,7 @@ public class ControllerItem {
 
         return item;
     }
-    
+
     public ArrayList<Item> getBuyerItemsData() {
         ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();

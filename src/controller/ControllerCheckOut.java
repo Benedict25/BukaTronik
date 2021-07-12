@@ -29,7 +29,7 @@ public class ControllerCheckOut {
 
     public int hitungTotalCourier(String courier, String city) {
         int hargaKurir = 0;
-        
+
         if (courier.equals("REG")) {
             if (city.equals("BANDUNG")) {
                 hargaKurir = 5000;
@@ -66,7 +66,7 @@ public class ControllerCheckOut {
     public Person cekUser() {
         conn.connect();
 
-        String query = "SELECT * FROM person WHERE idPerson='" + MainController.activeID + "'";
+        String query = "SELECT * FROM person WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         Person person = new Person();
         try {
             Statement stmt = conn.con.createStatement();
@@ -91,15 +91,15 @@ public class ControllerCheckOut {
         return totalKeseluruhan;
     }
 
-    public boolean pengecekanSaldo(int totalHargaCourier,int totalKeseluruhan, int saldoUser, String courierType) {
+    public boolean pengecekanSaldo(int totalHargaCourier, int totalKeseluruhan, int saldoUser, String courierType) {
         if (totalKeseluruhan < saldoUser) {
             penguranganSaldoUser(totalKeseluruhan, saldoUser);
-            
+
             ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
             arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
 
             updateStock(arrShoppingCart);
-            
+
             transaksi(totalHargaCourier, totalKeseluruhan, courierType);
 
             resetShoppingCart();
@@ -114,7 +114,7 @@ public class ControllerCheckOut {
 
         conn.connect();
 
-        String query = "UPDATE person SET balance='" + Hasil + "'WHERE idPerson='" + MainController.activeID + "'";
+        String query = "UPDATE person SET balance='" + Hasil + "'WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -125,7 +125,7 @@ public class ControllerCheckOut {
 
     public void resetShoppingCart() {
         conn.connect();
-        String query = "DELETE FROM iteminshoppingcart WHERE idPerson='" + MainController.activeID + "'";
+        String query = "DELETE FROM iteminshoppingcart WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -133,7 +133,7 @@ public class ControllerCheckOut {
             e.printStackTrace();
         }
     }
-    
+
     public static int getInitialStock(int idItem) {
         conn.connect();
         int initialStock = 0;
@@ -154,7 +154,7 @@ public class ControllerCheckOut {
         conn.connect();
         int initialStock = 0;
         int newStock = 0;
-        
+
         for (int i = 0; i < arrShoppingCart.size(); i++) {
             initialStock = getInitialStock(arrShoppingCart.get(i).getIdItem());
             newStock = initialStock - arrShoppingCart.get(i).getQuantity();
@@ -187,7 +187,7 @@ public class ControllerCheckOut {
         String strDate = formatter.format(date);
 
         Transaction newTransaction = new Transaction();
-        newTransaction.setIdBuyer(MainController.activeID);
+        newTransaction.setIdBuyer(SingletonActiveId.getInstance().getActiveId());
         newTransaction.setIdSeller(idSeller);
         newTransaction.setPurchaseDate(strDate);
         newTransaction.setDeliveryStatus(DeliveryStatus.PROCESSED);
@@ -291,7 +291,7 @@ public class ControllerCheckOut {
 
         ArrayList<Item> arrItem = new ArrayList();
         arrItem = new ControllerShoppingCart().getItemDataForShoppingCart(arrShoppingCart);
-        
+
         System.out.println(arrShoppingCart.size());
 
         int temp = 0;
@@ -313,7 +313,7 @@ public class ControllerCheckOut {
             if (temp != idSeller) {
                 temp = idSeller;
 
-                for (int j = 0; j < arrShoppingCart.size(); j++) {       
+                for (int j = 0; j < arrShoppingCart.size(); j++) {
                     for (int k = 0; k < arrItem.size(); k++) { //get id seller to check
                         if (arrShoppingCart.get(j).getIdItem() == arrItem.get(k).getIdItem()) {
                             checkIdSeller = arrItem.get(k).getIdPerson();
@@ -326,7 +326,7 @@ public class ControllerCheckOut {
                     if (temp == checkIdSeller) {
                         if (counterInit == 0) {
                             newTransaction(totalHargaCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity()); //temp = id for current seller
-                            idTransaction = getIdTransaction(MainController.activeID);
+                            idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
                             insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
                             counterInit++;
                         } else {
@@ -341,7 +341,7 @@ public class ControllerCheckOut {
                     break;
                 }
             }
-            
+
             counterInit = 0;
         }
     }
