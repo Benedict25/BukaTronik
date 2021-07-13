@@ -5,7 +5,6 @@
  */
 package view;
 
-import controller.ControllerPurchaseHistory;
 import controller.ControllerSalesHistory;
 import controller.ControllerPerson;
 import java.awt.Color;
@@ -40,8 +39,8 @@ public class MenuSalesHistory {
         bBack.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
-            JLabel payAmount, discount, orderId, purchaseDate, courType, deliveryStatus;
+            JLabel lPayAmount, lcashback, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
+            JLabel payAmount, cashback, orderId, purchaseDate, courType, deliveryStatus;
             JButton bDetails;
 
             JPanel panel = new JPanel();
@@ -52,8 +51,8 @@ public class MenuSalesHistory {
             lOrderId.setBounds(25, 0, 100, 25);
             lPayAmount = new JLabel("Pay Amount: ");
             lPayAmount.setBounds(25, 20, 100, 25);
-            lDiscount = new JLabel("Discount: ");
-            lDiscount.setBounds(25, 40, 100, 25);
+            lcashback = new JLabel("Cashback: ");
+            lcashback.setBounds(25, 40, 100, 25);
             lpurchaseDate = new JLabel("Purchase Date: ");
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lCourType = new JLabel("Cour Type: ");
@@ -65,8 +64,8 @@ public class MenuSalesHistory {
             orderId.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
             payAmount.setBounds(125, 20, 100, 25);
-            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
-            discount.setBounds(125, 40, 100, 25);
+            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 25);
             courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
@@ -79,8 +78,8 @@ public class MenuSalesHistory {
 
             panel.add(lPayAmount);
             panel.add(payAmount);
-            panel.add(lDiscount);
-            panel.add(discount);
+            panel.add(lcashback);
+            panel.add(cashback);
             panel.add(lOrderId);
             panel.add(orderId);
             panel.add(lpurchaseDate);
@@ -137,8 +136,8 @@ public class MenuSalesHistory {
         bBack.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
-            JLabel payAmount, discount, orderId, purchaseDate, courType, deliveryStatus;
+            JLabel lPayAmount, lcashback, lOrderId, lpurchaseDate, lCourType, lDeliveryStatus;
+            JLabel payAmount, cashback, orderId, purchaseDate, courType, deliveryStatus;
             JButton bDetails;
 
             JPanel panel = new JPanel();
@@ -149,8 +148,8 @@ public class MenuSalesHistory {
             lOrderId.setBounds(25, 0, 100, 25);
             lPayAmount = new JLabel("Pay Amount: ");
             lPayAmount.setBounds(25, 20, 100, 25);
-            lDiscount = new JLabel("Discount: ");
-            lDiscount.setBounds(25, 40, 100, 25);
+            lcashback = new JLabel("Cashback: ");
+            lcashback.setBounds(25, 40, 100, 25);
             lpurchaseDate = new JLabel("Purchase Date: ");
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lCourType = new JLabel("Cour Type: ");
@@ -162,8 +161,8 @@ public class MenuSalesHistory {
             orderId.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
             payAmount.setBounds(125, 20, 100, 25);
-            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
-            discount.setBounds(125, 40, 100, 25);
+            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 25);
             courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
@@ -176,8 +175,8 @@ public class MenuSalesHistory {
 
             panel.add(lPayAmount);
             panel.add(payAmount);
-            panel.add(lDiscount);
-            panel.add(discount);
+            panel.add(lcashback);
+            panel.add(cashback);
             panel.add(lOrderId);
             panel.add(orderId);
             panel.add(lpurchaseDate);

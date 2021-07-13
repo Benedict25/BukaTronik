@@ -42,8 +42,8 @@ public class MenuOrder {
         lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lOrderId, lpurchaseDate, lCourType, lStatus;
-            JLabel payAmount, discount, orderId, purchaseDate, courType, status;
+            JLabel lPayAmount, lcashback, lOrderId, lpurchaseDate, lCourType, lStatus;
+            JLabel payAmount, cashback, orderId, purchaseDate, courType, status;
             JButton bDetails, bDelete;
 
             JPanel panel = new JPanel();
@@ -54,8 +54,8 @@ public class MenuOrder {
             lOrderId.setBounds(25, 0, 100, 25);
             lPayAmount = new JLabel("Pay Amount: ");
             lPayAmount.setBounds(25, 20, 100, 25);
-            lDiscount = new JLabel("Discount: ");
-            lDiscount.setBounds(25, 40, 100, 25);
+            lcashback = new JLabel("Cashback: ");
+            lcashback.setBounds(25, 40, 100, 25);
             lpurchaseDate = new JLabel("Purchase Date: ");
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lCourType = new JLabel("Cour Type: ");
@@ -67,8 +67,8 @@ public class MenuOrder {
             orderId.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
             payAmount.setBounds(125, 20, 100, 25);
-            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
-            discount.setBounds(125, 40, 100, 25);
+            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
             courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
@@ -83,8 +83,8 @@ public class MenuOrder {
 
             panel.add(lPayAmount);
             panel.add(payAmount);
-            panel.add(lDiscount);
-            panel.add(discount);
+            panel.add(lcashback);
+            panel.add(cashback);
             panel.add(lOrderId);
             panel.add(orderId);
             panel.add(lpurchaseDate);
@@ -150,8 +150,8 @@ public class MenuOrder {
         lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
         for (int i = 0; i < arrTrans.size(); i++) {
-            JLabel lPayAmount, lDiscount, lCourierType, lpurchaseDate, lStatus;
-            JLabel payAmount, discount, courierType, purchaseDate, showStatus;
+            JLabel lPayAmount, lcashback, lCourierType, lpurchaseDate, lStatus;
+            JLabel payAmount, cashback, courierType, purchaseDate, showStatus;
             JButton bDetails;
 
             JPanel panel = new JPanel();
@@ -162,8 +162,8 @@ public class MenuOrder {
             lCourierType.setBounds(25, 0, 100, 25);
             lPayAmount = new JLabel("Pay Amount: ");
             lPayAmount.setBounds(25, 20, 100, 25);
-            lDiscount = new JLabel("Discount: ");
-            lDiscount.setBounds(25, 40, 100, 25);
+            lcashback = new JLabel("Cashback: ");
+            lcashback.setBounds(25, 40, 100, 25);
             lpurchaseDate = new JLabel("Purchase Date: ");
             lpurchaseDate.setBounds(25, 60, 100, 25);
             lStatus = new JLabel("Status: ");
@@ -173,8 +173,8 @@ public class MenuOrder {
             courierType.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
             payAmount.setBounds(125, 20, 100, 25);
-            discount = new JLabel(String.valueOf(arrTrans.get(i).getDiscount()));
-            discount.setBounds(125, 40, 100, 25);
+            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
             showStatus = new JLabel(String.valueOf(arrTrans.get(i).getDeliveryStatus()));
@@ -185,8 +185,8 @@ public class MenuOrder {
 
             panel.add(lPayAmount);
             panel.add(payAmount);
-            panel.add(lDiscount);
-            panel.add(discount);
+            panel.add(lcashback);
+            panel.add(cashback);
             panel.add(lCourierType);
             panel.add(courierType);
             panel.add(lpurchaseDate);

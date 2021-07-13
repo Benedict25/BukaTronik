@@ -890,4 +890,37 @@ public class MenuResult {
         frame.setLayout(null);
         frame.setVisible(true);
     }
+    
+    public void menuResultUseVoucher(String voucherCode, boolean result){
+        JFrame frame = new JFrame("");
+        frame.setSize(1100, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel();
+        lResult.setBounds(70, 20, 1100, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(500, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        if (result == true) {
+            lResult.setText("");
+        } else {
+            lResult.setText("Pembelian anda tidak memenuhi minimal transaksi dari Voucher : "+voucherCode);
+        }
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuCheckOut().menuCheckOutCourier();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
 }
