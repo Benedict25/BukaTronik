@@ -227,7 +227,7 @@ public class ControllerCheckOut {
             return (false);
         }
     }
-
+    
     public void penguranganSaldoBuyerDanPenambahanSaldoSeller(int totalKeseluruhan, int saldoUser, int hargaKurir) {
 
         ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
