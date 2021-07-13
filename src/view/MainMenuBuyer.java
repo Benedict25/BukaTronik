@@ -109,7 +109,7 @@ public class MainMenuBuyer {
         bLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MenuLogin();
+                MenuKonfirmasiLogOut();
                 frame.setVisible(false);
             }
         });
@@ -129,6 +129,43 @@ public class MainMenuBuyer {
                 new MenuFlashsale().menuSeeFlashsaleForBuyer();
                 frame.setVisible(false);
             }
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+    
+    public void MenuKonfirmasiLogOut() {
+        JFrame frame = new JFrame("Log Out");
+        frame.setSize(400, 400);
+
+        JLabel lResult;
+        JButton bConfirm, bBack;
+
+        lResult = new JLabel("Log Out?");
+        lResult.setBounds(68, 20, 800, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 60));
+
+        bConfirm = new JButton("Yes!");
+        bConfirm.setBounds(110, 150, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
+
+        bBack = new JButton("No!");
+        bBack.setBounds(110, 250, 150, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 40));
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+        frame.add(bBack);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuLogin();
+            frame.setVisible(false);
+        });
+
+        bBack.addActionListener((ActionEvent e) -> {
+            new MainMenuBuyer();
+            frame.setVisible(false);
         });
 
         frame.setLayout(null);
