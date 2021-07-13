@@ -34,7 +34,7 @@ public class ControllerPurchaseHistory {
                 newTrans.setPurchaseDate(rs.getString("purchaseDate"));
                 newTrans.setCourierType(enumCourType(rs.getString("courierType")));
                 newTrans.setCourierPrice(rs.getInt("courierPrice"));
-                newTrans.setDiscount(rs.getInt("discount"));
+                newTrans.setCashback(rs.getInt("cashback"));
                 newTrans.setPayAmount(rs.getInt("payAmount"));
                 newTrans.setDeliveryStatus(enumOrderStatus(rs.getString("deliveryStatus")));
                 ongoingOrders.add(newTrans);

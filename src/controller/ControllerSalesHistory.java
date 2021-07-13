@@ -32,7 +32,7 @@ public class ControllerSalesHistory {
                 newTrans.setPurchaseDate(rs.getString("purchaseDate"));
                 newTrans.setCourierType(new ControllerPurchaseHistory().enumCourType(rs.getString("courierType")));
                 newTrans.setCourierPrice(rs.getInt("courierPrice"));
-                newTrans.setDiscount(rs.getInt("discount"));
+                newTrans.setCashback(rs.getInt("cashback"));
                 newTrans.setPayAmount(rs.getInt("payAmount"));
                 newTrans.setDeliveryStatus(enumDeliveryStatus(rs.getString("deliveryStatus")));
                 arrSalesSeller.add(newTrans);
@@ -56,7 +56,7 @@ public class ControllerSalesHistory {
                 newTrans.setPurchaseDate(rs.getString("purchaseDate"));
                 newTrans.setCourierType(new ControllerPurchaseHistory().enumCourType(rs.getString("courierType")));
                 newTrans.setCourierPrice(rs.getInt("courierPrice"));
-                newTrans.setDiscount(rs.getInt("discount"));
+                newTrans.setCashback(rs.getInt("cashback"));
                 newTrans.setPayAmount(rs.getInt("payAmount"));
                 newTrans.setDeliveryStatus(enumDeliveryStatus(rs.getString("deliveryStatus")));
                 allSales.add(newTrans);

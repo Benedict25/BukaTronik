@@ -18,6 +18,7 @@ import model.Item;
 import model.ItemInShoppingCart;
 import model.Person;
 import model.Transaction;
+import model.Voucher;
 
 /**
  *
@@ -45,6 +46,53 @@ public class ControllerCheckOut {
             }
         }
         return hargaKurir;
+    }
+    
+    public ArrayList<Voucher> getVoucherData(){
+        conn.connect();
+        String query = "SELECT * FROM voucher WHERE isAvailable = '1'";
+        ArrayList<Voucher> arrVoucher = new ArrayList();
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Voucher newVoucher = new Voucher();
+                newVoucher.setVoucherCode(rs.getString("voucherCode"));
+                arrVoucher.add(newVoucher);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arrVoucher;
+    }
+    
+    public int cekVoucherMinimumTransaction(String voucherCode,int totalHargaItem){
+        conn.connect();
+        String query = "SELECT * FROM voucher WHERE voucherCode = '"+voucherCode+"'";
+        Voucher voucher = new Voucher();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                voucher.setVoucherCode(rs.getString("voucherCode"));
+                voucher.setMinTransaction(rs.getInt("minTransaction"));
+                voucher.setCashback(rs.getInt("cashback"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        int cashback = 0;
+        
+        if (totalHargaItem >= voucher.getMinTransaction()) {
+            cashback = voucher.getCashback();
+        }else{
+            cashback = -1;
+        }
+        
+        return cashback;
     }
 
     public int hitungTotalHargaCourier(int hargaKurir) {
@@ -160,7 +208,7 @@ public class ControllerCheckOut {
         return totalKeseluruhan;
     }
 
-    public boolean pengecekanSaldo(int hargaKurir, int totalKeseluruhan, int saldoUser, String courierType) {
+    public boolean pengecekanSaldo(int hargaKurir, int totalKeseluruhan, int saldoUser, String courierType, int cashback) {
         if (totalKeseluruhan < saldoUser) {
             penguranganSaldoBuyerDanPenambahanSaldoSeller(totalKeseluruhan, saldoUser, hargaKurir);
 
@@ -169,7 +217,7 @@ public class ControllerCheckOut {
 
             updateStock(arrShoppingCart);
 
-            transaksi(hargaKurir, totalKeseluruhan, courierType);
+            insertToTableTransaction(hargaKurir, totalKeseluruhan, courierType, cashback);
             
             insertToAdmin(hitungBiayaAdministrasi());
 
@@ -277,20 +325,20 @@ public class ControllerCheckOut {
         }
     }
 
-    public void newTransaction(int totalHargaCourier, int currenItemPrice, String courierType, int idSeller, int quantity) {
+    public void newTransaction(int totalHargaCourier, int currenItemPrice, String courierType, int idSeller, int quantity, int cashback) {
         CourierType courier = CourierType.REG;
         if (courierType.equals("YES")) {
             courier = CourierType.YES;
         }
 
         Transaction newTransaction = new Transaction();
-        newTransaction = setTransaction(totalHargaCourier, currenItemPrice, courier, idSeller, quantity);
+        newTransaction = setTransaction(totalHargaCourier, currenItemPrice, courier, idSeller, quantity, cashback);
 
         insertTransaction(newTransaction);
 
     }
 
-    public Transaction setTransaction(int totalHargaCourier, int currentItemPrice, CourierType courierType, int idSeller, int quantity) {
+    public Transaction setTransaction(int totalHargaCourier, int currentItemPrice, CourierType courierType, int idSeller, int quantity, int cashback) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         String strDate = formatter.format(date);
@@ -302,7 +350,7 @@ public class ControllerCheckOut {
         newTransaction.setDeliveryStatus(DeliveryStatus.PROCESSED);
         newTransaction.setCourierType(courierType);
         newTransaction.setCourierPrice(totalHargaCourier);
-        newTransaction.setDiscount(0);
+        newTransaction.setCashback(cashback);
         int initialPrice = currentItemPrice * quantity;
         newTransaction.setPayAmount(initialPrice);
 
@@ -324,7 +372,7 @@ public class ControllerCheckOut {
             stmt.setString(5, (String.valueOf(newTransaction.getDeliveryStatus().PROCESSED)));
             stmt.setString(6, String.valueOf(newTransaction.getCourierType()));
             stmt.setInt(7, newTransaction.getCourierPrice());
-            stmt.setInt(8, newTransaction.getDiscount());
+            stmt.setInt(8, newTransaction.getCashback());
             stmt.setInt(9, newTransaction.getPayAmount());
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -394,7 +442,7 @@ public class ControllerCheckOut {
         return payAmount;
     }
 
-    public void transaksi(int hargaKurir, int totalKeseluruhan, String courierType) {
+    public void insertToTableTransaction(int hargaKurir, int totalKeseluruhan, String courierType, int cashback) {
         ArrayList<ItemInShoppingCart> arrShoppingCart = new ArrayList();
         arrShoppingCart = new ControllerShoppingCart().getShoppingCartData();
 
@@ -432,7 +480,7 @@ public class ControllerCheckOut {
                     
                     if (temp == checkIdSeller) {
                         if (counterInit == 0) {
-                            newTransaction(totalBayarCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity()); //temp = id for current seller
+                            newTransaction(totalBayarCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity(),cashback); //temp = id for current seller
                             idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
                             insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
                             counterInit++;
