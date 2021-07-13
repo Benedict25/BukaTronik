@@ -125,7 +125,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuVoucher().MenuSeeVoucherForSeller();
+            new MenuVoucher().MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 
@@ -163,7 +163,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuVoucher().MenuSeeVoucherForSeller();
+            new MenuVoucher().MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 
@@ -201,7 +201,7 @@ public class MenuResult {
         frame.add(bConfirm);
 
         bConfirm.addActionListener((ActionEvent e) -> {
-            new MenuVoucher().MenuSeeVoucherForSeller();
+            new MenuVoucher().MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 

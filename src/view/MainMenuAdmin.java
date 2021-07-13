@@ -21,7 +21,7 @@ public class MainMenuAdmin {
 
     public MainMenuAdmin() {
         JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
-        frameMainMenuAdmin.setSize(550, 600);
+        frameMainMenuAdmin.setSize(550, 650);
         String username = new ControllerPerson().getActivePersonUsername();
         JLabel lUsername = new JLabel("Welcome " + username + "!");
         lUsername.setBounds(125, 10, 500, 70);
@@ -44,6 +44,9 @@ public class MainMenuAdmin {
 
         JLabel lWelcome = new JLabel("This is Bukatronik ADMIN");
         lWelcome.setBounds(175, 460, 150, 50);
+        
+        JButton bManageVoucher = new JButton("Manage Voucher >");
+        bManageVoucher.setBounds(175, 520, 150, 50);
 
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -84,6 +87,14 @@ public class MainMenuAdmin {
                 frameMainMenuAdmin.setVisible(false);
             }
         });
+        
+        bManageVoucher.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MenuVoucher().MenuSeeVoucherForAdmin();
+                frameMainMenuAdmin.setVisible(false);
+            }
+        });
 
         frameMainMenuAdmin.add(bSeeSalesHistory);
         frameMainMenuAdmin.add(lUsername);
@@ -92,6 +103,7 @@ public class MainMenuAdmin {
         frameMainMenuAdmin.add(bManageUser);
         frameMainMenuAdmin.add(bLogOut);
         frameMainMenuAdmin.add(lWelcome);
+        frameMainMenuAdmin.add(bManageVoucher);
         frameMainMenuAdmin.setLayout(null);
         frameMainMenuAdmin.setVisible(true);
     }

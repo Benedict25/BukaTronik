@@ -71,7 +71,7 @@ public class MenuVoucher {
         });
 
         bBack.addActionListener((ActionEvent e) -> {
-            MenuSeeVoucherForSeller();
+            MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 
@@ -164,7 +164,7 @@ public class MenuVoucher {
         });
 
         bBack.addActionListener((ActionEvent e) -> {
-            MenuSeeVoucherForSeller();
+            MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 
@@ -202,7 +202,7 @@ public class MenuVoucher {
         });
 
         bBack.addActionListener((ActionEvent e) -> {
-            MenuSeeVoucherForSeller();
+            MenuSeeVoucherForAdmin();
             frame.setVisible(false);
         });
 
@@ -210,9 +210,9 @@ public class MenuVoucher {
         frame.setVisible(true);
     }
 
-    public void MenuSeeVoucherForSeller() { //bedanya dengan buyer adalah di seller ada edit delete
+    public void MenuSeeVoucherForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
         ArrayList<Voucher> arrVoucher = new ArrayList();
-        arrVoucher = controlVoucher.getVoucherDataSeller();
+        arrVoucher = controlVoucher.getVoucherDataAdmin();
         
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 25, 70, 40);

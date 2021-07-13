@@ -163,4 +163,23 @@ public class ControllerPerson {
 
         return sellerName;
     }
+    
+    public int getSellerProfit(){
+        conn.connect();
+        int profit = 0;
+        
+        String query = "SELECT * FROM transaction WHERE idSeller='" + SingletonActiveId.getInstance().getActiveId() + "'&&deliveryStatus='DELIVERED'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                profit += rs.getInt("payAmount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return profit;
+    }
 }

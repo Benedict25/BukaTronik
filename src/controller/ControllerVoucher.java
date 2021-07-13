@@ -78,7 +78,7 @@ public class ControllerVoucher {
         }
     }
 
-    public ArrayList<Voucher> getVoucherDataSeller() {
+    public ArrayList<Voucher> getVoucherDataAdmin() {
         conn.connect();
         String query = "SELECT * FROM voucher WHERE idPerson='" + SingletonActiveId.getInstance().getActiveId() + "'";
         ArrayList<Voucher> arrVoucher = new ArrayList();

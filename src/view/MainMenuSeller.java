@@ -36,8 +36,8 @@ public class MainMenuSeller {
         JButton bManageOrder = new JButton("Manage Orders >");
         bManageOrder.setBounds(70, 220, 150, 50);
 
-        JButton bManageVoucher = new JButton("Manage Voucher >");
-        bManageVoucher.setBounds(270, 220, 150, 50);
+        JButton bProfit = new JButton("See Profit >");
+        bProfit.setBounds(270, 220, 150, 50);
 
         JButton bSalesHistory = new JButton("Sales History >");
         bSalesHistory.setBounds(70, 320, 150, 50);
@@ -72,10 +72,10 @@ public class MainMenuSeller {
             }
         });
 
-        bManageVoucher.addActionListener(new ActionListener() {
+        bProfit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MenuVoucher().MenuSeeVoucherForSeller();
+                menuProfit();
                 frameMainMenuSeller.setVisible(false);
             }
         });
@@ -100,11 +100,46 @@ public class MainMenuSeller {
         frameMainMenuSeller.add(bProfile);
         frameMainMenuSeller.add(bManageItem);
         frameMainMenuSeller.add(bManageOrder);
-        frameMainMenuSeller.add(bManageVoucher);
+        frameMainMenuSeller.add(bProfit);
         frameMainMenuSeller.add(bSalesHistory);
         frameMainMenuSeller.add(bLogOut);
         frameMainMenuSeller.add(lWelcome);
         frameMainMenuSeller.setLayout(null);
         frameMainMenuSeller.setVisible(true);
+    }
+    
+     public void menuProfit() {
+         
+        int profit = new ControllerPerson().getSellerProfit();
+         
+        JFrame frame = new JFrame("Result Login");
+        frame.setSize(450, 410);
+
+        JLabel lProfit, lUsername;
+        JButton bBack;
+
+        lProfit = new JLabel("Profit: Rp.");
+        lProfit.setBounds(50, 20, 500, 100);
+        lProfit.setFont(new Font("Serif", Font.BOLD, 30));
+
+        lUsername = new JLabel(String.valueOf(profit));
+        lUsername.setBounds(50, 120, 500, 100);
+        lUsername.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bBack = new JButton("Ok!");
+        bBack.setBounds(140, 250, 150, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 20));
+
+        frame.add(lProfit);
+        frame.add(lUsername);
+        frame.add(bBack);
+
+        bBack.addActionListener((ActionEvent e) -> {
+            new MainMenuSeller();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
 }
