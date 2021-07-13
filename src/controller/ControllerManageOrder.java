@@ -119,5 +119,35 @@ public class ControllerManageOrder {
         }
         return balance;
     }
+    
+    public void liquidateCashback(int idTranscation, int idBuyer){
+        conn.connect();
+        
+        int cashback = 0;
+        int initialBalance = new ControllerPerson().getPersonBalanceById(idBuyer);
+        int newBalance = 0;
+        
+        String query = "SELECT * FROM transaction WHERE idTransaction='" + idTranscation + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                cashback = rs.getInt("cashback");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        newBalance = cashback + initialBalance;
+        
+         String query2 = "UPDATE person SET balance='" + newBalance + "' "
+                + "WHERE idPerson='" + idBuyer + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

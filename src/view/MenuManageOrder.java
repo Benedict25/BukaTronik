@@ -78,7 +78,7 @@ public class MenuManageOrder {
                 JButton bAcceptOrder = new JButton("Deliver!");
                 bAcceptOrder.setBounds(15, 98, 125, 40);
                 bAcceptOrder.setFont(new Font("Serif", Font.BOLD, 25));
-                
+
                 JButton bSeeDetail = new JButton("Detail");
                 bSeeDetail.setBounds(160, 98, 125, 40);
                 bSeeDetail.setFont(new Font("Serif", Font.BOLD, 25));
@@ -96,16 +96,18 @@ public class MenuManageOrder {
                 panelBuyer.add(panel);
 
                 JLabel invisibleId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
+                JLabel invisibleIdBuyer = new JLabel(String.valueOf(arrTrans.get(i).getIdBuyer()));
 
                 bAcceptOrder.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         boolean result = controlOrder.updateStatusOrder(Integer.parseInt(invisibleId.getText()), "DELIVERED");
+                        controlOrder.liquidateCashback(Integer.parseInt(invisibleId.getText()), Integer.parseInt(invisibleIdBuyer.getText()));
                         new MenuResult().menuResultApproveOrder(result);
                         frame.setVisible(false);
                     }
                 });
-                
+
                 bSeeDetail.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -152,7 +154,7 @@ public class MenuManageOrder {
                 JButton bApproveCancel = new JButton("Aprv");
                 bApproveCancel.setBounds(15, 98, 125, 40);
                 bApproveCancel.setFont(new Font("Serif", Font.BOLD, 25));
-                
+
                 JButton bSeeDetailCancel = new JButton("Detail");
                 bSeeDetailCancel.setBounds(160, 98, 125, 40);
                 bSeeDetailCancel.setFont(new Font("Serif", Font.BOLD, 25));
@@ -183,7 +185,7 @@ public class MenuManageOrder {
                         frame.setVisible(false);
                     }
                 });
-                
+
                 bSeeDetailCancel.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -230,5 +232,5 @@ public class MenuManageOrder {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-
+    
 }

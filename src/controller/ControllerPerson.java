@@ -55,6 +55,24 @@ public class ControllerPerson {
 
         return activePersonBalance;
     }
+    
+    public int getPersonBalanceById(int idPerson) {
+        int activePersonBalance = 0;
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson='" + idPerson + "'";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                activePersonBalance = rs.getInt("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activePersonBalance;
+    }
 
     public Person getPersonDataById() {
         conn.connect();
