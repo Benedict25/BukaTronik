@@ -5,6 +5,7 @@
  */
 package main;
 
+import controller.ControllerRemoveByEndDate;
 import view.MenuLogin;
 
 /**
@@ -14,6 +15,7 @@ import view.MenuLogin;
 public class Main {
 
     public static void main(String[] args) {
+        new ControllerRemoveByEndDate();
         new MenuLogin();
     }
 }
