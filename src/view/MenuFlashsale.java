@@ -485,7 +485,7 @@ public class MenuFlashsale {
 
         bBuy.addActionListener((ActionEvent e) -> {
             //langsung ngarah ke check out khusus flashsale
-            new MenuCheckOut().menuCheckOutCourierFlashsale(idItem, idFlashsale);
+            new MenuCheckOutFlashsale().menuCheckOutCourierFlashsale(idItem, idFlashsale);
             frame.setVisible(false);
         });
 
