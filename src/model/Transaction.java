@@ -17,7 +17,7 @@ public class Transaction {
     private DeliveryStatus deliveryStatus;
     private CourierType courierType;
     private int courierPrice;
-    private int discount;
+    private int cashback;
     private int payAmount;
 
     public int getIdTransaction() {
@@ -76,12 +76,12 @@ public class Transaction {
         this.courierPrice = courierPrice;
     }
 
-    public int getDiscount() {
-        return discount;
+    public int getCashback() {
+        return cashback;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public void setCashback(int cashback) {
+        this.cashback = cashback;
     }
 
     public int getPayAmount() {
