@@ -53,7 +53,7 @@ public class MenuShoppingCart {
 
         //LISTENER CHECK OUT
         bCheckOut.addActionListener((ActionEvent e) -> {
-            new MenuCheckOut().MenuCheckOutCourier();
+            new MenuCheckOut().menuCheckOutCourier();
             frame.setVisible(false);
         });
 

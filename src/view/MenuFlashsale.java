@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.ControllerCheckOut;
 import controller.ControllerFlashsale;
 import controller.ControllerItem;
 import java.awt.Color;
@@ -339,13 +340,13 @@ public class MenuFlashsale {
     public void menuSeeFlashsaleForBuyer() {
         JFrame frame = new JFrame("Flashsale Items !!!");
         frame.setSize(450, 1000);
-        
+
         ArrayList<Flashsale> arrFlashsale = new ArrayList();
         arrFlashsale = controllerFlashsale.getFlashsaleData();
 
         ArrayList<Item> arrItem = new ArrayList();
         arrItem = controllerFlashsale.getItemDataForFlashsale(arrFlashsale);
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(160, 10, 100, 50);
         frame.add(bBack);
@@ -354,7 +355,7 @@ public class MenuFlashsale {
             new MainMenuBuyer();
             frame.setVisible(false);
         });
-        
+
         int y = 100;
 
         for (int i = 0; i < arrItem.size(); i++) {
@@ -412,7 +413,7 @@ public class MenuFlashsale {
         frame.setVisible(true);
 
     }
-    
+
     public void menuShowIndividualDataItemFlashsale(int idItem, int idFlashsale) {
         Item item = new Item();
         item = new ControllerItem().getDataItemByID(idItem);
@@ -477,7 +478,6 @@ public class MenuFlashsale {
         frame.add(bBuy);
 
 //        JLabel invisibleIdItem = new JLabel(String.valueOf(idItem));
-
         bBackToList.addActionListener((ActionEvent e) -> {
             menuSeeFlashsaleForBuyer();
             frame.setVisible(false);
@@ -485,6 +485,7 @@ public class MenuFlashsale {
 
         bBuy.addActionListener((ActionEvent e) -> {
             //langsung ngarah ke check out khusus flashsale
+            new MenuCheckOut().menuCheckOutCourierFlashsale(idItem, idFlashsale);
             frame.setVisible(false);
         });
 

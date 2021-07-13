@@ -20,7 +20,7 @@ import model.Item;
  * @author Ignatius Dariel
  */
 public class ControllerItem {
-
+    
     public boolean insertSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
@@ -41,7 +41,7 @@ public class ControllerItem {
             return (false);
         }
     }
-
+    
     public String strGadgetType(Item newItem) {
         String category = "";
         if (newItem.getCategory() == GadgetType.LAPTOP) {
@@ -53,7 +53,7 @@ public class ControllerItem {
         }
         return category;
     }
-
+    
     public boolean deleteSellerItem(int idItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
@@ -67,7 +67,7 @@ public class ControllerItem {
             return (false);
         }
     }
-
+    
     public boolean editSellerItem(Item newItem) {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
@@ -86,7 +86,7 @@ public class ControllerItem {
             return (false);
         }
     }
-
+    
     private GadgetType enumGadgetType(String category) {
         if (category.equals("LAPTOP")) {
             return GadgetType.LAPTOP;
@@ -97,7 +97,7 @@ public class ControllerItem {
         }
         return null;
     }
-
+    
     public ArrayList<Item> getSellerItemsData() {
         ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();
@@ -120,7 +120,7 @@ public class ControllerItem {
         }
         return listItem;
     }
-
+    
     public ArrayList<Item> getArrItemFromDetailed(ArrayList<DetailedTransaction> listDetailed) {
         ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();
@@ -144,10 +144,10 @@ public class ControllerItem {
         }
         return listItem;
     }
-
+    
     public Item getDataItemByID(int idItem) {
         Item item = new Item();
-
+        conn.connect();
         String query = "SELECT * FROM item WHERE idItem='" + idItem + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -157,7 +157,7 @@ public class ControllerItem {
                 item.setItemName(rs.getString("itemName"));
                 item.setPrice(rs.getInt("price"));
                 item.setStocks(rs.getInt("stock"));
-
+                item.setIdPerson(rs.getInt("idPerson"));
                 if (rs.getString("category").equals("LAPTOP")) {
                     item.setCategory(GadgetType.LAPTOP);
                 } else if (rs.getString("category").equals("HANDPHONE")) {
@@ -165,16 +165,16 @@ public class ControllerItem {
                 } else {
                     item.setCategory(GadgetType.ACC);
                 }
-
+                
                 item.setItemWeight(rs.getInt("itemWeight"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return item;
     }
-
+    
     public ArrayList<Item> getBuyerItemsData() {
         ArrayList<Item> listItem = new ArrayList<>();
         conn.connect();
