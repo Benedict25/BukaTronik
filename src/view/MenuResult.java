@@ -27,13 +27,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lUsername = new JLabel("Username: " + username);
-        lUsername.setBounds(0, 120, 450, 100);
-        lUsername.setHorizontalAlignment(JLabel.CENTER);
+        lUsername.setBounds(50, 120, 500, 100);
         lUsername.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -66,13 +64,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lUsername = new JLabel("Username: " + username);
-        lUsername.setBounds(0, 120, 450, 100);
-        lUsername.setHorizontalAlignment(JLabel.CENTER);
+        lUsername.setBounds(50, 120, 500, 100);
         lUsername.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -107,13 +103,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Vouch Code: " + voucherCode);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -147,13 +141,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Vouch Code: " + voucherCode);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -187,13 +179,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Vouch Code: " + voucherCode);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -228,13 +218,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lItemName = new JLabel("Item Name: " + itemName);
-        lItemName.setBounds(0, 120, 450, 100);
-        lItemName.setHorizontalAlignment(JLabel.CENTER);
+        lItemName.setBounds(50, 120, 500, 100);
         lItemName.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -268,13 +256,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lItemName = new JLabel("Item Name: " + itemName);
-        lItemName.setBounds(0, 120, 450, 100);
-        lItemName.setHorizontalAlignment(JLabel.CENTER);
+        lItemName.setBounds(50, 120, 500, 100);
         lItemName.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -309,13 +295,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lUserName = new JLabel("Username: " + username);
-        lUserName.setBounds(0, 120, 450, 100);
-        lUserName.setHorizontalAlignment(JLabel.CENTER);
+        lUserName.setBounds(50, 120, 500, 100);
         lUserName.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -349,13 +333,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
-        lDeposit = new JLabel("Amount: " + String.format("Rp.%,.2f", (double) balance));
-        lDeposit.setBounds(0, 120, 450, 100);
-        lDeposit.setHorizontalAlignment(JLabel.CENTER);
+        lDeposit = new JLabel("Amount: " + balance);
+        lDeposit.setBounds(50, 120, 500, 100);
         lDeposit.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -389,13 +371,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
-        lWithdraw = new JLabel("Amount: " + String.format("Rp.%,.2f", (double) withdrawAmount));
-        lWithdraw.setBounds(0, 120, 450, 100);
-        lWithdraw.setHorizontalAlignment(JLabel.CENTER);
+        lWithdraw = new JLabel("Amount: " + withdrawAmount);
+        lWithdraw.setBounds(50, 120, 500, 100);
         lWithdraw.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -430,13 +410,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lUsername = new JLabel("UN: " + username);
-        lUsername.setBounds(0, 120, 450, 100);
-        lUsername.setHorizontalAlignment(JLabel.CENTER);
+        lUsername.setBounds(50, 120, 500, 100);
         lUsername.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -472,13 +450,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Flashsale ID: " + idFlashsale);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -512,13 +488,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Flashsale ID: " + idFlashsale);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -552,13 +526,11 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         lVoucherCode = new JLabel("Flashsale ID : " + idFlashsale);
-        lVoucherCode.setBounds(0, 120, 450, 100);
-        lVoucherCode.setHorizontalAlignment(JLabel.CENTER);
+        lVoucherCode.setBounds(50, 120, 500, 100);
         lVoucherCode.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -593,8 +565,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -627,8 +598,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -661,8 +631,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -696,8 +665,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -730,8 +698,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -764,8 +731,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 750, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(60, 20, 800, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -800,8 +766,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -834,8 +799,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -868,8 +832,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -903,8 +866,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 450, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(50, 20, 500, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");
@@ -937,8 +899,7 @@ public class MenuResult {
         JButton bConfirm;
 
         lResult = new JLabel();
-        lResult.setBounds(0, 20, 1100, 100);
-        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setBounds(70, 20, 1100, 100);
         lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Ok!");

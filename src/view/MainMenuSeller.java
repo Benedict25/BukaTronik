@@ -145,22 +145,22 @@ public class MainMenuSeller {
 
     public void MenuKonfirmasiLogOut() {
         JFrame frame = new JFrame("Log Out");
-        frame.setSize(300, 300);
+        frame.setSize(400, 400);
 
         JLabel lResult;
         JButton bConfirm, bBack;
 
-        lResult = new JLabel("Log Out?", JLabel.CENTER);
-        lResult.setBounds(0, 20, 300, 100);
-        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        lResult = new JLabel("Log Out?");
+        lResult.setBounds(68, 20, 800, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 60));
 
         bConfirm = new JButton("Yes!");
-        bConfirm.setBounds(100, 150, 100, 30);
-        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+        bConfirm.setBounds(110, 150, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
 
         bBack = new JButton("No!");
-        bBack.setBounds(100, 200, 100, 30);
-        bBack.setFont(new Font("Serif", Font.BOLD, 20));
+        bBack.setBounds(110, 250, 150, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 40));
 
         frame.add(lResult);
         frame.add(bConfirm);
