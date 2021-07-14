@@ -49,42 +49,6 @@ public class Buyer extends Person{
         this.shoppingCart = shoppingCart;
     }
     
-    public void addToWishList(int idItem){
-        
-    }
-    
-    public void removeFromWishlist(int idItem){
-        
-    }
-    
-    public void addToShoppingCart(int idItem){
-        
-    }
-    
-    public void removeFromShoppingCart(int idItem){
-        
-    }
-    
-    public void seeOnGoingOrder(){
-        
-    }
-    
-    public void seeWishlist(){
-        
-    }
-    
-    public void seeShoppingCart(){
-        
-    }
-    
-    public void checkOut(){
-        
-    }
-    
-    public void cancelOrder(int idTransaction){
-        
-    }
-    
     public int depositBalance(int balance){
         /*masih kosong gaes*/
         return balance;

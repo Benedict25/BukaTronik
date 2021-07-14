@@ -101,13 +101,4 @@ public class Person {
         this.userType = userType;
     }
     
-    public int withdrawBalance(int balance){
-        /*ini masih kosong*/
-        return balance;
-    }
-   
-    public void seeItems(){
-        /*ini masih kosong*/
-    }
-    
 }

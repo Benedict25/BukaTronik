@@ -55,10 +55,4 @@ public class Flashsale {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-
-    @Override
-    public String toString() {
-        return "\nidFlashsale = " + idFlashsale + ", idItem = " + idItem + ", flashsaleStock = " + flashsaleStock + ", discountedPrice = " + discountedPrice + ", endDate = " + endDate + "\n";
-    }
-    
 }

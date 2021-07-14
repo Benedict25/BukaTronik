@@ -9,6 +9,7 @@ import controller.ControllerItem;
 import controller.ControllerPurchaseHistory;
 import controller.ControllerPerson;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import model.DeliveryStatus;
 import model.DetailedTransaction;
@@ -34,6 +36,8 @@ public class MenuOrder {
     public void seeOngoingOrder() { //bedanya dengan function seeOtherStatusOrder adalah disini ada button cancel order
         JFrame frameOrder = new JFrame("Ongoing Orders");
         frameOrder.setSize(390, 1000);
+        JScrollPane scroll = new JScrollPane();
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder("PROCESSED");
 
@@ -133,7 +137,7 @@ public class MenuOrder {
                 frameOrder.setVisible(false);
             }
         });
-
+        frameOrder.add(scroll);
         frameOrder.add(lHeading);
         frameOrder.setLayout(null);
         frameOrder.setVisible(true);

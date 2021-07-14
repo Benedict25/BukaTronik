@@ -64,5 +64,4 @@ public class Voucher {
     public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
     }
-    
 }

@@ -37,6 +37,4 @@ public class DetailedTransaction {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
 }

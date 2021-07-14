@@ -91,6 +91,4 @@ public class Transaction {
     public void setPayAmount(int payAmount) {
         this.payAmount = payAmount;
     }
-    
-    
 }
