@@ -23,9 +23,12 @@ public class MainMenuSeller {
         JFrame frameMainMenuSeller = new JFrame("Main Menu Seller");
         frameMainMenuSeller.setSize(500, 500);
         String username = new ControllerPerson().getActivePersonUsername();
-        JLabel lUsername = new JLabel("Welcome " + username + "!");
-        lUsername.setBounds(125, 10, 500, 70);
-        lUsername.setFont(new Font("Serif", Font.BOLD, 40));
+        JLabel lAppName = new JLabel("Welcome to Bukatronik!",JLabel.CENTER);
+        lAppName.setFont(new Font("Serif", Font.BOLD, 35));
+        lAppName.setBounds(0, 10, 500, 50);
+        JLabel lWelcome = new JLabel(username, JLabel.CENTER);
+        lWelcome.setFont(new Font("Serif", Font.BOLD, 35));
+        lWelcome.setBounds(0, 50, 500, 50);
 
         JButton bProfile = new JButton("Profile >");
         bProfile.setBounds(70, 120, 150, 50);
@@ -44,9 +47,6 @@ public class MainMenuSeller {
 
         JButton bLogOut = new JButton("Log Out >");
         bLogOut.setBounds(270, 320, 150, 50);
-
-        JLabel lWelcome = new JLabel("Welcome to Bukatronik");
-        lWelcome.setBounds(175, 395, 150, 50);
 
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +96,8 @@ public class MainMenuSeller {
             }
         });
 
-        frameMainMenuSeller.add(lUsername);
+        frameMainMenuSeller.add(lAppName);
+        frameMainMenuSeller.add(lWelcome);
         frameMainMenuSeller.add(bProfile);
         frameMainMenuSeller.add(bManageItem);
         frameMainMenuSeller.add(bManageOrder);
@@ -118,7 +119,7 @@ public class MainMenuSeller {
         JLabel lProfit, lUsername;
         JButton bBack;
 
-        lProfit = new JLabel("Profit: Rp.");
+        lProfit = new JLabel("Profit: ");
         lProfit.setBounds(50, 20, 500, 100);
         lProfit.setFont(new Font("Serif", Font.BOLD, 30));
 
