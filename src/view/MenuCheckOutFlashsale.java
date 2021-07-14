@@ -24,12 +24,12 @@ public class MenuCheckOutFlashsale {
 
     ControllerCheckOut controllerCheckOut = new ControllerCheckOut();
     MenuResult menuResult = new MenuResult();
-    
+
     public void menuCheckOutCourierFlashsale(int idItem, int idFlashsale) {
-        
+
         Person person = new Person();
         person = controllerCheckOut.cekUser();
-        
+
         JFrame frame = new JFrame("Check Out");
         frame.setSize(400, 400);
 
@@ -46,8 +46,8 @@ public class MenuCheckOutFlashsale {
 
         lShipment = new JLabel(person.getAddress());
         lShipment.setBounds(25, 30, 300, 25);
-        lShipment.setFont (lShipment.getFont().deriveFont (20.0f));
-        
+        lShipment.setFont(lShipment.getFont().deriveFont(20.0f));
+
         String Courier[] = {"REG", "YES"};
         cCourier = new JComboBox(Courier);
         cCourier.setBounds(120, 80, 100, 25);
@@ -75,8 +75,8 @@ public class MenuCheckOutFlashsale {
         bConfirm.addActionListener((ActionEvent e) -> {
             String courierType = (String) cCourier.getItemAt(cCourier.getSelectedIndex());
             String city = (String) cCity.getItemAt(cCity.getSelectedIndex());
-            int hargaKurir = controllerCheckOut.hitungHargaCourier(courierType,city);
-            menuCheckOutPaymentFlashsale(idItem ,idFlashsale, hargaKurir ,courierType);
+            int hargaKurir = controllerCheckOut.hitungHargaCourier(courierType, city);
+            menuCheckOutPaymentFlashsale(idItem, idFlashsale, hargaKurir, courierType);
             frame.setVisible(false);
         });
 
@@ -90,26 +90,26 @@ public class MenuCheckOutFlashsale {
         frame.setVisible(true);
     }
 
-    public void menuCheckOutPaymentFlashsale(int idItem, int idFlashsale, int hargaKurir ,String courierType) {
-        
+    public void menuCheckOutPaymentFlashsale(int idItem, int idFlashsale, int hargaKurir, String courierType) {
+
         int totalHargaItem = new ControllerCheckOutFlashsale().hitungTotalHargaItemFlashsale(idFlashsale);
-        
+
         Person person = new Person();
         person = controllerCheckOut.cekUser();
-        
+
         int biayaAdministrasi = controllerCheckOut.hitungBiayaAdministrasi();
-        
+
         int totalKeseluruhan = controllerCheckOut.hitungTotalHargaKeseluruhan(hargaKurir, totalHargaItem, biayaAdministrasi);
-        
+
         JFrame frame = new JFrame("Check Out");
         frame.setSize(400, 400);
-        
+
         JPanel panel = new JPanel();
         panel.setBounds(15, 15, 355, 200);
         panel.setBackground(Color.gray);
 
-        JLabel lCourierPrice, lItemPrice, lAdministrasion, lTotal, lBalance, lHargaKurir,lTotalItemPrice,
-                lTotalAdministrasion,lTotalPayment,lUserBalance, lBayar;
+        JLabel lCourierPrice, lItemPrice, lAdministrasion, lTotal, lBalance, lHargaKurir, lTotalItemPrice,
+                lTotalAdministrasion, lTotalPayment, lUserBalance, lBayar;
         JButton bConfirm, bBack;
 
         lCourierPrice = new JLabel("Harga Courier : ");
@@ -124,19 +124,18 @@ public class MenuCheckOutFlashsale {
         lBalance.setBounds(25, 160, 150, 25);
         lBayar = new JLabel("Bayar ?");
         lBayar.setBounds(25, 240, 150, 25);
-        
-        lHargaKurir = new JLabel(String.valueOf(hargaKurir));
+
+        lHargaKurir = new JLabel(String.format("Rp.%,.2f", (double) hargaKurir));
         lHargaKurir.setBounds(150, 0, 150, 25);
-        lTotalItemPrice = new JLabel(String.valueOf(totalHargaItem));
+        lTotalItemPrice = new JLabel(String.format("Rp.%,.2f", (double) totalHargaItem));
         lTotalItemPrice.setBounds(150, 40, 150, 25);
-        lTotalAdministrasion = new JLabel(String.valueOf(biayaAdministrasi));
+        lTotalAdministrasion = new JLabel(String.format("Rp.%,.2f", (double) biayaAdministrasi));
         lTotalAdministrasion.setBounds(150, 80, 150, 25);
-        lTotalPayment = new JLabel(String.valueOf(totalKeseluruhan));
+        lTotalPayment = new JLabel(String.format("Rp.%,.2f", (double) totalKeseluruhan));
         lTotalPayment.setBounds(150, 120, 150, 25);
-        lUserBalance = new JLabel(String.valueOf(person.getBalance()));
+        lUserBalance = new JLabel(String.format("Rp.%,.2f", (double) person.getBalance()));
         lUserBalance.setBounds(150, 160, 150, 25);
 
-      
         bConfirm = new JButton("Bayar");
         bConfirm.setBounds(140, 240, 100, 25);
         bBack = new JButton("Back");
@@ -147,13 +146,13 @@ public class MenuCheckOutFlashsale {
         panel.add(lAdministrasion);
         panel.add(lTotal);
         panel.add(lBalance);
-        
+
         panel.add(lHargaKurir);
         panel.add(lTotalItemPrice);
         panel.add(lTotalAdministrasion);
         panel.add(lTotalPayment);
         panel.add(lUserBalance);
-        
+
         panel.setLayout(null);
         panel.setVisible(true);
 
@@ -161,7 +160,7 @@ public class MenuCheckOutFlashsale {
         frame.add(panel);
         frame.add(bConfirm);
         frame.add(bBack);
-        
+
         int saldoUser = person.getBalance();
 
         /*pengecekan saldo sekaligus pemotongan saldo*/

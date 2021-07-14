@@ -71,7 +71,7 @@ public class MenuWishlist {
 
             itemName = new JLabel(arrItem.get(i).getItemName());
             itemName.setBounds(90, 20, 100, 25);
-            price = new JLabel(String.valueOf(arrItem.get(i).getPrice()));
+            price = new JLabel(arrItem.get(i).getFormattedPrice());
             price.setBounds(90, 40, 100, 25);
             stock = new JLabel(String.valueOf(arrItem.get(i).getStocks()));
             stock.setBounds(90, 60, 100, 25);
@@ -92,7 +92,7 @@ public class MenuWishlist {
 
             panel.setLayout(null);
             panel.setVisible(true);
-            
+
             JLabel idItem = new JLabel(String.valueOf(arrItem.get(i).getIdItem()));
 
             bCheckItem.addActionListener(new ActionListener() {
@@ -102,7 +102,7 @@ public class MenuWishlist {
                     frame.setVisible(false);
                 }
             });
-            
+
             bDelete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -124,7 +124,7 @@ public class MenuWishlist {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void removeFromWishlist(int idWishlist, String itemName) {
         JFrame frame = new JFrame("Remove From Wishlist");
         frame.setSize(400, 300);
@@ -162,40 +162,40 @@ public class MenuWishlist {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
-    public void addToWishlist(int idItem, String itemName){
+
+    public void addToWishlist(int idItem, String itemName) {
         JFrame frame = new JFrame("Confirmation");
         frame.setSize(400, 360);
         JLabel lConfirmation, lItemName;
         JButton bAdd, bBack;
-        
+
         lConfirmation = new JLabel("Add To Wishlist?");
         lConfirmation.setBounds(100, 50, 200, 50);
         lConfirmation.setFont(new Font("Serif", Font.BOLD, 25));
         lItemName = new JLabel("Name: " + itemName);
         lItemName.setBounds(100, 90, 200, 100);
         lItemName.setFont(new Font("Serif", Font.BOLD, 25));
-        
+
         bAdd = new JButton("Yes!");
         bAdd.setBounds(75, 200, 100, 50);
         bAdd.setFont(new Font("Serif", Font.BOLD, 25));
         bBack = new JButton("Back");
         bBack.setBounds(225, 200, 100, 50);
         bBack.setFont(new Font("Serif", Font.BOLD, 25));
-        
+
         frame.add(lConfirmation);
         frame.add(lItemName);
         frame.add(bAdd);
         frame.add(bBack);
-        
+
         JLabel invisibleIDItem = new JLabel(String.valueOf(idItem));
-        
+
         bAdd.addActionListener((ActionEvent e) -> {
             boolean result = controlWishlist.addToWishlist(Integer.parseInt(invisibleIDItem.getText()));
             new MenuResult().menuResultAddToWishlist(result, itemName);
             frame.setVisible(false);
         });
-        
+
         bBack.addActionListener((ActionEvent e) -> {
             new MenuIndividualItem().ShowIndividualData(Integer.parseInt(invisibleIDItem.getText())); //back to menu individual item
             frame.setVisible(false);

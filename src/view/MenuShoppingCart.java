@@ -86,7 +86,7 @@ public class MenuShoppingCart {
             itemName.setBounds(120, 0, 100, 25);
             Quantity = new JLabel(String.valueOf(arrShoppingCart.get(i).getQuantity()));
             Quantity.setBounds(120, 20, 100, 25);
-            Harga = new JLabel(String.valueOf(arrItem.get(i).getPrice()));
+            Harga = new JLabel(arrItem.get(i).getFormattedPrice());
             Harga.setBounds(120, 40, 100, 25);
             Seller = new JLabel(arrPerson.get(i).getName());
             Seller.setBounds(120, 60, 100, 25);
@@ -115,7 +115,7 @@ public class MenuShoppingCart {
 
             /*remove data*/
             bRemove.addActionListener((ActionEvent e) -> {
-                MenuRemoveFromShoppingCart(Integer.parseInt(id.getText()),itemName.getText());
+                MenuRemoveFromShoppingCart(Integer.parseInt(id.getText()), itemName.getText());
                 frame.setVisible(false);
             });
 
@@ -134,8 +134,8 @@ public class MenuShoppingCart {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
-    public void MenuInsertToShoppingCart(int inputIdItem){
+
+    public void MenuInsertToShoppingCart(int inputIdItem) {
         boolean result = controllerShoppingCart.insertShoppingCart(inputIdItem);
         menuResult.menuResultAddToShoppingCart(result);
     }
@@ -170,7 +170,7 @@ public class MenuShoppingCart {
             boolean result = controllerShoppingCart.changeQuantity((int) Squantity.getValue(), id);
             frame.setVisible(false);
             menuResult.menuResultChangeQuantityShoppingCart(result);
-            
+
         });
 
         /*Back*/
@@ -228,5 +228,3 @@ public class MenuShoppingCart {
         frame.setVisible(true);
     }
 }
-
-
