@@ -82,7 +82,7 @@ public class MenuFlashsale {
             idFlashsale.setBounds(200, 0, 100, 25);
             idItem = new JLabel(String.valueOf(arrFlashsale.get(i).getIdItem()));
             idItem.setBounds(200, 20, 100, 25);
-            discountedPrice = new JLabel(String.valueOf(arrFlashsale.get(i).getDiscountedPrice()));
+            discountedPrice = new JLabel(arrFlashsale.get(i).getFormattedDiscountPrice());
             discountedPrice.setBounds(200, 40, 100, 25);
             flashsaleStock = new JLabel(String.valueOf(arrFlashsale.get(i).getFlashsaleStock()));
             flashsaleStock.setBounds(200, 60, 100, 25);
@@ -376,7 +376,7 @@ public class MenuFlashsale {
 
             itemName = new JLabel(arrItem.get(i).getItemName());
             itemName.setBounds(100, 0, 100, 25);
-            price = new JLabel(String.valueOf(arrFlashsale.get(i).getDiscountedPrice()));
+            price = new JLabel(arrFlashsale.get(i).getFormattedDiscountPrice());
             price.setBounds(100, 20, 100, 25);
             stock = new JLabel(String.valueOf(arrFlashsale.get(i).getFlashsaleStock()));
             stock.setBounds(100, 40, 100, 25);
@@ -426,7 +426,7 @@ public class MenuFlashsale {
         lItemName = new JLabel("Name: ");
         lItemName.setBounds(120, 100, 150, 30);
         lItemName.setFont(new Font("Serif", Font.BOLD, 25));
-        lPrice = new JLabel("Price: Rp. ");
+        lPrice = new JLabel("Price: ");
         lPrice.setBounds(120, 150, 150, 30);
         lPrice.setFont(new Font("Serif", Font.BOLD, 25));
         lStock = new JLabel("Stock: ");
@@ -442,7 +442,7 @@ public class MenuFlashsale {
         itemName = new JLabel(item.getItemName());
         itemName.setBounds(200, 100, 500, 30);
         itemName.setFont(new Font("Serif", Font.BOLD, 25));
-        price = new JLabel(String.valueOf(flashsale.getDiscountedPrice()));
+        price = new JLabel(flashsale.getFormattedDiscountPrice());
         price.setBounds(235, 150, 150, 30);
         price.setFont(new Font("Serif", Font.BOLD, 25));
         stock = new JLabel(String.valueOf(flashsale.getFlashsaleStock()));
@@ -451,7 +451,7 @@ public class MenuFlashsale {
         category = new JLabel(String.valueOf(item.getCategory()));
         category.setBounds(235, 250, 150, 30);
         category.setFont(new Font("Serif", Font.BOLD, 25));
-        itemWeight = new JLabel(String.valueOf(item.getItemWeight()));
+        itemWeight = new JLabel(String.valueOf(item.getItemWeight()) + " gram");
         itemWeight.setBounds(270, 300, 150, 30);
         itemWeight.setFont(new Font("Serif", Font.BOLD, 25));
 

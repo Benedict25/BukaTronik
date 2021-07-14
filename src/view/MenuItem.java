@@ -71,9 +71,9 @@ public class MenuItem {
             itemId.setBounds(60, 0, 100, 25);
             itemName = new JLabel(itemList.get(i).getItemName());
             itemName.setBounds(80, 20, 100, 25);
-            itemWeight = new JLabel(String.valueOf(itemList.get(i).getItemWeight()));
+            itemWeight = new JLabel(String.valueOf(itemList.get(i).getItemWeight()) + " gram");
             itemWeight.setBounds(85, 40, 100, 25);
-            itemPrice = new JLabel(String.valueOf(itemList.get(i).getPrice()));
+            itemPrice = new JLabel(itemList.get(i).getFormattedPrice());
             itemPrice.setBounds(75, 60, 100, 25);
             itemStocks = new JLabel(String.valueOf(itemList.get(i).getStocks()));
             itemStocks.setBounds(85, 80, 100, 25);
@@ -423,7 +423,7 @@ public class MenuItem {
 
             itemName = new JLabel(itemList.get(i).getItemName());
             itemName.setBounds(90, 20, 100, 25);
-            price = new JLabel(String.valueOf(itemList.get(i).getPrice()));
+            price = new JLabel(itemList.get(i).getFormattedPrice());
             price.setBounds(90, 40, 100, 25);
             stock = new JLabel(String.valueOf(itemList.get(i).getStocks()));
             stock.setBounds(90, 60, 100, 25);

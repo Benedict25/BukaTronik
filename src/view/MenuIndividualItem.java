@@ -34,7 +34,7 @@ public class MenuIndividualItem {
         lItemName = new JLabel("Name: ");
         lItemName.setBounds(120, 100, 150, 30);
         lItemName.setFont(new Font("Serif", Font.BOLD, 25));
-        lPrice = new JLabel("Price: Rp. ");
+        lPrice = new JLabel("Price: ");
         lPrice.setBounds(120, 150, 150, 30);
         lPrice.setFont(new Font("Serif", Font.BOLD, 25));
         lStock = new JLabel("Stock: ");
@@ -50,7 +50,7 @@ public class MenuIndividualItem {
         itemName = new JLabel(item.getItemName());
         itemName.setBounds(200, 100, 500, 30);
         itemName.setFont(new Font("Serif", Font.BOLD, 25));
-        price = new JLabel(String.valueOf(item.getPrice()));
+        price = new JLabel(item.getFormattedPrice());
         price.setBounds(235, 150, 150, 30);
         price.setFont(new Font("Serif", Font.BOLD, 25));
         stock = new JLabel(String.valueOf(item.getStocks()));
@@ -59,7 +59,7 @@ public class MenuIndividualItem {
         category = new JLabel(String.valueOf(item.getCategory()));
         category.setBounds(235, 250, 150, 30);
         category.setFont(new Font("Serif", Font.BOLD, 25));
-        itemWeight = new JLabel(String.valueOf(item.getItemWeight()));
+        itemWeight = new JLabel(String.valueOf(item.getItemWeight()) + " gram");
         itemWeight.setBounds(270, 300, 150, 30);
         itemWeight.setFont(new Font("Serif", Font.BOLD, 25));
 
