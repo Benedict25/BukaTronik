@@ -51,7 +51,7 @@ public class MenuIndividualItem {
         itemName.setBounds(200, 100, 500, 30);
         itemName.setFont(new Font("Serif", Font.BOLD, 25));
         price = new JLabel(item.getFormattedPrice());
-        price.setBounds(235, 150, 150, 30);
+        price.setBounds(200, 150, 300, 30);
         price.setFont(new Font("Serif", Font.BOLD, 25));
         stock = new JLabel(String.valueOf(item.getStocks()));
         stock.setBounds(200, 200, 150, 30);

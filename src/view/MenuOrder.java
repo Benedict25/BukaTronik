@@ -70,20 +70,20 @@ public class MenuOrder {
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             orderId.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
-            payAmount.setBounds(125, 20, 100, 25);
+            payAmount.setBounds(125, 20, 200, 25);
             cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
-            purchaseDate.setBounds(125, 60, 100, 30);
+            purchaseDate.setBounds(125, 60, 100, 25);
             courType = new JLabel(String.valueOf(arrTrans.get(i).getCourierType()));
-            courType.setBounds(125, 80, 100, 30);
+            courType.setBounds(125, 80, 100, 25);
             status = new JLabel(String.valueOf(arrTrans.get(i).getDeliveryStatus()));
-            status.setBounds(125, 100, 100, 30);
+            status.setBounds(125, 100, 100, 25);
 
             bDetails = new JButton("Details");
-            bDetails.setBounds(210, 15, 75, 25);
+            bDetails.setBounds(240, 15, 75, 25);
             bDelete = new JButton("Cancel");
-            bDelete.setBounds(210, 55, 75, 25);
+            bDelete.setBounds(240, 55, 75, 25);
 
             panel.add(lPayAmount);
             panel.add(payAmount);
@@ -176,16 +176,16 @@ public class MenuOrder {
             courierType = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             courierType.setBounds(125, 0, 100, 25);
             payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
-            payAmount.setBounds(125, 20, 100, 25);
+            payAmount.setBounds(125, 20, 200, 25);
             cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
-            purchaseDate.setBounds(125, 60, 100, 30);
+            purchaseDate.setBounds(125, 60, 100, 25);
             showStatus = new JLabel(String.valueOf(arrTrans.get(i).getDeliveryStatus()));
-            showStatus.setBounds(125, 80, 100, 30);
+            showStatus.setBounds(125, 80, 100, 25);
 
             bDetails = new JButton("Details");
-            bDetails.setBounds(210, 15, 75, 25);
+            bDetails.setBounds(240, 15, 75, 25);
 
             panel.add(lPayAmount);
             panel.add(payAmount);

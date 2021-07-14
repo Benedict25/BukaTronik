@@ -366,9 +366,9 @@ public class MenuVoucher {
             voucherCode = new JLabel(arrVoucher.get(i).getVoucherCode());
             voucherCode.setBounds(125, 0, 100, 25);
             minTransaction = new JLabel(arrVoucher.get(i).getFormattedMinTransaction());
-            minTransaction.setBounds(125, 20, 100, 25);
+            minTransaction.setBounds(125, 20, 200, 25);
             cashback = new JLabel(arrVoucher.get(i).getFormattedCashback());
-            cashback.setBounds(125, 40, 100, 25);
+            cashback.setBounds(125, 40, 200, 25);
             endDate = new JLabel(arrVoucher.get(i).getEndDate());
             endDate.setBounds(125, 60, 100, 30);
             isAvailable = new JLabel(String.valueOf(arrVoucher.get(i).getIsAvailable()));
@@ -376,10 +376,10 @@ public class MenuVoucher {
 
             if (arrVoucher.get(i).getIsAvailable() == 1) {
                 availableInfo = new JLabel("I'm Available!");
-                availableInfo.setBounds(220, 35, 100, 30);
+                availableInfo.setBounds(230, 30, 100, 30);
             } else {
                 availableInfo = new JLabel("Not Available!");
-                availableInfo.setBounds(220, 35, 100, 30);
+                availableInfo.setBounds(230, 20, 100, 30);
             }
 
             panel.add(lMinTransaction);

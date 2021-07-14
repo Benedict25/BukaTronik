@@ -77,9 +77,9 @@ public class MenuWishlist {
             stock.setBounds(90, 60, 100, 25);
 
             JButton bCheckItem = new JButton("Check Item");
-            bCheckItem.setBounds(200, 20, 120, 25);
+            bCheckItem.setBounds(220, 20, 120, 25);
             JButton bDelete = new JButton("Remove");
-            bDelete.setBounds(200, 60, 120, 25);
+            bDelete.setBounds(220, 60, 120, 25);
 
             panel.add(lItemName);
             panel.add(lPrice);

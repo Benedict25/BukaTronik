@@ -70,8 +70,8 @@ public class MenuShoppingCart {
             JButton bRemove, bQuantity;
 
             JPanel panel = new JPanel();
-            panel.setBounds(15, y, 400, 110);
-            panel.setBackground(Color.gray);
+            panel.setBounds(15, y, 400, 90);
+            panel.setBackground(new Color(150, 150, 150, 50));
 
             litemName = new JLabel("Item Name : ");
             litemName.setBounds(25, 0, 150, 25);
@@ -92,9 +92,9 @@ public class MenuShoppingCart {
             Seller.setBounds(120, 60, 100, 25);
 
             bRemove = new JButton("Remove");
-            bRemove.setBounds(220, 20, 140, 25);
+            bRemove.setBounds(250, 13, 140, 25);
             bQuantity = new JButton("Change quantity");
-            bQuantity.setBounds(220, 60, 140, 25);
+            bQuantity.setBounds(250, 53, 140, 25);
 
             panel.add(litemName);
             panel.add(lQuantity);

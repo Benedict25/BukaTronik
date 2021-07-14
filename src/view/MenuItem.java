@@ -429,7 +429,7 @@ public class MenuItem {
             stock.setBounds(90, 60, 100, 25);
 
             bItemDetails = new JButton("Details");
-            bItemDetails.setBounds(195, 50, 100, 25);
+            bItemDetails.setBounds(230, 40, 100, 25);
 
             panel.add(lItemName);
             panel.add(itemName);

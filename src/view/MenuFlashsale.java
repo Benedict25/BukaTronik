@@ -362,8 +362,8 @@ public class MenuFlashsale {
             JButton bItemDetails;
 
             JPanel panel = new JPanel();
-            panel.setBounds(15, y, 400, 110);
-            panel.setBackground(Color.gray);
+            panel.setBounds(15, y, 400, 65);
+            panel.setBackground(new Color(150, 150, 150, 50));
 
             lItemName = new JLabel("Name: ");
             lItemName.setBounds(25, 0, 150, 25);
@@ -384,7 +384,7 @@ public class MenuFlashsale {
             endDate.setBounds(100, 40, 100, 25);
 
             bItemDetails = new JButton("Details");
-            bItemDetails.setBounds(240, 40, 100, 25);
+            bItemDetails.setBounds(260, 20, 100, 25);
 
             panel.add(lItemName);
             panel.add(itemName);
@@ -405,7 +405,7 @@ public class MenuFlashsale {
                 frame.setVisible(false);
             });
 
-            y += 125;
+            y += 90;
         }
         frame.setLayout(null);
         frame.setVisible(true);
@@ -418,7 +418,7 @@ public class MenuFlashsale {
         Flashsale flashsale = new Flashsale();
         flashsale = controllerFlashsale.getFlashsaleDataById(idFlashsale);
         JFrame frame = new JFrame("Detailed Info");
-        frame.setSize(500, 485);
+        frame.setSize(500, 575);
         JLabel lItemName, lPrice, lStock, lCategory, litemWeight;
         JLabel itemName, price, stock, category, itemWeight;
         JButton bBackToList, bBuy;
@@ -443,7 +443,7 @@ public class MenuFlashsale {
         itemName.setBounds(200, 100, 500, 30);
         itemName.setFont(new Font("Serif", Font.BOLD, 25));
         price = new JLabel(flashsale.getFormattedDiscountPrice());
-        price.setBounds(235, 150, 150, 30);
+        price.setBounds(200, 150, 300, 30);
         price.setFont(new Font("Serif", Font.BOLD, 25));
         stock = new JLabel(String.valueOf(flashsale.getFlashsaleStock()));
         stock.setBounds(200, 200, 150, 30);
