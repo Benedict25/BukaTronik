@@ -122,7 +122,7 @@ public class MainMenuSeller {
         lProfit.setBounds(50, 20, 500, 100);
         lProfit.setFont(new Font("Serif", Font.BOLD, 30));
 
-        lUsername = new JLabel(String.valueOf(profit));
+        lUsername = new JLabel(String.format("Rp.%,.2f", (double) profit));
         lUsername.setBounds(50, 120, 500, 100);
         lUsername.setFont(new Font("Serif", Font.BOLD, 30));
 
@@ -145,22 +145,22 @@ public class MainMenuSeller {
 
     public void MenuKonfirmasiLogOut() {
         JFrame frame = new JFrame("Log Out");
-        frame.setSize(400, 400);
+        frame.setSize(300, 300);
 
         JLabel lResult;
         JButton bConfirm, bBack;
 
-        lResult = new JLabel("Log Out?");
-        lResult.setBounds(68, 20, 800, 100);
-        lResult.setFont(new Font("Serif", Font.BOLD, 60));
+        lResult = new JLabel("Log Out?", JLabel.CENTER);
+        lResult.setBounds(0, 20, 300, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Yes!");
-        bConfirm.setBounds(110, 150, 150, 50);
-        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
+        bConfirm.setBounds(100, 150, 100, 30);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
 
         bBack = new JButton("No!");
-        bBack.setBounds(110, 250, 150, 50);
-        bBack.setFont(new Font("Serif", Font.BOLD, 40));
+        bBack.setBounds(100, 200, 100, 30);
+        bBack.setFont(new Font("Serif", Font.BOLD, 20));
 
         frame.add(lResult);
         frame.add(bConfirm);
