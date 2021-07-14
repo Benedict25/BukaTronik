@@ -87,8 +87,8 @@ public class MenuProfile {
         email = new JLabel(activePerson.getEmail());
         email.setBounds(290, 400, 600, 50);
         email.setFont(new Font("Serif", Font.BOLD, 30));
-        balance = new JLabel(String.valueOf(activePerson.getBalance()));
-        balance.setBounds(315, 450, 600, 50);
+        balance = new JLabel(activePerson.getFormattedBalance());
+        balance.setBounds(315, 441, 600, 50);
         balance.setFont(new Font("Serif", Font.BOLD, 30));
         type = new JLabel(String.valueOf(activePerson.getUserType()));
         type.setBounds(280, 500, 600, 50);
