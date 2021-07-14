@@ -376,10 +376,10 @@ public class MenuVoucher {
 
             if (arrVoucher.get(i).getIsAvailable() == 1) {
                 availableInfo = new JLabel("I'm Available!");
-                availableInfo.setBounds(230, 40, 100, 30);
+                availableInfo.setBounds(230, 30, 100, 30);
             } else {
                 availableInfo = new JLabel("Not Available!");
-                availableInfo.setBounds(230, 40, 100, 30);
+                availableInfo.setBounds(230, 20, 100, 30);
             }
 
             panel.add(lMinTransaction);
