@@ -400,7 +400,7 @@ public class MenuItem {
 
     public void menuItemForBuyer() {
         JFrame frameSeeItem = new JFrame("See Item's for Buyer");
-        frameSeeItem.setSize(390, 1000);
+        frameSeeItem.setSize(400, 1000);
 
         ArrayList<Item> itemList = new ControllerItem().getBuyerItemsData();
         int y = 20;
@@ -411,7 +411,7 @@ public class MenuItem {
             JButton bItemDetails;
 
             JPanel panel = new JPanel();
-            panel.setBounds(10, y, 350, 105);
+            panel.setBounds(15, y, 350, 105);
             panel.setBackground(new Color(150, 150, 150, 50));
 
             lItemName = new JLabel("Name: ");
@@ -456,7 +456,7 @@ public class MenuItem {
         }
 
         JButton bBack = new JButton("Back");
-        bBack.setBounds(170, 900, 100, 50);
+        bBack.setBounds(140, 900, 100, 50);
 
         bBack.addActionListener(new ActionListener() {
             @Override
