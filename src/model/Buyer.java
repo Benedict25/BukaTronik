@@ -48,13 +48,4 @@ public class Buyer extends Person{
     public void setShoppingCart(ArrayList<ItemInShoppingCart> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
-    
-    public int depositBalance(int balance){
-        /*masih kosong gaes*/
-        return balance;
-    }
-    
-    public void seePurchase(){
-        
-    }
 }
