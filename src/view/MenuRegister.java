@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.ControllerRegister;
+import java.awt.Font;
 import model.Person;
 import model.UserType;
 
@@ -125,10 +126,16 @@ public class MenuRegister {
                 } else {
                     newPerson.setUserType(UserType.SELLER);
                 }
-
-                boolean result = new ControllerRegister().insertNewPerson(newPerson);
-                new MenuResult().menuResultRegister(result, tUsername.getText());
-                frame.setVisible(false);
+                
+                boolean isSameUsername = new ControllerRegister().checkRegister(tUsername.getText());
+                if (isSameUsername == true) {
+                    menuDuplicatedUsername();
+                    frame.setVisible(false);
+                }else{
+                    boolean result = new ControllerRegister().insertNewPerson(newPerson);
+                    new MenuResult().menuResultRegister(result, tUsername.getText());
+                    frame.setVisible(false);
+                }
 
             }
         });
@@ -140,5 +147,33 @@ public class MenuRegister {
                 frame.setVisible(false);
             }
         });
+    }
+    
+    public void menuDuplicatedUsername(){
+        JFrame frame = new JFrame("Duplicated Username");
+        frame.setSize(450, 410);
+
+        JLabel lResult;
+        JButton bConfirm;
+
+        lResult = new JLabel("Username Used!");
+        lResult.setBounds(0, 20, 450, 100);
+        lResult.setHorizontalAlignment(JLabel.CENTER);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+
+        bConfirm = new JButton("Ok!");
+        bConfirm.setBounds(140, 250, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+
+        frame.add(lResult);
+        frame.add(bConfirm);
+
+        bConfirm.addActionListener((ActionEvent e) -> {
+            new MenuRegister();
+            frame.setVisible(false);
+        });
+
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
 }

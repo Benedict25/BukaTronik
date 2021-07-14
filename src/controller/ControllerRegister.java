@@ -6,7 +6,10 @@
 package controller;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import model.Person;
 import model.UserType;
 
@@ -46,6 +49,26 @@ public class ControllerRegister {
             return(false);
         }
 
+    }
+    
+    public boolean checkRegister(String checkUsername){
+        conn.connect();
+        boolean isSame = false;
+        
+        String query = "SELECT * FROM person";
+
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if (rs.getString("username").equals(checkUsername)) {
+                    isSame = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isSame;
     }
 
 }
