@@ -5,12 +5,10 @@
  */
 package view;
 
-import controller.ControllerCheckOut;
 import controller.ControllerFlashsale;
 import controller.ControllerItem;
 import java.awt.Color;
 import java.awt.Font;
-
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -40,7 +38,7 @@ public class MenuFlashsale {
         JButton bCreate = new JButton("Create Flashsale");
         bCreate.setBounds(140, 20, 150, 50);
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("See Flashsale Admin");
         frame.setSize(450, 1000);
 
         int y = 100;
@@ -137,7 +135,7 @@ public class MenuFlashsale {
     }
 
     public void menuInsertFlashsale() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Menu Insert Flashsale");
         frame.setSize(700, 800);
 
         //P1 (Menu Add Flashsale)
@@ -212,7 +210,7 @@ public class MenuFlashsale {
     }
 
     public void menuEditFlashsale(int idFlashsale) {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Menu Edit Flashsale");
         frame.setSize(700, 800);
 
         Flashsale flashsale = new Flashsale();
@@ -292,7 +290,7 @@ public class MenuFlashsale {
     }
 
     public void menuDeleteFlashsale(int idFlashsale) {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Menu Delete Flashsale");
         frame.setSize(700, 800);
 
         //p3(Menu delete Flashsale)
