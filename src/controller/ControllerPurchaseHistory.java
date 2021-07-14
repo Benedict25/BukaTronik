@@ -46,9 +46,7 @@ public class ControllerPurchaseHistory {
     }
 
     public CourierType enumCourType(String category) {
-        if (category.equals("INSTANT")) {
-            return CourierType.INSTANT;
-        } else if (category.equals("REGULAR")) {
+        if (category.equals("REG")) {
             return CourierType.REG;
         } else if (category.equals("YES")) {
             return CourierType.YES;
@@ -98,10 +96,10 @@ public class ControllerPurchaseHistory {
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
-            return(true);
+            return (true);
         } catch (SQLException e) {
             e.printStackTrace();
-            return(false);
+            return (false);
         }
     }
 }
