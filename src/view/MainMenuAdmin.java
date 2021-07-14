@@ -40,10 +40,10 @@ public class MainMenuAdmin {
         bSeeSalesHistory.setBounds(318, 200, 150, 50);
 
         JButton bLogOut = new JButton("Log Out >");
-        bLogOut.setBounds(63, 290, 150, 50);
+        bLogOut.setBounds(318, 290, 150, 50);
 
         JButton bPrintUserData = new JButton("Print Userdata >");
-        bPrintUserData.setBounds(318, 290, 150, 50);
+        bPrintUserData.setBounds(63, 290, 150, 50);
 
         JButton bManageVoucher = new JButton("Manage Voucher >");
         bManageVoucher.setBounds(190, 380, 150, 50);

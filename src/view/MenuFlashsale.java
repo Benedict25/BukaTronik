@@ -136,7 +136,7 @@ public class MenuFlashsale {
 
     public void menuInsertFlashsale() {
         JFrame frame = new JFrame("Menu Insert Flashsale");
-        frame.setSize(700, 800);
+        frame.setSize(500, 550);
 
         //P1 (Menu Add Flashsale)
         /*variable add*/
@@ -145,29 +145,29 @@ public class MenuFlashsale {
 
         /*frame posisition & text*/
         JInsertIdItem = new JLabel("input idItem : ");
-        JInsertIdItem.setBounds(70, 150, 150, 30);
+        JInsertIdItem.setBounds(50, 100, 200, 25);
         addIdItem = new JTextField();
-        addIdItem.setBounds(250, 150, 200, 30);
+        addIdItem.setBounds(220, 100, 200, 25);
 
         JInsertFlashsaleStock = new JLabel("input flashsaleStock : ");
-        JInsertFlashsaleStock.setBounds(70, 200, 150, 30);
+        JInsertFlashsaleStock.setBounds(50, 150, 200, 25);
         addFlashsaleStock = new JTextField();
-        addFlashsaleStock.setBounds(250, 200, 200, 30);
+        addFlashsaleStock.setBounds(220, 150, 200, 25);
 
         JInsertDiscountedPrice = new JLabel("input discountedPrice : ");
-        JInsertDiscountedPrice.setBounds(70, 250, 150, 30);
+        JInsertDiscountedPrice.setBounds(50, 200, 200, 25);
         addDiscountedPrice = new JTextField();
-        addDiscountedPrice.setBounds(250, 250, 200, 30);
+        addDiscountedPrice.setBounds(220, 200, 200, 25);
 
         JInsertEndDate = new JLabel("input endDate (YYYY-MM-DD) : ");
-        JInsertEndDate.setBounds(70, 300, 200, 30);
+        JInsertEndDate.setBounds(50, 250, 200, 25);
         addEndDate = new JTextField();
-        addEndDate.setBounds(250, 300, 200, 30);
+        addEndDate.setBounds(220, 250, 200, 25);
 
         JButton button = new JButton("Submit");
-        button.setBounds(100, 400, 95, 30);
+        button.setBounds(165, 300, 150, 30);
         JButton buttonBack = new JButton("Back");
-        buttonBack.setBounds(400, 400, 95, 30);
+        buttonBack.setBounds(165, 350, 150, 30);
 
         /*add frame*/
         frame.add(JInsertIdItem);
@@ -211,7 +211,7 @@ public class MenuFlashsale {
 
     public void menuEditFlashsale(int idFlashsale) {
         JFrame frame = new JFrame("Menu Edit Flashsale");
-        frame.setSize(700, 800);
+        frame.setSize(500, 550);
 
         Flashsale flashsale = new Flashsale();
         flashsale = controllerFlashsale.getFlashsaleDataById(idFlashsale);
@@ -223,29 +223,29 @@ public class MenuFlashsale {
 
         /*frame posisition & text*/
         JEditFlashsale = new JLabel("input idFlashsale : ");
-        JEditFlashsale.setBounds(70, 150, 150, 30);
+        JEditFlashsale.setBounds(50, 100, 200, 25);
         updateIdFlashsale = new JTextField(String.valueOf(flashsale.getIdFlashsale()));
-        updateIdFlashsale.setBounds(250, 150, 200, 30);
+        updateIdFlashsale.setBounds(220, 100, 200, 25);
 
         JEditFlashsaleStock = new JLabel("input flashsaleStock : ");
-        JEditFlashsaleStock.setBounds(70, 200, 150, 30);
+        JEditFlashsaleStock.setBounds(50, 150, 200, 25);
         updateFlashsaleStock = new JTextField(String.valueOf(flashsale.getFlashsaleStock()));
-        updateFlashsaleStock.setBounds(250, 200, 200, 30);
+        updateFlashsaleStock.setBounds(220, 150, 200, 25);
 
         JEditDiscountedPrice = new JLabel("input discountedPrice : ");
-        JEditDiscountedPrice.setBounds(70, 250, 150, 30);
+        JEditDiscountedPrice.setBounds(50, 200, 200, 25);
         updateDiscountedPrice = new JTextField(String.valueOf(flashsale.getDiscountedPrice()));
-        updateDiscountedPrice.setBounds(250, 250, 200, 30);
+        updateDiscountedPrice.setBounds(220, 200, 200, 25);
 
         JEditEndDate = new JLabel("input endDate (YYYY-MM-DD) : ");
-        JEditEndDate.setBounds(70, 300, 200, 30);
+        JEditEndDate.setBounds(50, 250, 200, 25);
         updateEndDate = new JTextField(String.valueOf(flashsale.getEndDate()));
-        updateEndDate.setBounds(250, 300, 200, 30);
+        updateEndDate.setBounds(220, 250, 200, 25);
 
         JButton button = new JButton("Edit Flashsale");
-        button.setBounds(100, 400, 150, 30);
+        button.setBounds(165, 300, 200, 30);
         JButton buttonBack = new JButton("Back");
-        buttonBack.setBounds(400, 400, 95, 30);
+        buttonBack.setBounds(165, 350, 150, 30);
 
         /*add frame*/
         frame.add(JEditFlashsale);

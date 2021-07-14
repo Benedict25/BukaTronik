@@ -94,8 +94,12 @@ public class MenuRegister {
 
         //Button
         JButton bRegister = new JButton("Register Now!");
-        bRegister.setBounds(175, 500, 200, 25);
+        bRegister.setBounds(175, 470, 200, 25);
         frame.add(bRegister);
+        
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(175, 520, 200, 25);
+        frame.add(bBack);
 
         //last
         frame.setLayout(null);
@@ -126,6 +130,14 @@ public class MenuRegister {
                 new MenuResult().menuResultRegister(result, tUsername.getText());
                 frame.setVisible(false);
 
+            }
+        });
+        
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MenuLogin();
+                frame.setVisible(false);
             }
         });
     }

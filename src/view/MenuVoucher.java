@@ -177,10 +177,10 @@ public class MenuVoucher {
         frame.setSize(400, 300);
         JLabel lKonfirmasi, lIdVoucher, lVoucherCode;
 
-        lKonfirmasi = new JLabel("Yakin Ingin Hapus Voucher ini?");
-        lKonfirmasi.setBounds(100, 25, 400, 25);
-        lVoucherCode = new JLabel("Voucher Code: " + voucherCode);
-        lVoucherCode.setBounds(125, 75, 200, 25);
+        lKonfirmasi = new JLabel("Yakin Ingin Hapus Voucher ini?", JLabel.CENTER);
+        lKonfirmasi.setBounds(0, 25, 400, 25);
+        lVoucherCode = new JLabel("Voucher Code: " + voucherCode, JLabel.CENTER);
+        lVoucherCode.setBounds(0, 75, 400, 25);
 
         JButton bDeleteVoucher = new JButton("Delete Voucher!");
         bDeleteVoucher.setBounds(115, 125, 150, 40);
@@ -266,18 +266,18 @@ public class MenuVoucher {
             voucherCode = new JLabel(arrVoucher.get(i).getVoucherCode());
             voucherCode.setBounds(125, 0, 100, 25);
             minTransaction = new JLabel(arrVoucher.get(i).getFormattedMinTransaction());
-            minTransaction.setBounds(125, 20, 100, 25);
+            minTransaction.setBounds(125, 20, 200, 25);
             cashback = new JLabel(arrVoucher.get(i).getFormattedCashback());
-            cashback.setBounds(125, 40, 100, 25);
+            cashback.setBounds(125, 40, 200, 25);
             endDate = new JLabel(arrVoucher.get(i).getEndDate());
             endDate.setBounds(125, 60, 100, 30);
             isAvailable = new JLabel(String.valueOf(arrVoucher.get(i).getIsAvailable()));
             isAvailable.setBounds(125, 80, 100, 25);
 
             bEdit = new JButton("Edit");
-            bEdit.setBounds(225, 20, 75, 25);
+            bEdit.setBounds(240, 20, 75, 25);
             bDelete = new JButton("Delete");
-            bDelete.setBounds(225, 60, 75, 25);
+            bDelete.setBounds(240, 60, 75, 25);
 
             panel.add(lMinTransaction);
             panel.add(minTransaction);

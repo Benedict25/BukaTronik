@@ -251,7 +251,7 @@ public class MenuOrder {
             JLabel price, stocks, itemName, category, itemWeight, quantity;
 
             JPanel panel = new JPanel();
-            panel.setBounds(25, y, 325, 105);
+            panel.setBounds(25, y, 325, 130);
             panel.setBackground(new Color(150, 150, 150, 50)); //rgba ; a = %
 
             lItemName = new JLabel("Item Name: ");
@@ -265,7 +265,7 @@ public class MenuOrder {
             lItemWeight = new JLabel("Item Weight: ");
             lItemWeight.setBounds(25, 80, 100, 25);
             lQuantity = new JLabel("Quantity: ");
-            lQuantity.setBounds(200, 0, 100, 25);
+            lQuantity.setBounds(25, 100, 100, 25);
 
             itemName = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getItemName()));
             itemName.setBounds(125, 0, 100, 25);
@@ -278,7 +278,7 @@ public class MenuOrder {
             itemWeight = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getItemWeight()) + "gram");
             itemWeight.setBounds(125, 80, 100, 25);
             quantity = new JLabel(String.valueOf(arrDetailed.get(i).getQuantity()));
-            quantity.setBounds(260, 0, 100, 25);
+            quantity.setBounds(125, 100, 100, 25);
 
             panel.add(lPrice);
             panel.add(price);
@@ -295,30 +295,31 @@ public class MenuOrder {
 
             frameOrder.add(panel);
 
-            bBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) { //backpath untuk pengembalian menu (back button)
-                    if (backPath.equals("seeOngoingOrder")) {
-                        subMenuOrder();
-                    } else if (backPath.equals("seeOtherStatusOrder")) {
-                        subMenuOrder();
-                    } else if (backPath.equals("seeSalesHistory")) {
-                        new MenuSalesHistory().seeSalesHistorySeller();
-                    } else if (backPath.equals("seeSalesAll")) {
-                        new MenuSalesHistory().seeSalesHistoryAdmin();
-                    } else if (backPath.equals("manageOrder")) {
-                        new MenuManageOrder().menuSeeOrder();
-                    }
-                    frameOrder.setVisible(false);
-                }
-            });
-
             panel.setLayout(null);
             panel.setVisible(true);
 
-            y += 125;
+            y += 155;
         }
         frameOrder.add(bBack);
+
+        bBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { //backpath untuk pengembalian menu (back button)
+                if (backPath.equals("seeOngoingOrder")) {
+                    subMenuOrder();
+                } else if (backPath.equals("seeOtherStatusOrder")) {
+                    subMenuOrder();
+                } else if (backPath.equals("seeSalesHistory")) {
+                    new MenuSalesHistory().seeSalesHistorySeller();
+                } else if (backPath.equals("seeSalesAll")) {
+                    new MenuSalesHistory().seeSalesHistoryAdmin();
+                } else if (backPath.equals("manageOrder")) {
+                    new MenuManageOrder().menuSeeOrder();
+                }
+                frameOrder.setVisible(false);
+            }
+        });
+
         frameOrder.setLayout(null);
         frameOrder.setVisible(true);
     }

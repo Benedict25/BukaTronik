@@ -10,7 +10,6 @@ package model;
  * @author Benedict
  */
 public enum CourierType {
-    INSTANT,
     REG,
     YES
 }

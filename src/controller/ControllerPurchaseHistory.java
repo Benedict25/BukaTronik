@@ -46,13 +46,13 @@ public class ControllerPurchaseHistory {
     }
 
     public CourierType enumCourType(String category) {
+        CourierType courierType = null;
         if (category.equals("REG")) {
-            return CourierType.REG;
+            courierType = CourierType.REG;
         } else if (category.equals("YES")) {
-            return CourierType.YES;
-        } else {
-            return null;
+            courierType = CourierType.YES;
         }
+        return courierType;
     }
 
     public DeliveryStatus enumOrderStatus(String status) {
