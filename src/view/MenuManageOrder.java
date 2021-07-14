@@ -71,7 +71,7 @@ public class MenuManageOrder {
                 purchaseDate.setBounds(80, 20, 200, 25);
                 purchaseDate.setFont(new Font("Serif", Font.BOLD, 25));
 
-                JLabel payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+                JLabel payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
                 payAmount.setBounds(120, 60, 200, 25);
                 payAmount.setFont(new Font("Serif", Font.BOLD, 25));
 
@@ -147,9 +147,9 @@ public class MenuManageOrder {
                 purchaseDate.setBounds(80, 20, 200, 25);
                 purchaseDate.setFont(new Font("Serif", Font.BOLD, 25));
 
-                JLabel payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
-                payAmount.setBounds(120, 60, 200, 25);
-                payAmount.setFont(new Font("Serif", Font.BOLD, 25));
+                JLabel formattedPayAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
+                formattedPayAmount.setBounds(120, 60, 200, 25);
+                formattedPayAmount.setFont(new Font("Serif", Font.BOLD, 25));
 
                 JButton bApproveCancel = new JButton("Aprv");
                 bApproveCancel.setBounds(15, 98, 125, 40);
@@ -166,11 +166,12 @@ public class MenuManageOrder {
                 panel.add(lPurchaseDate);
                 panel.add(lPayAmount);
                 panel.add(purchaseDate);
-                panel.add(payAmount);
+                panel.add(formattedPayAmount);
                 panel.add(bApproveCancel);
                 panel.add(bSeeDetailCancel);
                 panelSeller.add(panel);
 
+                JLabel payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
                 JLabel invisibleId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
                 JLabel invisibleIdBuyer = new JLabel(String.valueOf(arrTrans.get(i).getIdBuyer()));
 
@@ -232,5 +233,5 @@ public class MenuManageOrder {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
 }

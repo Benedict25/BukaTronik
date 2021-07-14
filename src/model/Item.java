@@ -10,6 +10,7 @@ package model;
  * @author Ignatius Dariel
  */
 public class Item {
+
     private int idItem;
     private int idPerson;
     private String itemName;
@@ -72,5 +73,9 @@ public class Item {
 
     public void setItemWeight(int itemWeight) {
         this.itemWeight = itemWeight;
+    }
+
+    public String getFormattedPrice() {
+        return String.format("Rp.%,.2f", (double) price);
     }
 }

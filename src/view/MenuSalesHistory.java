@@ -33,7 +33,7 @@ public class MenuSalesHistory {
         JLabel lHeading = new JLabel("List Sales " + new ControllerPerson().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 900, 100, 50);
         bBack.setFont(new Font("Serif", Font.BOLD, 30));
@@ -62,9 +62,9 @@ public class MenuSalesHistory {
 
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             orderId.setBounds(125, 0, 100, 25);
-            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+            payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
             payAmount.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 25);
@@ -105,16 +105,16 @@ public class MenuSalesHistory {
 
             y += 145;
         }
-        
+
         frameSHSeller.add(bBack);
-        
+
         bBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new MainMenuSeller();
-                    frameSHSeller.setVisible(false);
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuSeller();
+                frameSHSeller.setVisible(false);
+            }
+        });
 
         frameSHSeller.add(lHeading);
         frameSHSeller.setLayout(null);
@@ -130,7 +130,7 @@ public class MenuSalesHistory {
         JLabel lHeading = new JLabel("List All Sales");
         lHeading.setBounds(25, 10, 300, 60);
         lHeading.setFont(new Font("Serif", Font.BOLD, 40));
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 900, 100, 50);
         bBack.setFont(new Font("Serif", Font.BOLD, 30));
@@ -159,9 +159,9 @@ public class MenuSalesHistory {
 
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             orderId.setBounds(125, 0, 100, 25);
-            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+            payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
             payAmount.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 25);
@@ -202,16 +202,16 @@ public class MenuSalesHistory {
 
             y += 145;
         }
-        
+
         frameSHAdmin.add(bBack);
-        
+
         bBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new MainMenuAdmin();
-                    frameSHAdmin.setVisible(false);
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenuAdmin();
+                frameSHAdmin.setVisible(false);
+            }
+        });
 
         frameSHAdmin.add(lHeading);
         frameSHAdmin.setLayout(null);

@@ -37,7 +37,7 @@ public class MenuOrder {
         JFrame frameOrder = new JFrame("Ongoing Orders");
         frameOrder.setSize(390, 1000);
         JScrollPane scroll = new JScrollPane();
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         int y = 90;
         ArrayList<Transaction> arrTrans = new ControllerPurchaseHistory().catchArrOrder("PROCESSED");
 
@@ -69,9 +69,9 @@ public class MenuOrder {
 
             orderId = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             orderId.setBounds(125, 0, 100, 25);
-            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+            payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
             payAmount.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
@@ -123,7 +123,7 @@ public class MenuOrder {
 
             y += 145;
         }
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 900, 100, 50);
         bBack.setFont(new Font("Serif", Font.BOLD, 30));
@@ -142,7 +142,7 @@ public class MenuOrder {
         frameOrder.setLayout(null);
         frameOrder.setVisible(true);
     }
-    
+
     public void seeOtherStatusOrder(String status) {
         JFrame framePurchaseHistory = new JFrame("Orders");
         framePurchaseHistory.setSize(390, 1000);
@@ -175,9 +175,9 @@ public class MenuOrder {
 
             courierType = new JLabel(String.valueOf(arrTrans.get(i).getIdTransaction()));
             courierType.setBounds(125, 0, 100, 25);
-            payAmount = new JLabel(String.valueOf(arrTrans.get(i).getPayAmount()));
+            payAmount = new JLabel(arrTrans.get(i).getFormattedPayAmount());
             payAmount.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrTrans.get(i).getCashback()));
+            cashback = new JLabel(arrTrans.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             purchaseDate = new JLabel(arrTrans.get(i).getPurchaseDate());
             purchaseDate.setBounds(125, 60, 100, 30);
@@ -269,13 +269,13 @@ public class MenuOrder {
 
             itemName = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getItemName()));
             itemName.setBounds(125, 0, 100, 25);
-            price = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getPrice()));
+            price = new JLabel(arrItemsInDetailed.get(i).getFormattedPrice());
             price.setBounds(125, 20, 100, 25);
             stocks = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getStocks()));
             stocks.setBounds(125, 40, 100, 25);
             category = new JLabel(new ControllerItem().strGadgetType(arrItemsInDetailed.get(i)));
             category.setBounds(125, 60, 100, 25);
-            itemWeight = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getItemWeight()) + "g");
+            itemWeight = new JLabel(String.valueOf(arrItemsInDetailed.get(i).getItemWeight()) + "gram");
             itemWeight.setBounds(125, 80, 100, 25);
             quantity = new JLabel(String.valueOf(arrDetailed.get(i).getQuantity()));
             quantity.setBounds(260, 0, 100, 25);
@@ -362,7 +362,7 @@ public class MenuOrder {
         frameCancelOrder.setVisible(true);
     }
 
-    public void subMenuOrder(){
+    public void subMenuOrder() {
         JFrame frame = new JFrame("Oders");
         frame.setSize(600, 650);
 
@@ -398,27 +398,27 @@ public class MenuOrder {
             seeOngoingOrder();
             frame.setVisible(false);
         });
-        
+
         bCancelling.addActionListener((ActionEvent e) -> {
             seeOtherStatusOrder(String.valueOf(DeliveryStatus.CANCELLING));
             frame.setVisible(false);
         });
-        
+
         bDelivered.addActionListener((ActionEvent e) -> {
             seeOtherStatusOrder(String.valueOf(DeliveryStatus.DELIVERED));
             frame.setVisible(false);
         });
-        
+
         bCancelled.addActionListener((ActionEvent e) -> {
             seeOtherStatusOrder(String.valueOf(DeliveryStatus.CANCELLED));
             frame.setVisible(false);
         });
-        
+
         bBack.addActionListener((ActionEvent e) -> {
             new MainMenuBuyer();
             frame.setVisible(false);
         });
-        
+
         frame.setLayout(null);
         frame.setVisible(true);
     }

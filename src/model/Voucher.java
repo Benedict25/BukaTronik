@@ -10,6 +10,7 @@ package model;
  * @author Ignatius Dariel
  */
 public class Voucher {
+
     private int idVoucher;
     private int minTransaction;
     private int cashback;
@@ -63,5 +64,13 @@ public class Voucher {
 
     public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
+    }
+
+    public String getFormattedCashback() {
+        return String.format("Rp.%,.2f", (double) cashback);
+    }
+
+    public String getFormattedMinTransaction() {
+        return String.format("Rp.%,.2f", (double) minTransaction);
     }
 }

@@ -10,6 +10,7 @@ package model;
  * @author Benedict
  */
 public class Transaction {
+
     private int idTransaction;
     private int idBuyer;
     private int idSeller;
@@ -90,5 +91,13 @@ public class Transaction {
 
     public void setPayAmount(int payAmount) {
         this.payAmount = payAmount;
+    }
+
+    public String getFormattedPayAmount() {
+        return String.format("Rp.%,.2f", (double) payAmount);
+    }
+
+    public String getFormattedCashback() {
+        return String.format("Rp.%,.2f", (double) cashback);
     }
 }
