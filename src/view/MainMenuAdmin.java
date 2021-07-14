@@ -21,32 +21,32 @@ public class MainMenuAdmin {
 
     public MainMenuAdmin() {
         JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
-        frameMainMenuAdmin.setSize(550, 550);
+        frameMainMenuAdmin.setSize(550, 650);
         String username = new ControllerPerson().getActivePersonUsername();
-        JLabel lUsername = new JLabel("Welcome " + username + "!", JLabel.CENTER);
-        lUsername.setBounds(0, 10, 550, 70);
+        JLabel lUsername = new JLabel("Welcome " + username + "!");
+        lUsername.setBounds(125, 10, 500, 70);
         lUsername.setFont(new Font("Serif", Font.BOLD, 40));
 
         JButton bProfile = new JButton("Profile >");
-        bProfile.setBounds(63, 110, 150, 50);
+        bProfile.setBounds(175, 110, 150, 50);
 
         JButton bManageFlashsale = new JButton("Manage Flashsale >");
-        bManageFlashsale.setBounds(318, 110, 150, 50);
+        bManageFlashsale.setBounds(175, 180, 150, 50);
 
         JButton bManageUser = new JButton("Manage User >");
-        bManageUser.setBounds(63, 200, 150, 50);
+        bManageUser.setBounds(175, 250, 150, 50);
 
         JButton bSeeSalesHistory = new JButton("See Sales >");
-        bSeeSalesHistory.setBounds(318, 200, 150, 50);
+        bSeeSalesHistory.setBounds(175, 320, 150, 50);
 
         JButton bLogOut = new JButton("Log Out >");
-        bLogOut.setBounds(63, 290, 150, 50);
+        bLogOut.setBounds(175, 390, 150, 50);
 
-        JButton bPrintUserData = new JButton("Print Userdata >");
-        bPrintUserData.setBounds(318, 290, 150, 50);
-
+        JLabel lWelcome = new JLabel("This is Bukatronik ADMIN");
+        lWelcome.setBounds(175, 460, 150, 50);
+        
         JButton bManageVoucher = new JButton("Manage Voucher >");
-        bManageVoucher.setBounds(175, 460, 150, 50);
+        bManageVoucher.setBounds(175, 520, 150, 50);
 
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -87,19 +87,11 @@ public class MainMenuAdmin {
                 frameMainMenuAdmin.setVisible(false);
             }
         });
-
+        
         bManageVoucher.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MenuVoucher().MenuSeeVoucherForAdmin();
-                frameMainMenuAdmin.setVisible(false);
-            }
-        });
-
-        bPrintUserData.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new MenuSeeUserFromAdmin().menuSeePersonList();
                 frameMainMenuAdmin.setVisible(false);
             }
         });
@@ -110,30 +102,30 @@ public class MainMenuAdmin {
         frameMainMenuAdmin.add(bManageFlashsale);
         frameMainMenuAdmin.add(bManageUser);
         frameMainMenuAdmin.add(bLogOut);
+        frameMainMenuAdmin.add(lWelcome);
         frameMainMenuAdmin.add(bManageVoucher);
-        frameMainMenuAdmin.add(bPrintUserData);
         frameMainMenuAdmin.setLayout(null);
         frameMainMenuAdmin.setVisible(true);
     }
-
+    
     public void MenuKonfirmasiLogOut() {
         JFrame frame = new JFrame("Log Out");
-        frame.setSize(300, 300);
+        frame.setSize(400, 400);
 
         JLabel lResult;
         JButton bConfirm, bBack;
 
-        lResult = new JLabel("Log Out?", JLabel.CENTER);
-        lResult.setBounds(0, 20, 300, 100);
-        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        lResult = new JLabel("Log Out?");
+        lResult.setBounds(68, 20, 800, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 60));
 
         bConfirm = new JButton("Yes!");
-        bConfirm.setBounds(100, 150, 100, 30);
-        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+        bConfirm.setBounds(110, 150, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
 
         bBack = new JButton("No!");
-        bBack.setBounds(100, 200, 100, 30);
-        bBack.setFont(new Font("Serif", Font.BOLD, 20));
+        bBack.setBounds(110, 250, 150, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 40));
 
         frame.add(lResult);
         frame.add(bConfirm);

@@ -27,34 +27,33 @@ public class MainMenuBuyer {
         String activeUsername = new ControllerPerson().getActivePersonUsername();
 
         bProfile = new JButton("Profile >");
-        bProfile.setBounds(75, 120, 150, 50);
-        bProfile.setFont(new Font("Serif", Font.BOLD, 15));
+        bProfile.setBounds(75, 100, 150, 50);
+        bProfile.setFont(new Font("Serif", Font.BOLD, 20));
         bSeeItems = new JButton("See Items >");
-        bSeeItems.setBounds(250, 120, 150, 50);
-        bSeeItems.setFont(new Font("Serif", Font.BOLD, 15));
+        bSeeItems.setBounds(250, 100, 150, 50);
+        bSeeItems.setFont(new Font("Serif", Font.BOLD, 20));
         bWishlist = new JButton("Wishlist >");
-        bWishlist.setBounds(75, 220, 150, 50);
-        bWishlist.setFont(new Font("Serif", Font.BOLD, 15));
+        bWishlist.setBounds(75, 200, 150, 50);
+        bWishlist.setFont(new Font("Serif", Font.BOLD, 20));
         bShoppingCart = new JButton("Shopping Cart >");
-        bShoppingCart.setBounds(250, 220, 150, 50);
+        bShoppingCart.setBounds(250, 200, 150, 50);
         bShoppingCart.setFont(new Font("Serif", Font.BOLD, 15));
         bOrders = new JButton("Orders >");
-        bOrders.setBounds(75, 320, 150, 50);
-        bOrders.setFont(new Font("Serif", Font.BOLD, 15));
+        bOrders.setBounds(75, 300, 150, 50);
+        bOrders.setFont(new Font("Serif", Font.BOLD, 20));
         bLogout = new JButton("Log Out >");
-        bLogout.setBounds(250, 320, 150, 50);
-        bLogout.setFont(new Font("Serif", Font.BOLD, 15));
+        bLogout.setBounds(250, 300, 150, 50);
+        bLogout.setFont(new Font("Serif", Font.BOLD, 20));
 
-        lAppName = new JLabel("Welcome to Bukatronik!",JLabel.CENTER);
-        lAppName.setFont(new Font("Serif", Font.BOLD, 35));
-        lAppName.setBounds(0, 10, 500, 50);
-        lWelcome = new JLabel(activeUsername, JLabel.CENTER);
-        lWelcome.setFont(new Font("Serif", Font.BOLD, 35));
-        lWelcome.setBounds(0, 50, 500, 50);
+        lWelcome = new JLabel("Welcome " + activeUsername + "!");
+        lWelcome.setFont(new Font("Serif", Font.BOLD, 40));
+        lWelcome.setBounds(75, 20, 450, 50);
+        lAppName = new JLabel("Welcome to Bukatronik");
+        lAppName.setBounds(175, 375, 150, 50);
         bVoucher = new JButton("Available Voucher");
-        bVoucher.setBounds(165, 400, 150, 30);
+        bVoucher.setBounds(165, 420, 150, 30);
         bFlashsale = new JButton("Flashsale");
-        bFlashsale.setBounds(165, 450, 150, 30);
+        bFlashsale.setBounds(165, 470, 150, 30);
 
         frame.add(bProfile);
         frame.add(bSeeItems);
@@ -138,22 +137,22 @@ public class MainMenuBuyer {
     
     public void MenuKonfirmasiLogOut() {
         JFrame frame = new JFrame("Log Out");
-        frame.setSize(300, 300);
+        frame.setSize(400, 400);
 
         JLabel lResult;
         JButton bConfirm, bBack;
 
-        lResult = new JLabel("Log Out?", JLabel.CENTER);
-        lResult.setBounds(0, 20, 300, 100);
-        lResult.setFont(new Font("Serif", Font.BOLD, 30));
+        lResult = new JLabel("Log Out?");
+        lResult.setBounds(68, 20, 800, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 60));
 
         bConfirm = new JButton("Yes!");
-        bConfirm.setBounds(100, 150, 100, 30);
-        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
+        bConfirm.setBounds(110, 150, 150, 50);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
 
         bBack = new JButton("No!");
-        bBack.setBounds(100, 200, 100, 30);
-        bBack.setFont(new Font("Serif", Font.BOLD, 20));
+        bBack.setBounds(110, 250, 150, 50);
+        bBack.setFont(new Font("Serif", Font.BOLD, 40));
 
         frame.add(lResult);
         frame.add(bConfirm);
