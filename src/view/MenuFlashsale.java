@@ -291,7 +291,7 @@ public class MenuFlashsale {
 
     public void menuDeleteFlashsale(int idFlashsale) {
         JFrame frame = new JFrame("Menu Delete Flashsale");
-        frame.setSize(700, 800);
+        frame.setSize(370, 200);
 
         //p3(Menu delete Flashsale)
         /*variable update*/
@@ -300,14 +300,14 @@ public class MenuFlashsale {
 
         /*frame posisition & text*/
         JdeleteIdFlashsale = new JLabel("input idFlashsale : ");
-        JdeleteIdFlashsale.setBounds(70, 150, 150, 30);
+        JdeleteIdFlashsale.setBounds(20, 10, 150, 30);
         deleteIdFlashsale = new JTextField(String.valueOf(idFlashsale));
-        deleteIdFlashsale.setBounds(250, 150, 200, 30);
+        deleteIdFlashsale.setBounds(140, 10, 200, 30);
 
         JButton button = new JButton("Submit");
-        button.setBounds(100, 400, 95, 30);
+        button.setBounds(30, 80, 95, 30);
         JButton buttonBack = new JButton("Back");
-        buttonBack.setBounds(400, 400, 95, 30);
+        buttonBack.setBounds(230, 80, 95, 30);
 
         /*add frame*/
         frame.add(JdeleteIdFlashsale);
