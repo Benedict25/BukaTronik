@@ -32,7 +32,7 @@ public class MenuSalesHistory {
 
         JLabel lHeading = new JLabel("List Sales " + new ControllerPerson().getActivePersonUsername());
         lHeading.setBounds(25, 10, 300, 60);
-        lHeading.setFont(new Font("Serif", Font.BOLD, 40));
+        lHeading.setFont(new Font("Serif", Font.BOLD, 30));
 
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 900, 100, 50);
@@ -74,7 +74,7 @@ public class MenuSalesHistory {
             deliveryStatus.setBounds(125, 100, 100, 25);
 
             bDetails = new JButton("Details");
-            bDetails.setBounds(210, 15, 75, 25);
+            bDetails.setBounds(230, 45, 75, 25);
 
             panel.add(lPayAmount);
             panel.add(payAmount);

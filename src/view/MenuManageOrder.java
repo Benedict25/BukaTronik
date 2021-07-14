@@ -52,7 +52,7 @@ public class MenuManageOrder {
         JPanel panelSeller = new JPanel();
 
         //Panel Status Processed
-        int x = 45;
+        int x = 40;
         int y = 15;
         int counterPanel = 0;
 
@@ -80,11 +80,11 @@ public class MenuManageOrder {
                 bAcceptOrder.setFont(new Font("Serif", Font.BOLD, 25));
 
                 JButton bSeeDetail = new JButton("Detail");
-                bSeeDetail.setBounds(160, 98, 125, 40);
+                bSeeDetail.setBounds(185, 98, 125, 40);
                 bSeeDetail.setFont(new Font("Serif", Font.BOLD, 25));
 
                 JPanel panel = new JPanel();
-                panel.setBounds(x, y, 300, 150);
+                panel.setBounds(x, y, 330, 150);
                 panel.setBackground(new Color(150, 150, 150, 50));
 
                 panel.add(lPurchaseDate);
@@ -119,7 +119,7 @@ public class MenuManageOrder {
                 x += 350;
                 counterPanel++;
                 if (counterPanel == 2) {
-                    x = 45;
+                    x = 40;
                     y += 175;
                     counterPanel = 0;
                 }
@@ -129,7 +129,7 @@ public class MenuManageOrder {
         }
 
         //Panel Status Cancelling
-        x = 45;
+        x = 40;
         y = 15;
         counterPanel = 0;
 
@@ -156,11 +156,11 @@ public class MenuManageOrder {
                 bApproveCancel.setFont(new Font("Serif", Font.BOLD, 25));
 
                 JButton bSeeDetailCancel = new JButton("Detail");
-                bSeeDetailCancel.setBounds(160, 98, 125, 40);
+                bSeeDetailCancel.setBounds(185, 98, 125, 40);
                 bSeeDetailCancel.setFont(new Font("Serif", Font.BOLD, 25));
 
                 JPanel panel = new JPanel();
-                panel.setBounds(x, y, 300, 150);
+                panel.setBounds(x, y, 330, 150);
                 panel.setBackground(new Color(150, 150, 150, 50));
 
                 panel.add(lPurchaseDate);
@@ -198,7 +198,7 @@ public class MenuManageOrder {
                 x += 350;
                 counterPanel++;
                 if (counterPanel == 2) {
-                    x = 45;
+                    x = 40;
                     y += 175;
                     counterPanel = 0;
                 }
