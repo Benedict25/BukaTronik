@@ -238,7 +238,7 @@ public class MenuVoucher {
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MainMenuSeller();
+                new MainMenuAdmin();
                 frame.setVisible(false);
             }
         });
