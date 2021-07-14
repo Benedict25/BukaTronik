@@ -149,15 +149,15 @@ public class MenuCheckOut {
         lBayar = new JLabel("Bayar ?");
         lBayar.setBounds(25, 240, 150, 25);
 
-        lTotalHargaCourier = new JLabel(String.valueOf(totalHargaCourier));
+        lTotalHargaCourier = new JLabel(String.format("Rp.%,.2f", (double) totalHargaCourier));
         lTotalHargaCourier.setBounds(150, 0, 150, 25);
-        lTotalItemPrice = new JLabel(String.valueOf(totalHargaItem));
+        lTotalItemPrice = new JLabel(String.format("Rp.%,.2f", (double) totalHargaItem));
         lTotalItemPrice.setBounds(150, 40, 150, 25);
-        lTotalAdministrasion = new JLabel(String.valueOf(biayaAdministrasi));
+        lTotalAdministrasion = new JLabel(String.format("Rp.%,.2f", (double) biayaAdministrasi));
         lTotalAdministrasion.setBounds(150, 80, 150, 25);
-        lTotalPayment = new JLabel(String.valueOf(totalKeseluruhan));
+        lTotalPayment = new JLabel(String.format("Rp.%,.2f", (double) totalKeseluruhan));
         lTotalPayment.setBounds(150, 120, 150, 25);
-        lUserBalance = new JLabel(String.valueOf(person.getBalance()));
+        lUserBalance = new JLabel(String.format("Rp.%,.2f", (double) person.getBalance()));
         lUserBalance.setBounds(150, 160, 150, 25);
 
         bConfirm = new JButton("Bayar");

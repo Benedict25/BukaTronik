@@ -11,22 +11,6 @@ package model;
  */
 public class Admin extends Person implements TransactionHistory, VoucherManager{
 
-    public void createFlashsale(int idItem, int price, String endDate) {
-
-    }
-
-    public void editFlashsale(int idFlashsale) {
-        
-    }
-    
-    public void deleteFlashsale(int idFlashsale) {
-        
-    }
-    
-    public void deleteUser(int idUser) {
-        
-    }
-
     @Override
     public void seeSalesHistory() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

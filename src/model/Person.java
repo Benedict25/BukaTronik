@@ -10,6 +10,7 @@ package model;
  * @author Matthew
  */
 public class Person {
+
     private int idPerson;
     private String username;
     private String password;
@@ -100,14 +101,9 @@ public class Person {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
-    
-    public int withdrawBalance(int balance){
-        /*ini masih kosong*/
-        return balance;
+
+    public String getFormattedBalance() {
+        return String.format("Rp.%,.2f", (double) balance);
     }
-   
-    public void seeItems(){
-        /*ini masih kosong*/
-    }
-    
+
 }

@@ -42,21 +42,6 @@ public class Seller extends Person implements TransactionHistory, VoucherManager
         this.transactions = transactions;
     }
 
-    public void editItem(int idItem) {
-    }
-
-    public void deleteItem(int idItem) {
-    }
-
-    public void approveCancellation(int idTransaction) {
-    }
-
-    public void approveOrder(int idTransaction) {
-    }
-
-    public void seeOrders() {
-    }
-
     @Override
     public void seeSalesHistory() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

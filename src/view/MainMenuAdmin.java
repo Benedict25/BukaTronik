@@ -23,8 +23,8 @@ public class MainMenuAdmin {
         JFrame frameMainMenuAdmin = new JFrame("Main Menu Admin");
         frameMainMenuAdmin.setSize(550, 550);
         String username = new ControllerPerson().getActivePersonUsername();
-        JLabel lUsername = new JLabel("Welcome " + username + "!");
-        lUsername.setBounds(125, 10, 500, 70);
+        JLabel lUsername = new JLabel("Welcome " + username + "!", JLabel.CENTER);
+        lUsername.setBounds(0, 10, 550, 70);
         lUsername.setFont(new Font("Serif", Font.BOLD, 40));
 
         JButton bProfile = new JButton("Profile >");
@@ -45,11 +45,9 @@ public class MainMenuAdmin {
         JButton bPrintUserData = new JButton("Print Userdata >");
         bPrintUserData.setBounds(318, 290, 150, 50);
 
-        JLabel lWelcome = new JLabel("This is Bukatronik ADMIN");
-        lWelcome.setBounds(175, 360, 150, 50);
-
         JButton bManageVoucher = new JButton("Manage Voucher >");
-        bManageVoucher.setBounds(175, 400, 150, 50);
+        bManageVoucher.setBounds(175, 380, 150, 50);
+
 
         bProfile.addActionListener(new ActionListener() {
             @Override
@@ -113,7 +111,6 @@ public class MainMenuAdmin {
         frameMainMenuAdmin.add(bManageFlashsale);
         frameMainMenuAdmin.add(bManageUser);
         frameMainMenuAdmin.add(bLogOut);
-        frameMainMenuAdmin.add(lWelcome);
         frameMainMenuAdmin.add(bManageVoucher);
         frameMainMenuAdmin.add(bPrintUserData);
         frameMainMenuAdmin.setLayout(null);
@@ -122,22 +119,22 @@ public class MainMenuAdmin {
 
     public void MenuKonfirmasiLogOut() {
         JFrame frame = new JFrame("Log Out");
-        frame.setSize(400, 400);
+        frame.setSize(300, 300);
 
         JLabel lResult;
         JButton bConfirm, bBack;
 
-        lResult = new JLabel("Log Out?");
-        lResult.setBounds(68, 20, 800, 100);
-        lResult.setFont(new Font("Serif", Font.BOLD, 60));
+        lResult = new JLabel("Log Out?", JLabel.CENTER);
+        lResult.setBounds(0, 20, 300, 100);
+        lResult.setFont(new Font("Serif", Font.BOLD, 30));
 
         bConfirm = new JButton("Yes!");
-        bConfirm.setBounds(110, 150, 150, 50);
-        bConfirm.setFont(new Font("Serif", Font.BOLD, 40));
+        bConfirm.setBounds(100, 150, 100, 30);
+        bConfirm.setFont(new Font("Serif", Font.BOLD, 20));
 
         bBack = new JButton("No!");
-        bBack.setBounds(110, 250, 150, 50);
-        bBack.setFont(new Font("Serif", Font.BOLD, 40));
+        bBack.setBounds(100, 200, 100, 30);
+        bBack.setFont(new Font("Serif", Font.BOLD, 20));
 
         frame.add(lResult);
         frame.add(bConfirm);

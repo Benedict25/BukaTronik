@@ -10,7 +10,9 @@ package model;
  * @author Benedict
  */
 public class Flashsale {
-    private int idFlashsale; /*ini bakalan 0 hasilnya pas ngejalanin MenuAddFlashSale.java karena belum dimasukin dan  mau pake auto increment buat data base*/
+
+    private int idFlashsale;
+    /*ini bakalan 0 hasilnya pas ngejalanin MenuAddFlashSale.java karena belum dimasukin dan  mau pake auto increment buat data base*/
     private int idItem;
     private int flashsaleStock;
     private int discountedPrice;
@@ -56,9 +58,7 @@ public class Flashsale {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
-        return "\nidFlashsale = " + idFlashsale + ", idItem = " + idItem + ", flashsaleStock = " + flashsaleStock + ", discountedPrice = " + discountedPrice + ", endDate = " + endDate + "\n";
+    public String getFormattedDiscountPrice() {
+        return String.format("Rp.%,.2f", (double) discountedPrice);
     }
-    
 }

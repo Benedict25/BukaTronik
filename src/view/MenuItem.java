@@ -71,9 +71,9 @@ public class MenuItem {
             itemId.setBounds(60, 0, 100, 25);
             itemName = new JLabel(itemList.get(i).getItemName());
             itemName.setBounds(80, 20, 100, 25);
-            itemWeight = new JLabel(String.valueOf(itemList.get(i).getItemWeight()));
+            itemWeight = new JLabel(String.valueOf(itemList.get(i).getItemWeight()) + " gram");
             itemWeight.setBounds(85, 40, 100, 25);
-            itemPrice = new JLabel(String.valueOf(itemList.get(i).getPrice()));
+            itemPrice = new JLabel(itemList.get(i).getFormattedPrice());
             itemPrice.setBounds(75, 60, 100, 25);
             itemStocks = new JLabel(String.valueOf(itemList.get(i).getStocks()));
             itemStocks.setBounds(85, 80, 100, 25);
@@ -400,7 +400,7 @@ public class MenuItem {
 
     public void menuItemForBuyer() {
         JFrame frameSeeItem = new JFrame("See Item's for Buyer");
-        frameSeeItem.setSize(390, 1000);
+        frameSeeItem.setSize(400, 1000);
 
         ArrayList<Item> itemList = new ControllerItem().getBuyerItemsData();
         int y = 20;
@@ -411,7 +411,7 @@ public class MenuItem {
             JButton bItemDetails;
 
             JPanel panel = new JPanel();
-            panel.setBounds(10, y, 350, 105);
+            panel.setBounds(15, y, 350, 105);
             panel.setBackground(new Color(150, 150, 150, 50));
 
             lItemName = new JLabel("Name: ");
@@ -423,7 +423,7 @@ public class MenuItem {
 
             itemName = new JLabel(itemList.get(i).getItemName());
             itemName.setBounds(90, 20, 100, 25);
-            price = new JLabel(String.valueOf(itemList.get(i).getPrice()));
+            price = new JLabel(itemList.get(i).getFormattedPrice());
             price.setBounds(90, 40, 100, 25);
             stock = new JLabel(String.valueOf(itemList.get(i).getStocks()));
             stock.setBounds(90, 60, 100, 25);
@@ -456,7 +456,7 @@ public class MenuItem {
         }
 
         JButton bBack = new JButton("Back");
-        bBack.setBounds(170, 900, 100, 50);
+        bBack.setBounds(140, 900, 100, 50);
 
         bBack.addActionListener(new ActionListener() {
             @Override

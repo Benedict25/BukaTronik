@@ -89,7 +89,7 @@ public class MenuVoucher {
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    
+
     public void MenuEditVoucher(int idVoucher) {
         JFrame frame = new JFrame("Edit Voucher");
         frame.setSize(500, 720);
@@ -213,7 +213,7 @@ public class MenuVoucher {
     public void MenuSeeVoucherForAdmin() { //bedanya dengan buyer adalah di seller ada edit delete
         ArrayList<Voucher> arrVoucher = new ArrayList();
         arrVoucher = controlVoucher.getVoucherDataAdmin();
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(25, 25, 70, 40);
 
@@ -234,7 +234,7 @@ public class MenuVoucher {
                 frame.setVisible(false);
             }
         });
-        
+
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -265,9 +265,9 @@ public class MenuVoucher {
 
             voucherCode = new JLabel(arrVoucher.get(i).getVoucherCode());
             voucherCode.setBounds(125, 0, 100, 25);
-            minTransaction = new JLabel(String.valueOf(arrVoucher.get(i).getMinTransaction()));
+            minTransaction = new JLabel(arrVoucher.get(i).getFormattedMinTransaction());
             minTransaction.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrVoucher.get(i).getCashback()));
+            cashback = new JLabel(arrVoucher.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             endDate = new JLabel(arrVoucher.get(i).getEndDate());
             endDate.setBounds(125, 60, 100, 30);
@@ -328,12 +328,12 @@ public class MenuVoucher {
 
         JFrame frame = new JFrame("Voucher List");
         frame.setSize(390, 1000);
-        
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(150, 10, 70, 40);
-        
+
         frame.add(bBack);
-        
+
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -341,7 +341,7 @@ public class MenuVoucher {
                 frame.setVisible(false);
             }
         });
-        
+
         int y = 60;
 
         for (int i = 0; i < arrVoucher.size(); i++) {
@@ -365,15 +365,15 @@ public class MenuVoucher {
 
             voucherCode = new JLabel(arrVoucher.get(i).getVoucherCode());
             voucherCode.setBounds(125, 0, 100, 25);
-            minTransaction = new JLabel(String.valueOf(arrVoucher.get(i).getMinTransaction()));
+            minTransaction = new JLabel(arrVoucher.get(i).getFormattedMinTransaction());
             minTransaction.setBounds(125, 20, 100, 25);
-            cashback = new JLabel(String.valueOf(arrVoucher.get(i).getCashback()));
+            cashback = new JLabel(arrVoucher.get(i).getFormattedCashback());
             cashback.setBounds(125, 40, 100, 25);
             endDate = new JLabel(arrVoucher.get(i).getEndDate());
             endDate.setBounds(125, 60, 100, 30);
             isAvailable = new JLabel(String.valueOf(arrVoucher.get(i).getIsAvailable()));
             isAvailable.setBounds(125, 80, 100, 25);
-        
+
             if (arrVoucher.get(i).getIsAvailable() == 1) {
                 availableInfo = new JLabel("I'm Available!");
                 availableInfo.setBounds(220, 35, 100, 30);
