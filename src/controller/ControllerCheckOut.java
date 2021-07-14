@@ -480,15 +480,17 @@ public class ControllerCheckOut {
                     
                     if (temp == checkIdSeller) {
                         if (counterInit == 0) {
-                            newTransaction(totalBayarCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity(),cashback); //temp = id for current seller
-                            idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
-                            insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
-                            counterInit++;
+                             //item pertama (idSeller unik), untuk membuat transaction baru
+                            newTransaction(totalBayarCourier, currentItemPrice, courierType, temp, arrShoppingCart.get(j).getQuantity(),cashback); //inisialisasi di tabel transaction
+                            idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());//ambil idTransaction terbaru
+                            insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());//masukkan ke detailed trans
+                            counterInit++;//counter internal++ = inisialisasi di transaction sudah dilakukan
                         } else {
+                            //item berikutnya dengan idSeller yang sama dnegan item pertama, untuk update data transaction
                             idTransaction = getIdTransaction(SingletonActiveId.getInstance().getActiveId());
                             updateTotalbayarCourier(totalBayarCourier, idTransaction);
-                            updateTransaction(idTransaction, currentItemPrice, arrShoppingCart.get(j).getQuantity());
-                            insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());
+                            updateTransaction(idTransaction, currentItemPrice, arrShoppingCart.get(j).getQuantity());//update pay amount di transaction
+                            insertToDetailedTransaction(idTransaction, arrShoppingCart.get(j).getIdItem(), arrShoppingCart.get(j).getQuantity());//masukan ke detailed
                         }
                         counter++;
                     }
