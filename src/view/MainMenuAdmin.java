@@ -46,7 +46,8 @@ public class MainMenuAdmin {
         bPrintUserData.setBounds(318, 290, 150, 50);
 
         JButton bManageVoucher = new JButton("Manage Voucher >");
-        bManageVoucher.setBounds(175, 460, 150, 50);
+        bManageVoucher.setBounds(175, 380, 150, 50);
+
 
         bProfile.addActionListener(new ActionListener() {
             @Override
